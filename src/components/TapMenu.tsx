@@ -28,7 +28,7 @@ const TapMenu = () => {
 
     const renderMenus = () => {
         return text.map((menuText, index) => {
-            const items = String(menuText).split(","); // 아이템들을 배열로 분할
+            const items = String(menuText).split(",");
             return (
                 <div className="w-11/12 min-h-[125px] p-5 border-solid border-2 border-black-500 ml-auto mx-auto mb-5 rounded" key={index}>
                     <div className="w-fit px-5 m-auto text-center font-semibold -translate-y-9 border-solid border-2 border-black-500 rounded-lg bg-stone-200">{todayDate}</div>
