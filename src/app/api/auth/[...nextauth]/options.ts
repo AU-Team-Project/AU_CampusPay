@@ -38,10 +38,10 @@ export const options: NextAuthOptions = {
                     if (!credentials || !credentials.email || !credentials.password) {
                         throw new Error("No credentials provided");
                     }
-                    /** ###  MongoDB 접근 */
+                    /** MongoDB 접근 */
                     let db = (await connectDB).db(process.env.MONGODB_NAME);
                     /**
-                     * ### 자격증명이 없는 경우
+                     * 자격증명이 없는 경우
                      * (credentials: null || undefined 또는 객체에 email, password 속성이 없는 경우)
                      */
                     if (!credentials) throw new Error("No credentials provided");
@@ -49,10 +49,10 @@ export const options: NextAuthOptions = {
                         email: credentials.email
                     });
                     if (!user) throw new Error("User not found");
-                    /** ### 일반 사용자(customer) 계정의 비밀번호 검증 */
+                    /** 일반 사용자(customer) 계정의 비밀번호 검증 */
                     const isPasswordValid: boolean = await bcrypt.compare(credentials.password, user.password);
                     if (!isPasswordValid) throw new Error("Invalid password");
-                    /** ### [MS2 UserAccount] 로그인 날짜 업데이트 */
+                    /** [MS2 UserAccount] 로그인 날짜 업데이트 */
                     const lastAccess = new Date().toISOString().slice(0, 10).replace(/-/g,".");
                     await db.collection('user').updateOne({ _id: new ObjectId(user._id)}, { $set: {lastAccess}})
 
@@ -78,7 +78,7 @@ export const options: NextAuthOptions = {
             if (user) {
                 token.user = {};
                 token.user._id = user._id;
-                token.user.name = user.name;
+                token.user.username = user.username;
                 token.user.email = user.email;
                 token.user.password = user.password;
                 token.user.phone = user.phone;

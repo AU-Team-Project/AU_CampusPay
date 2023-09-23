@@ -13,7 +13,7 @@ export async function POST(request: Request) {
      * student_number : 학번
      * phone : 전화번호
      */
-    const name = formData.get('name');
+    const username = formData.get('name');
     const email = formData.get('email');
     /** ### password 해싱으로 인한 임시타입 : any */
     const password: any = formData.get('password');
@@ -28,10 +28,10 @@ export async function POST(request: Request) {
         /** ### 회원정보 데이터베이스에 저장 */
         await db.collection(process.env.MONGODB_USER as string).insertOne({
             email,
+            username,
+            student_number,
+            phone,
             password: pwdHash,
-            //name,
-            //student_number,
-            //phone,
             role: 'customer',
         });
         /**

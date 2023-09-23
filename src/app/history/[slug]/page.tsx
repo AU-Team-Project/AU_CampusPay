@@ -1,5 +1,5 @@
 import React from 'react';
-import HistoryItem from "@/app/history/HistoryItem";
+import HistoryItem from "@/components/HistoryItem";
 import PreviousButton from "@/components/ui/PreviousButton";
 
 type Props = {
@@ -19,7 +19,16 @@ const ProfilePage = ({params}: Props) => {
                 </div>
                 <div className="space-y-4">
                     {/** ### Single Payment History Item : 블록을 복사하여 더 많은 결제 내역 항목을 생성할 수 있습니다. */}
-                    <HistoryItem/>
+                    <HistoryItem
+                        menu={'조식'}
+                        date={'2023-09-12'}
+                        status={'완료'}
+                    />
+                    <HistoryItem
+                        menu={'조식'}
+                        date={'2023-09-12'}
+                        status={'취소'}
+                    />
                 </div>
             </div>
         </div>

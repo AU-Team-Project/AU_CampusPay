@@ -2,16 +2,24 @@
 import React, {useEffect, useRef} from 'react';
 import QRCode from "qrcode";
 import {useSession} from "next-auth/react";
+import {Menu} from "@/model/menu";
 
-const QrCode = () => {
+type Props = {
+    qrData: Menu;
+}
+
+const QrCode = ({qrData}: Props) => {
     const { data: session } = useSession();
     const canvasRef = useRef(null);
 
     useEffect(() => {
         if (canvasRef.current) {
-            QRCode.toCanvas(canvasRef.current, `${process.env.SITE_URL}/confirmation/${session?.user?.name}`, function (error) {
+            QRCode.toCanvas(
+                canvasRef.current,
+                `${qrData}`,
+                function (error) {
                 if (error) console.error(error);
-                console.log('success!');
+                //console.log(`success! : ${qrData}`);
             });
         }
     }, []);

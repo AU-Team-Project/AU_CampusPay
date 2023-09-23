@@ -4,16 +4,19 @@ import {useRouter} from "next/navigation";
 
 type PreviousButtonProps = {
     props: string;
+    className?: string;
 }
 
-const PreviousButton = ({props}: PreviousButtonProps) => {
+const PreviousButton = ({props, className}: PreviousButtonProps) => {
     const router = useRouter();
     const handlePrevious= () => {
         router.push('/')
     }
 
     return (
-        <button onClick={handlePrevious}>{props}</button>
+        <button className={className} onClick={handlePrevious}>
+            {props}
+        </button>
     );
 };
 

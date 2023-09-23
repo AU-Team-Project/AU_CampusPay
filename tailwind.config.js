@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       screens: {
         'xmd': '991px',
+        'sd': '320px'
       },
       colors: {
         'blue-custom': '#1A6FB3',
