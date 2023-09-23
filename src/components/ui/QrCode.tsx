@@ -9,6 +9,7 @@ type Props = {
 }
 
 const QrCode = ({qrData}: Props) => {
+    console.log(qrData)
     const { data: session } = useSession();
     const canvasRef = useRef(null);
 

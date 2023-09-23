@@ -8,13 +8,7 @@ type PreviousButtonProps = {
 
 const PreviousButton = ({props}: PreviousButtonProps) => {
     const router = useRouter();
-    const handlePrevious= () => {
-        router.push('/')
-    }
-
-    return (
-        <button onClick={handlePrevious}>{props}</button>
-    );
+    return <button onClick={()=> router.back()}>{props}</button>
 };
 
 export default PreviousButton;

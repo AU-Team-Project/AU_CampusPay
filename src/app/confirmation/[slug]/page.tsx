@@ -27,8 +27,9 @@ const ConfirmationPage = async ({params}: Props) => {
                     </span>
                     <br/>
                     {qrData.menu}
+                    {qrData._id}
                     <br/>
-                    <span className='font-bold text-green-500'>
+                    <span className={`font-bold ${stateText === '사용가능' ? 'text-green-500' : 'text-red-500'}`}>
                         {stateText}
                     </span>
                 </p>
