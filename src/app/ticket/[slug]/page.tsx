@@ -16,20 +16,22 @@ const TicketPage = async ({params}: Props) => {
     console.log(qrData)
 
     return (
-        <div>
+        <>
             <TopNavbar/>
-            <main>
-                TicketPage
-                {data.data.map((item: Menu) => (
-                    <div key={item._id}>
+            <main className='mx-5'>
+                {data.data.slice(1).map((item: Menu) => (
+                    <div key={item._id} className='max-w-2xl m-auto my-5 p-5 flex justify-between border-2'>
                         <Link href={`/confirmation/${item._id}`}>
                             <p>{item.menu}</p>
-                            <p>{item.name}</p>
+                            <p>{item.amount}원</p>
                         </Link>
+                        <button className="mt-6 px-2 py-2 bg-red-500 text-white text-xs rounded-full font-medium tracking-wide hover:bg-red-600 transition ease-in-out duration-300">
+                            취소요청
+                        </button>
                     </div>
                 ))}
             </main>
-        </div>
+        </>
     );
 };
 

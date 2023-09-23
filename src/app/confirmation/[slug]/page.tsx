@@ -1,5 +1,6 @@
 import React from 'react';
 import QrCode from "@/components/ui/QrCode";
+import PreviousButton from "@/components/ui/PreviousButton";
 
 type Props = {
     params: {
@@ -31,9 +32,7 @@ const ConfirmationPage = async ({params}: Props) => {
                         {stateText}
                     </span>
                 </p>
-                <button className="mt-6 px-8 py-2 bg-red-500 text-white rounded-full font-medium tracking-wide hover:bg-red-600 transition ease-in-out duration-300">
-                    취소요청
-                </button>
+                <PreviousButton props={'돌아가기'}/>
             </div>
         </div>
     );
