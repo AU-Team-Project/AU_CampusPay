@@ -9,7 +9,7 @@ type Props = {
 }
 
 const ConfirmationPage = async ({params}: Props) => {
-    const res = await fetch(`http://localhost:3000/api/confirmation/${params.slug}`)
+    const res = await fetch(`${process.env.SITE_URL}/api/confirmation/${params.slug}`)
     const data = await res.json();
     const qrData = data.data[1];
     const stateText = qrData.state === '미사용' ? '사용가능' : '사용불가';
