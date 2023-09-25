@@ -4,7 +4,12 @@ import { ObjectId } from 'mongodb';
 
 export async function PUT(request: Request) {
     const db = (await connectDB).db(process.env.MONGODB_NAME as string);
-    if (!request.body) return NextResponse.json({ success: false, message: '요청 본문이 비어있습니다.' });
+    if (!request.body) {
+        return NextResponse.json({
+            success: false,
+            message: '요청 본문이 비어있습니다.'
+        });
+    }
     const body = await request.json(); // JSON 파싱
 
     // 게시글 수정을 위한 데이터

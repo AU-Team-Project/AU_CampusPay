@@ -45,13 +45,13 @@ const TopNavbar = () => {
                     ) : (
                         <>
                             <li>
-                                <Link href={`/confirmation/${session?.user.name}`}>식권사용</Link>
+                                <Link href={`/confirmation/${session?.user.username}`}>식권사용</Link>
                             </li>
                             <li>
-                                <Link href={`/payment/${session?.user.name}`}>식권구입</Link>
+                                <Link href={`/payment/${session?.user.username}`}>식권구입</Link>
                             </li>
                             <li>
-                                <Link href={`/history/${session?.user.name}`}>결제내역</Link>
+                                <Link href={`/history/${session?.user.username}`}>결제내역</Link>
                             </li>
                             <li className='xl: pr-10'>
                                 <ColorButton text={'로그아웃'} onClick={() => signOut()}/>
@@ -84,13 +84,13 @@ const TopNavbar = () => {
                 </ul>
                 <ul className='pr-10 pl-10 text-lg'>
                     <li className='pb-1.5'>
-                        <Link href={`/confirmation/${session?.user.name}`}>식권사용</Link>
+                        <Link href={`/confirmation/${session?.user.username}`}>식권사용</Link>
                     </li>
                     <li className='pb-1.5'>
-                        <Link href={`/payment/${session?.user.name}`}>식권구입</Link>
+                        <Link href={`/payment/${session?.user.username}`}>식권구입</Link>
                     </li>
                     <li className='pb-1.5'>
-                        <Link href={`/history/${session?.user.name}`}>결제내역</Link>
+                        <Link href={`/history/${session?.user.username}`}>결제내역</Link>
                     </li>
                     {session?.user?.name === 'root' && (
                         <li className='pb-1.5'>
