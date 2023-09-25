@@ -67,8 +67,17 @@ const TopNavbar = () => {
             {/** ### TopNav Open 모바일 대응 (임시) */}
             <div
                 className={`fixed top-0 right-0 w-screen h-full bg-gray-50 transition-transform duration-300 ${isClicked ? 'translate-x-0' : 'translate-x-full'}`}>
-                <ul className='h-14 flex justify-between items-center'>
-                    <li className='pl-10'><Link href='/'>메인</Link></li>
+                <ul className='h-14 flex justify-between items-center bg-blue-custom text-white'>
+                    <li className='pl-10'>
+                        <Link className='flex items-center gap-1' href='/'>
+                            <Image
+                                src='/logo_Kor.svg'
+                                width={125}
+                                height={80}
+                                alt='웹페이지 로고'
+                            />
+                        </Link>
+                    </li>
                     <li className='pr-10'>
                         <button onClick={handleNavClick}><AiOutlineClose/></button>
                     </li>
