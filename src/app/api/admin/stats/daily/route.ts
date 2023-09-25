@@ -22,6 +22,7 @@ export async function GET() {
             success: true,
             message: '가져오기 성공',
             pretty: true,
+            status: 200,
             data: sales,
             totalAmount: totalAmount,
             profit: netProfit,
@@ -31,6 +32,7 @@ export async function GET() {
         if (err instanceof Error) {
             return NextResponse.json({
                 success: false,
+                status: 500,
                 message: '인터넷 또는 서버 오류 발생',
                 err: err.message
             });

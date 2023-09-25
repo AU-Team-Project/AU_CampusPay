@@ -23,11 +23,13 @@ export async function PUT(request: Request) {
     if (result.modifiedCount && result.modifiedCount > 0) {
         return NextResponse.json({
             success: true,
+            status: 200,
             message: '공지 사항이 성공적으로 업데이트되었습니다.'
         });
     } else {
         return NextResponse.json({
             success: false,
+            status: 500,
             message: '공지사항을 찾을 수 없거나 업데이트할 수 없습니다.'
         });
     }
