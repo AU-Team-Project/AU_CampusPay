@@ -4,11 +4,12 @@ import {useRouter} from "next/navigation";
 
 type PreviousButtonProps = {
     props: string;
+    className?: string;
 }
 
-const PreviousButton = ({props}: PreviousButtonProps) => {
+const PreviousButton = ({props, className}: PreviousButtonProps) => {
     const router = useRouter();
-    return <button onClick={()=> router.back()}>{props}</button>
+    return <button className={className} onClick={()=> router.back()}>{props}</button>
 };
 
 export default PreviousButton;
