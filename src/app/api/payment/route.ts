@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import {connectDB} from "@/app/api/db/mongoDb";
+import {getMonthAndDay} from "@/service/date";
 
 export async function POST(request: NextRequest) {
     /** JSON 요청 본문에서 "imp_uid"와 "merchant_uid"를 추출. */
@@ -44,6 +45,10 @@ export async function POST(request: NextRequest) {
         /** 결제 데이터 요청 응답에서 결제 데이터를 추출 */
         const paymentData = paymentDataResult.response;
         console.log('paymentData : ', paymentData);
+
+        /** 결제 시간 계산 */
+        const {month, day} = getMonthAndDay();
+        const todayDate = `${month}월 ${day}일`;
         /**
          * 결제 데이터 데이터 베이스에 저장
          * amount: 결제 금액
@@ -55,6 +60,7 @@ export async function POST(request: NextRequest) {
          * merchant:
          * pg: PG사
          * state: 사용여부
+         * todayDate: 결제 시간
          */
         const db = (await connectDB).db(process.env.MONGODB_NAME as string);
         const result = await db.collection(process.env.MONGODB_PAYMENT as string).insertOne({
@@ -67,6 +73,7 @@ export async function POST(request: NextRequest) {
             merchant: paymentData.merchant_uid,
             pg: paymentData.pg_provider,
             state: '미사용',
+            time: todayDate,
         })
 
         /** QRCode 생성용 데이터 생성 */

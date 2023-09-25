@@ -22,7 +22,6 @@ type Menu = {
 
 const MenuCard = ({activeTab, session}: Props) => {
     const [menus, setMenus] = useState<Menu[]>([]);
-
     const formattedDate = getFormattedDate();
     const {month, day} = getMonthAndDay();
     const todayDate = `${month}월 ${day}일`;

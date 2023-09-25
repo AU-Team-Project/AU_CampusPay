@@ -14,6 +14,7 @@ const TicketPage = async ({params}: Props) => {
     const data = await res.json();
     const qrData = data.data[1];
     console.log(qrData)
+    console.log(params)
 
     return (
         <>

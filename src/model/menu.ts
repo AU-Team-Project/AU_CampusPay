@@ -8,5 +8,5 @@ export type Menu = {
     imp: string;
     merchant: string;
     pg: string;
-    state: string;
+    state?: string;
 }

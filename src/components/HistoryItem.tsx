@@ -8,15 +8,15 @@ type Props = {
 }
 
 const HistoryItem = ({menu, date, status}: Props) => {
-    console.log(status)
+    const statusText = status === '취소' ? '결제 취소' : '결제 완료';
     return (
         <div className="flex justify-between items-center bg-gray-50 p-4 rounded-lg">
-            <div className="flex items-center space-x-4">
-                <div className="text-gray-800 font-medium">식권 종류: {menu}</div>
+            <div className="flex flex-col justify-start items-center space-x-4">
+                <div className="text-gray-800 font-medium">
+                    <span className={statusText === '결제 취소' ? `text-red-500` : `text-green-500`}>[{status}]</span>
+                    {menu}
+                </div>
                 <div className="text-gray-600">결제 일자: {date}</div>
-            </div>
-            <div className={`font-bold ${status === '완료' ? 'text-green-500' : 'text-red-500'}`}>
-                {status}
             </div>
         </div>
     );
