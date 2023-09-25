@@ -23,6 +23,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
             <title>AU App</title>
         </head>
         <Script src="https://cdn.iamport.kr/v1/iamport.js"/>
+        <Script src="path/to/html5-qrcode.min.js"/>
         <body  className={`${gothic.className} mx-auto`}>
         <AuthProvider>
             {children}
