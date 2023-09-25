@@ -15,7 +15,7 @@ const AdminPage = async () => {
             <div className="w-[400px]">
                 <VerticalNav />
             </div>
-
+            {/* 커밋용 주석 */}
             <main className="w-screen grid-cols-3 grid-rows-2">
                 <div className="w-1/3">
                     하루 판매 수

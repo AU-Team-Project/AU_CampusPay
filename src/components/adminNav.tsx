@@ -11,7 +11,7 @@ const VerticalNav = () => {
         updatedState[index] = !updatedState[index];
         setShowSubMenu(updatedState);
     };
-
+    // 커밋용 주석
     return (
         <nav className="h-screen bg-blue-custom overflow-y-auto">
             <div className='p-3'>
