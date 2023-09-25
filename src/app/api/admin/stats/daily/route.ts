@@ -12,16 +12,11 @@ export async function GET() {
 
         // 판매 총 금액 계산
         const totalAmount = salesCopy.splice(1).reduce((acc, ticket) => {
-            console.log("Current acc:", acc, "Current ticket amount:", ticket.amount);
             return acc + ticket.amount;
         }, 0);
 
         // 판매 순수익 계산
         const netProfit = totalAmount;
-
-        console.log(`Total Amount: ${totalAmount}`);
-        console.log(`Total Tickets Sold: ${totalTicketsSold}`);
-        console.log(`Net Profit: ${netProfit}`);
 
         return NextResponse.json({
             success: true,
