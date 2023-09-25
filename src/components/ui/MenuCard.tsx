@@ -1,6 +1,5 @@
 'use client'
 import React, {useEffect, useState} from 'react';
-import Link from "next/link";
 import {getMonthAndDay, getFormattedDate} from "@/service/date";
 import {User} from "@/model/user";
 import {ObjectId} from "mongodb";

@@ -2,6 +2,7 @@ import {connectDB} from "@/app/api/db/mongoDb";
 import {getServerSession} from "next-auth";
 import {options} from "@/app/api/auth/[...nextauth]/options";
 import {NextResponse} from "next/server";
+import {getMonthAndDay} from "@/service/date";
 
 export async function POST(request: Request) {
     try {
@@ -38,7 +39,10 @@ export async function POST(request: Request) {
         }
 
         const db = (await connectDB).db(process.env.MONGODB_NAME);
-        const result = db.collection(process.env.MONGODB_ANNOUNCEMENT as string).insertOne({
+        const {month, day} = getMonthAndDay();
+        const todayWriteDate = `${month}월 ${day}일`
+
+        const result = await db.collection(process.env.MONGODB_ANNOUNCEMENT as string).insertOne({
             username,
             title: title,
             content: content
@@ -48,6 +52,7 @@ export async function POST(request: Request) {
             success: true,
             status: 200,
             message: '게시물이 등록되었습니다.',
+            time: todayWriteDate,
         })
     } catch (err) {
         return NextResponse.json({
