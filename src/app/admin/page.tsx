@@ -18,7 +18,7 @@ const AdminPage = async () => {
 
             <main className="w-screen grid-cols-3 grid-rows-2">
                 <div className="w-1/3">
-                    하루 판매 수dddd
+                    하루 판매 수
                 </div>
                 <div className="w-1/3">
                     하루 거래 액
