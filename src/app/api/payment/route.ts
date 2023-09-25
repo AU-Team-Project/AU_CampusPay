@@ -59,7 +59,7 @@ export async function POST(request: NextRequest) {
          * imp:
          * merchant:
          * pg: PG사
-         * state: 사용여부
+         * stats: 사용여부
          * todayDate: 결제 시간
          */
         const db = (await connectDB).db(process.env.MONGODB_NAME as string);
