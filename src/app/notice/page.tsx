@@ -1,9 +1,11 @@
 import React from 'react';
 
-const NoticePage = () => {
+const NoticePage = async () => {
+    const res = await fetch('END POINT');
+
     return (
         <div>
-            
+
         </div>
     );
 };

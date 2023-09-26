@@ -6,9 +6,10 @@ export const getFormattedDate = (): string => {
 }
 
 // 월과 일을 가져오는 별도의 함수
-export const getMonthAndDay = (): { month: number, day: number } => {
+export const getMonthAndDay = (): { year?: number, month: number, day: number } => {
     const today = new Date();
     return {
+        year: today.getFullYear(),
         month: today.getMonth() + 1,
         day: today.getDate(),
     };

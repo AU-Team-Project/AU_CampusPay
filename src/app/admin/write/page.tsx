@@ -1,20 +1,22 @@
 'use client'
 import React from 'react';
+import {useSession} from "next-auth/react";
 
 const Page = () => {
     async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
+        const {data: session} = useSession();
 
         const formData = event.currentTarget;
-
         const username = (formData.elements.namedItem("username") as HTMLInputElement)?.value;
         const title = (formData.elements.namedItem("title") as HTMLInputElement)?.value;
         const content = (formData.elements.namedItem("content") as HTMLTextAreaElement)?.value;
 
         const data = {
-            username: username,
+            user_id: session?.user._id,
+            username: session?.user.username,
             title: title,
-            content: content
+            content: content,
         };
 
         try {

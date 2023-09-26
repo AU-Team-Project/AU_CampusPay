@@ -7,7 +7,7 @@ import {getMonthAndDay} from "@/service/date";
 export async function POST(request: Request) {
     try {
         const session = await getServerSession(options);
-        if (!session) {
+        /*if (!session) {
             return NextResponse.json({
                 status: 405,
                 error: '로그인이 필요합니다.'
@@ -19,10 +19,10 @@ export async function POST(request: Request) {
                 status: 403,
                 error: '관리자만 접근이 가능합니다.'
             });
-        }
+        }*/
 
         const bodyData = await request.json();
-        const { username, title, content } = bodyData;
+        const { user_id, username, title, content } = bodyData;
 
         if (!title) {
             return NextResponse.json({
@@ -44,15 +44,16 @@ export async function POST(request: Request) {
 
         const result = await db.collection(process.env.MONGODB_ANNOUNCEMENT as string).insertOne({
             username,
+            user_id,
             title: title,
-            content: content
+            content: content,
+            time: todayWriteDate,
         });
 
         return NextResponse.json({
             success: true,
             status: 200,
             message: '게시물이 등록되었습니다.',
-            time: todayWriteDate,
         })
     } catch (err) {
         return NextResponse.json({
