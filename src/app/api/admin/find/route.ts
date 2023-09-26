@@ -1,11 +1,11 @@
 import {connectDB} from "@/app/api/db/mongoDb";
 import {NextResponse} from "next/server";
-import {ObjectId} from "mongodb";
 
-export async function POST() {
+export async function GET() {
     try {
-        const db = (await connectDB).db(process.env.MONGODB_NAME as string);
-        const findCollection = db.collection(process.env.MONGODB_ANNOUNCEMENT as string).find();
+        const db = (await connectDB).db(process.env.MONGODB_NAME);
+        const findCollection = await db.collection(process.env.MONGODB_ANNOUNCEMENT as string).find().toArray();
+        console.log('findCollection: ', findCollection)
 
         return NextResponse.json({
             success: true,

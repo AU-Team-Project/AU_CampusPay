@@ -12,7 +12,7 @@ type Props = {
 const ProfilePage = async ({params}: Props) => {
     const res = await fetch(`${process.env.SITE_URL}/api/confirmation/${params.slug}`)
     const data = await res.json();
-    const fetchData = await data.data[1]
+    const fetchData = await data.data;
     console.log(`User ${params.slug}`)
     console.log(`data ${fetchData.state}`)
 

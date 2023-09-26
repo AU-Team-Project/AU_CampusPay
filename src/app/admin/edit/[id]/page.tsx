@@ -1,9 +1,15 @@
 import React from 'react';
 
-const Page = async () => {
-    const res = await fetch(`${process.env.SITE_URL}/api/admin/edit`);
-    const data = res.json()
-    console.log(data)
+type Props = {
+    slug: string;
+}
+
+const Page = async (params: Props) => {
+    const res = await fetch(`${process.env.SITE_URL}/api/admin/find`);
+    const data = await res.json();
+    const findData = data.data;
+    console.log(findData)
+    console.log(params)
 
     return (
         <div>
