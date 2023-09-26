@@ -1,18 +1,23 @@
 import {connectDB} from "@/app/api/db/mongoDb";
 import {NextResponse} from "next/server";
 
-export async function GET (request: Request) {
+export async function GET() {
     try {
         const db = (await connectDB).db(process.env.MONGODB_NAME);
-        const postList = await db.collection(process.env.MONGODB_ANNOUNCEMENT as string).find().toArray();
-        return NextResponse.json({ success: true, data: postList })
+        const findCollection = await db.collection(process.env.MONGODB_ANNOUNCEMENT as string).find().toArray();
+        console.log('findCollection: ', findCollection)
+
+        return NextResponse.json({
+            success: true,
+            status: 200,
+            message: '수정할 게시물을 성공적으로 가져왔습니다.',
+            data: findCollection,
+        })
     } catch (err) {
-        if (err instanceof Error) {
-            return NextResponse.json({
-                success: false,
-                message: '인터넷 또는 서버 오류 발생',
-                err: err.message
-            });
-        }
+        return NextResponse.json({
+            success: false,
+            status: 500,
+            massage: `오류가 발생했습니다. ${err}`
+        })
     }
 }
