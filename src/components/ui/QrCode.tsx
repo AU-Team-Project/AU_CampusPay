@@ -4,12 +4,17 @@ import QRCode from "qrcode";
 import {useSession} from "next-auth/react";
 import {Menu} from "@/model/menu";
 
+type QrCodeProps = {
+    id: string;
+    state: string;
+    menu: string;
+};
+
 type Props = {
-    qrData: Menu;
+    props: QrCodeProps;
 }
 
-const QrCode = ({qrData}: Props) => {
-    console.log(qrData)
+const QrCode = ({props}: Props) => {
     const { data: session } = useSession();
     const canvasRef = useRef(null);
 
@@ -17,7 +22,7 @@ const QrCode = ({qrData}: Props) => {
         if (canvasRef.current) {
             QRCode.toCanvas(
                 canvasRef.current,
-                `${qrData}`,
+                `${props}`,
                 function (error) {
                 if (error) console.error(error);
                 //console.log(`success! : ${qrData}`);
