@@ -3,15 +3,66 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+type NavItem = {
+    href: string;
+    label: string;
+    subItems?: NavItem[];
+};
+
+
+const verticalNavItem = [
+    {
+        href: '/admin',
+        label: '대시보드',
+    },
+    {
+        href: '/',
+        label: '시스템 모니터링',
+        subItems: [
+            { href: '/admin', label: '서버 상태 모니터링' },
+            { href: '/admin', label: '로그 파일 관리' },
+        ],
+    },
+    {
+        href: '/',
+        label: '컨텐츠 관리',
+        subItems: [
+            { href: '/admin', label: '게시물 관리' },
+            { href: '/admin', label: '카테고리 관리' },
+            { href: '/admin', label: '메뉴 관리' },
+        ],
+    },
+    {
+        href: '/',
+        label: '설정',
+        subItems: [
+            { href: '/admin', label: '시스템 설정' },
+            { href: '/admin', label: '보안 설정' },
+        ],
+    },
+    {
+        href: '/',
+        label: '통계',
+        subItems: [
+            { href: '/admin', label: '사용자 통계' },
+            { href: '/admin', label: '판매 통계' },
+        ],
+    },
+    {
+        href: '/admin',
+        label: '사용자 관리',
+    },
+]
+
 const VerticalNav = () => {
-    const [showSubMenu, setShowSubMenu] = useState(Array(5).fill(false));
+    const [showSubMenu, setShowSubMenu] = useState<boolean[]>(Array(verticalNavItem.length).fill(false));
 
     const toggleSubMenu = (index:number) => {
         const updatedState = [...showSubMenu];
         updatedState[index] = !updatedState[index];
         setShowSubMenu(updatedState);
     };
-    // 커밋용 주석
+
     return (
         <nav className="h-full bg-blue-custom overflow-y-auto">
             <div className='p-3'>
@@ -24,87 +75,32 @@ const VerticalNav = () => {
                     />
                 </Link>
             </div>
+
             <div className="text-[20px] text-white font-semibold flex flex-col bg-blue-custom">
-                <span
-                    className={`pl-[20px] p-3 hover:bg-gradient-to-r from-sky-500 to-blue-500 cursor-pointer ${showSubMenu[0] ? 'bg-gradient-to-r from-sky-500 to-blue-500' : ''}`}
-                    onClick={() => toggleSubMenu(0)}
-                >
-                  <Link href="/admin">대시보드</Link>
-                </span>
-                <span
-                    className={`pl-[20px] p-3 hover:bg-gradient-to-r from-sky-500 to-blue-500 cursor-pointer ${showSubMenu[1] ? 'bg-gradient-to-r from-sky-500 to-blue-500' : ''}`}
-                    onClick={() => toggleSubMenu(1)}
-                >
-                  시스템 모니터링
-                </span>
-                {showSubMenu[1] && (
-                    <div className="text-[20px] text-white font-semibold flex flex-col gap-3 bg-blue-custom">
-                        <span className="pl-[20px] p-3 hover:bg-gradient-to-r from-sky-500 to-blue-500 cursor-pointer pl-5">
-                          <Link href="/admin">서버 상태 모니터링</Link>
+                {verticalNavItem.map((item, index) => (
+                    <>
+                        <span
+                            className={`pl-[20px] p-3 hover:bg-gradient-to-r from-sky-500 to-blue-500 cursor-pointer
+                            ${showSubMenu[index] ? 'bg-gradient-to-r from-sky-500 to-blue-500' : ''}`}
+                            onClick={() => toggleSubMenu(index)}
+                        >
+                            <Link href={item.href}>
+                                {item.label}
+                            </Link>
                         </span>
-                        <span className="pl-[20px] p-3 hover:bg-gradient-to-r from-sky-500 to-blue-500 cursor-pointer pl-5">
-                          <Link href="/admin">로그 파일 관리</Link>
-                        </span>
-                    </div>
-                )}
-
-                <span
-                    className={`pl-[20px] p-3 hover:bg-gradient-to-r from-sky-500 to-blue-500 cursor-pointer ${showSubMenu[2] ? 'bg-gradient-to-r from-sky-500 to-blue-500' : ''}`}
-                    onClick={() => toggleSubMenu(2)}
-                >
-                  컨텐츠 관리
-                </span>
-                {showSubMenu[2] && (
-                    <div className="text-[20px] text-white font-semibold flex flex-col gap-3 bg-blue-custom">
-                        <span className="pl-[20px] p-3 hover:bg-gradient-to-r from-sky-500 to-blue-500 cursor-pointer pl-5">
-                          <Link href="/admin">게시물 관리</Link>
-                        </span>
-                        <span className="pl-[20px] p-3 hover:bg-gradient-to-r from-sky-500 to-blue-500 cursor-pointer pl-5">
-                          <Link href="/admin">카테고리 관리</Link>
-                        </span>
-                        <span className="pl-[20px] p-3 hover:bg-gradient-to-r from-sky-500 to-blue-500 cursor-pointer pl-5">
-                          <Link href="/admin">메뉴 관리</Link>
-                        </span>
-                    </div>
-                )}
-
-                <span
-                    className={`pl-[20px] p-3 hover:bg-gradient-to-r from-sky-500 to-blue-500 cursor-pointer ${showSubMenu[3] ? 'bg-gradient-to-r from-sky-500 to-blue-500' : ''}`}
-                    onClick={() => toggleSubMenu(3)}
-                >
-                  설정
-                </span>
-                {showSubMenu[3] && (
-                    <div className="text-[20px] text-white font-semibold flex flex-col gap-3 bg-blue-custom">
-                        <span className="pl-[20px] p-3 hover:bg-gradient-to-r from-sky-500 to-blue-500 cursor-pointer pl-5">
-                          <Link href="/admin">시스템 설정</Link>
-                        </span>
-                        <span className="pl-[20px] p-3 hover:bg-gradient-to-r from-sky-500 to-blue-500 cursor-pointer pl-5">
-                          <Link href="/admin">보안 설정</Link>
-                        </span>
-                    </div>
-                )}
-
-                <span
-                    className={`pl-[20px] p-3 hover:bg-gradient-to-r from-sky-500 to-blue-500 cursor-pointer ${showSubMenu[4] ? 'bg-gradient-to-r from-sky-500 to-blue-500' : ''}`}
-                    onClick={() => toggleSubMenu(4)}
-                >
-                  통계
-                </span>
-                {showSubMenu[4] && (
-                    <div className="text-[20px] text-white font-semibold flex flex-col gap-3 bg-blue-custom">
-                        <span className="pl-[20px] p-3 hover:bg-gradient-to-r from-sky-500 to-blue-500 cursor-pointer pl-5">
-                          <Link href="/admin">사용자 통계</Link>
-                        </span>
-                        <span className="pl-[20px] p-3 hover:bg-gradient-to-r from-sky-500 to-blue-500 cursor-pointer pl-5">
-                          <Link href="/admin">판매 통계</Link>
-                        </span>
-                    </div>
-                )}
-
-                <span className="pl-[20px] p-3 hover:bg-gradient-to-r from-sky-500 to-blue-500 cursor-pointer">
-                  <Link href="/admin">사용자 관리</Link>
-                </span>
+                        {showSubMenu[index] && item.subItems && (
+                            <div className="text-[20px] text-white font-semibold flex flex-col gap-3 bg-blue-custom">
+                                {item.subItems.map((subItem, subIndex) => (
+                                    <span key={subIndex} className="pl-5 p-3 hover:bg-gradient-to-r from-sky-500 to-blue-500 cursor-pointer">
+                                        <Link href={subItem.href}>
+                                            {subItem.label}
+                                        </Link>
+                                    </span>
+                                ))}
+                            </div>
+                        )}
+                    </>
+                ))}
             </div>
         </nav>
     );
