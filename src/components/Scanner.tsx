@@ -4,6 +4,7 @@ import { Html5QrcodeScanner } from "html5-qrcode";
 
 export default function QRScanner() {
     const readerRef = useRef<HTMLElement | null>(null);
+    let lastErrorTimestamp = useRef<number>(Date.now());
 
     useEffect(() => {
         const scanner = new Html5QrcodeScanner('reader', {
@@ -16,20 +17,43 @@ export default function QRScanner() {
 
         scanner.render(success, error);
 
-        function success(result: any) {
-            if (result === '식사 맛있게 하세요.') {
-                window.alert('식사 맛있게 하세요.');
-            }
+        async function success(result: any) {
+            try {
+                // 요청을 서버에 전송
+                const response = await fetch(`/api/admin/scanner`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        data: result
+                    })
+                });
 
-            scanner.clear();
+                const data = await response.json();
+                console.log(data); // 서버의 응답을 출력
 
-            if (readerRef.current) {
-                readerRef.current.remove();
+                if (result === '식사 맛있게 하세요.') {
+                    window.alert('식사 맛있게 하세요.');
+                }
+
+                scanner.clear();
+
+                if (readerRef.current) {
+                    readerRef.current.remove();
+                }
+            } catch (error) {
+                //console.error('Error:', error);
             }
         }
 
         function error(err: any) {
-            console.error(err);
+            const now = Date.now();
+            // 3초 이내에 발생한 오류 메시지는 출력하지 않음
+            if (now - lastErrorTimestamp.current > 3000) {
+                console.error(err);
+                lastErrorTimestamp.current = now;
+            }
         }
 
         return () => {

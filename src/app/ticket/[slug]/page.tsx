@@ -28,6 +28,7 @@ const TicketPage = async ({params}: Props) => {
                                     <div className="cursor-pointer">
                                         <p className="text-gray-700 font-medium mb-2">[{item.state}] {item.menu}</p>
                                         <p className="text-xl font-bold">{item.amount}원</p>
+                                        <p className="text-xl font-bold">{item._id}원</p>
                                     </div>
                                 </Link>
                             </div>
