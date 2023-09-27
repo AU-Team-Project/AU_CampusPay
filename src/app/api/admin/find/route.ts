@@ -1,16 +1,25 @@
 import {connectDB} from "@/app/api/db/mongoDb";
-import {NextResponse} from "next/server";
+import {NextRequest, NextResponse} from "next/server";
 import {ObjectId} from "mongodb";
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
     try {
-        const postId = request.query.id as string;
+        const { searchParams } = new URL(request.url);
+        const postValue = searchParams.get('post');
+        console.log(`searchParams : ${postValue}`)
+
+        if (!postValue) {
+            return NextResponse.json({
+                success: true,
+                status: 400,
+                message: '쿼리 매개변수가 누락되었습니다.'
+            })
+        }
 
         const db = (await connectDB).db(process.env.MONGODB_NAME);
         const findCollection = await db.collection(process.env.MONGODB_ANNOUNCEMENT as string).findOne({
-            _id: new ObjectId(postId)
+            _id: new ObjectId(postValue)
         });
-        console.log('findCollection: ', findCollection)
 
         return NextResponse.json({
             success: true,

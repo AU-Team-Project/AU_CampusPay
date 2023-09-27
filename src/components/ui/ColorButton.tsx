@@ -2,7 +2,7 @@ import React from 'react';
 
 type Props = {
     text: string,
-    onClick: () => void;
+    onClick?: () => void;
 }
 
 const ColorButton = ({text, onClick}: Props) => {

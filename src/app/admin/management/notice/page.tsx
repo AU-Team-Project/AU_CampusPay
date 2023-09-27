@@ -11,20 +11,19 @@ type noticeData = {
     time: string;
 }
 
-const Page = async () => {
+const NoticeManagementPage = async () => {
     const res = await fetch(`${process.env.SITE_URL}/api/notice`);
     const data = await res.json();
     const findData = data.data;
-    console.log(`data : ${findData}`)
-    console.log(data)
-    console.log(`findData title : ${findData[1].title}`)
-    console.log(`findData content : ${findData[1].content}`)
-    console.log(`findData user_id : ${findData[1].user_id}`)
+    console.log(findData._id)
 
     return (
         <div>
             {findData.map((item: noticeData) => (
-                <Link key={item._id.toString()} href={`/admin/edit/${item._id}`}>
+                <Link
+                    key={item._id.toString()}
+                    href={`/admin/edit/find?post=${item._id}`}
+                >
                     Edit
                 </Link>
             ))}
@@ -32,4 +31,4 @@ const Page = async () => {
     );
 };
 
-export default Page;
+export default NoticeManagementPage;

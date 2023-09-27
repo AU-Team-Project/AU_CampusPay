@@ -39,7 +39,7 @@ const Page = () => {
         <form onSubmit={handleSubmit}>
             <input type="text" name="username" />
             <input type="text" name="title" />
-            <textarea name="content"></textarea>
+            <textarea name="content"/>
             <button type='submit'>제출</button>
         </form>
     );
