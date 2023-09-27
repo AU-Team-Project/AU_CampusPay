@@ -56,12 +56,12 @@ const verticalNavItem: NavItem[] = [
     {
         href: '/admin',
         label: '사용자 관리',
-        isLinkable: false,
+        isLinkable: true,
     },
     {
         href: '/admin/scanner',
         label: '식권 스캐너',
-        isLinkable: false,
+        isLinkable: true,
     },
 ]
 
@@ -75,7 +75,7 @@ const VerticalNav = () => {
     };
 
     return (
-        <nav className="h-full bg-blue-custom overflow-y-auto">
+        <nav className="w-[300px] fixed h-full bg-blue-custom overflow-hidden">
             <div className='p-3'>
                 <Link
                     className='flex items-center gap-1'
