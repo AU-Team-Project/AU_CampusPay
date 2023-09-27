@@ -9,7 +9,6 @@ type NavItem = {
     subItems?: NavItem[];
 };
 
-
 const verticalNavItem = [
     {
         href: '/admin',
