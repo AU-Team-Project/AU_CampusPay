@@ -3,6 +3,8 @@ import HistoryItem from "@/components/HistoryItem";
 import PreviousButton from "@/components/ui/PreviousButton";
 import {Menu} from "@/model/menu";
 import PageNavigator from "@/components/ui/PageNavigator";
+import {getServerSession} from "next-auth";
+import {options} from "@/app/api/auth/[...nextauth]/options";
 
 type Props = {
     params: {
@@ -11,9 +13,16 @@ type Props = {
 }
 
 const ProfilePage = async ({params}: Props) => {
+    const session = await getServerSession(options);
+    if (!session) {
+        // 세션이 없을경우 처리
+        window.location.href = '/'
+    }
+
     const res = await fetch(`${process.env.SITE_URL}/api/confirmation/${params.slug}`)
     const data = await res.json();
     const fetchData = await data.data;
+    console.log(fetchData)
 
     return (
         <div className="w-full min-h-screen bg-gray-100 py-8">
@@ -28,7 +37,7 @@ const ProfilePage = async ({params}: Props) => {
                             key={item._id}
                             menu={item.menu}
                             date={item.time}
-                            status={'미사용'}
+                            state={item.state ?? ''}
                         />
                     ))}
                 </div>
