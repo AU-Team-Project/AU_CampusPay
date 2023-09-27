@@ -37,7 +37,6 @@ const verticalNavItem = [
         label: '설정',
         subItems: [
             { href: '/admin', label: '시스템 설정' },
-            { href: '/admin', label: '보안 설정' },
         ],
     },
     {
@@ -51,6 +50,10 @@ const verticalNavItem = [
     {
         href: '/admin',
         label: '사용자 관리',
+    },
+    {
+        href: '/admin/scanner',
+        label: '식권 스캐너',
     },
 ]
 
