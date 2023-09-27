@@ -22,7 +22,6 @@ const ConfirmationPage = async ({params, searchParams}: Props) => {
                 <div className="w-64 h-64 flex items-center justify-center bg-gray-100 rounded-lg mb-4">
                     <QrCode props={searchParams}/>
                 </div>
-                <div>임시값 : {searchParams.id}</div>
                 <p className="text-center text-gray-700 font-medium">
                     {searchParams.menu}
                     <br/>
