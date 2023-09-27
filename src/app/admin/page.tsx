@@ -4,6 +4,8 @@ import {getServerSession} from "next-auth";
 import {options} from "@/app/api/auth/[...nextauth]/options";
 
 import AdminHistoryItem from "@/components/adminHistoryItem";
+import AdminTicketIcon from "@/components/ui/icons/AdminTicketIcon";
+import AdminTodayPriceIcon from "@/components/ui/icons/AdminTodayPriceIcon";
 
 const AdminPage = async () => {
     const session = await getServerSession(options);
@@ -16,16 +18,19 @@ const AdminPage = async () => {
 
     const ticket = [
         {
-            label: '하루 판매 티켓 수',
+            label: '하루 판매 티켓',
             value: data.totalTicket,
+            icon: <AdminTicketIcon/>
         },
         {
-            label: '하루 거래 금액',
+            label: '하루 판매 금액',
             value: data.totalAmount,
+            icon: <AdminTodayPriceIcon/>
         },
         {
             label: '판매 순수익',
             value: data.profit,
+            icon: <AdminTodayPriceIcon/>
         },
     ]
 
@@ -45,9 +50,14 @@ const AdminPage = async () => {
                             <span className="p-[20px] text-[22px] font-bold">
                                 {item.label}
                             </span>
-                            <span className="mt-10 text-[27px] font-semibold">
+                            <div className='px-5 flex items-center justify-center gap-3'>
+                                <span className="text-[30px] font-bold">
+                                {item.icon}
+                            </span>
+                                <span className="text-[27px] font-semibold">
                                 {item.value}
                             </span>
+                            </div>
                         </div>
                     ))}
                 </section>
