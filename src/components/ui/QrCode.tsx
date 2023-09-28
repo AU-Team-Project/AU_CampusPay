@@ -22,10 +22,10 @@ const QrCode = ({props}: Props) => {
         if (canvasRef.current) {
             QRCode.toCanvas(
                 canvasRef.current,
-                `${props}`,
+                `${props.id}`,
                 function (error) {
                 if (error) console.error(error);
-                //console.log(`success! : ${qrData}`);
+                console.log(`success! : ${props}`);
             });
         }
     }, []);

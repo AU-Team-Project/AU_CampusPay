@@ -3,7 +3,6 @@ import Scanner from "@/components/Scanner";
 
 const QRCodeScanner = () => {
 
-
     return (
         <div
             id="qr-reader"

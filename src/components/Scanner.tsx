@@ -21,7 +21,7 @@ export default function QRScanner() {
             try {
                 // 요청을 서버에 전송
                 const response = await fetch(`/api/admin/scanner`, {
-                    method: 'PUT',
+                    method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
@@ -37,7 +37,7 @@ export default function QRScanner() {
                     window.alert('식사 맛있게 하세요.');
                 }
 
-                scanner.clear();
+                await scanner.clear();
 
                 if (readerRef.current) {
                     readerRef.current.remove();
