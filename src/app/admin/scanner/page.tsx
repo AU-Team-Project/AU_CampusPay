@@ -9,6 +9,7 @@ const QRCodeScanner = () => {
             className='w-screen h-screen border-black'
         >
             <Scanner/>
+            <div id="qr-reader-results"></div>
         </div>
     )
 };
