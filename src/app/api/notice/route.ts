@@ -3,10 +3,12 @@ import {NextResponse} from "next/server";
 
 export async function GET() {
     try {
-        const db = (await connectDB).db(process.env.MONGODB_NAME);
-        const findCollection = await db.collection(process.env.MONGODB_ANNOUNCEMENT as string).find().toArray();
-        console.log('findCollection: ', findCollection)
-
+        const dbConnection = await connectDB
+        const db = dbConnection.db(process.env.MONGODB_NAME);
+        const findCollection = await db.collection(process.env.MONGODB_ANNOUNCEMENT as string)
+            .find()
+            .limit(5)
+            .toArray();
         return NextResponse.json({
             success: true,
             status: 200,
