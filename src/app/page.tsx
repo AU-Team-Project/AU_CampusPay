@@ -6,12 +6,24 @@ import TabMenu from "@/components/TabMenu";
 import TopNavbar from "@/components/Navbar";
 import QuickMenu from "@/components/QuickMenu";
 import MoveNoticeIcon from "@/components/ui/icons/MoveNoticeIcon";
+import {ObjectId} from "mongodb";
+
+type NoticeItem = {
+    _id: ObjectId;
+    user_id: ObjectId;
+    username: string;
+    title: string;
+    content: string;
+    date: string;
+    time: string;
+    count: number;
+}
 
 export default async function Home() {
     const session: any = await getServerSession(options)
     const res = await fetch(`${process.env.SITE_URL}/api/notice`);
     const data = await res.json();
-    const factText = data.data[0];
+    const factText = data.data;
 
     return (
         <>
@@ -29,17 +41,27 @@ export default async function Home() {
                             <Link href='/'><MoveNoticeIcon/></Link>
                         </div>
                         <div className='divide-y divide-gray-300'>
-                            {[...Array(5)].map((_, idx) => (
-                                <div key={idx} className={`flex justify-between py-3 ${idx % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}>
-                                    <div className='w-1/4 px-2'> {factText.title} </div>
-                                    <div className='w-1/4 px-2'> {factText.title} </div>
-                                    {/*<div className='w-1/2 px-2'> {factText.content} </div>*/}
-                                    <div className='w-1/4 px-2 text-right'> {factText.date} </div>
+                            {factText.map((item: NoticeItem, index: number) => (
+                                <div
+                                    key={index}
+                                    className={`flex justify-between py-3 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}`}
+                                >
+                                    <div className='w-1/4 px-2'>
+                                        {item.count}
+                                    </div>
+                                    <div className='w-1/4 px-2'>
+                                        {item.title}
+                                    </div>
+                                    <div className='w-1/4 px-2 text-right'>
+                                        {item.username}
+                                    </div>
+                                    <div className='w-1/4 px-2 text-right'>
+                                        {item.date}
+                                    </div>
                                 </div>
                             ))}
                         </div>
                     </div>
-
                 </div>
             </main>
         </>
