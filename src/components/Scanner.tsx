@@ -32,7 +32,9 @@ export default function QRScanner() {
                 });
 
                 const data = await response.json();
-                console.log(data); // 서버의 응답을 출력
+                console.log(data.state); // 서버의 응답을 출력
+                console.log(data)
+                console.log(result)
 
                 if (result.modified === 1) {
                     window.alert('식사 맛있게 하세요.');
