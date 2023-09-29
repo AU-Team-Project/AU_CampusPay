@@ -25,6 +25,8 @@ const ConfirmationPage = async ({params, searchParams}: Props) => {
                 <p className="text-center text-gray-700 font-medium">
                     {searchParams.menu}
                     <br/>
+                    임시값: {searchParams.id}
+                    <br/>
                     <span className={`font-bold ${stateText === '사용가능' ? 'text-green-500' : 'text-red-500'}`}>
                         {stateText}
                     </span>

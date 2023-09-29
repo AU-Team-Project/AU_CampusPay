@@ -17,15 +17,16 @@ type Props = {
 const QrCode = ({props}: Props) => {
     const { data: session } = useSession();
     const canvasRef = useRef(null);
+    const data = props.id.toString();
 
     useEffect(() => {
         if (canvasRef.current) {
             QRCode.toCanvas(
                 canvasRef.current,
-                `${props}`,
+                `${data}`,
                 function (error) {
                 if (error) console.error(error);
-                //console.log(`success! : ${qrData}`);
+                console.log(`success! : ${data}`);
             });
         }
     }, []);
