@@ -38,7 +38,9 @@ export default async function Home() {
                     <div className='mx-5 mb-5 p-5 bg-white md:col-span-3 rounded-lg shadow-lg col-span-1'>
                         <div className='flex items-center justify-between px-4 pb-4'>
                             <h3 className='text-xl font-bold'>공지사항</h3>
-                            <Link href='/'><MoveNoticeIcon/></Link>
+                            <Link href='/notice'>
+                                <MoveNoticeIcon/>
+                            </Link>
                         </div>
                         <div className='divide-y divide-gray-300'>
                             {factText.map((item: NoticeItem, index: number) => (
