@@ -1,10 +1,8 @@
 import React from 'react';
-import VerticalNav from "@/components/VerticalNav";
 import {getServerSession} from "next-auth";
 import {options} from "@/app/api/auth/[...nextauth]/options";
-
-import AdminHistoryItem from "@/components/adminHistoryItem";
-import AdminCard from "@/components/ui/card/AdminCard";
+import AdminTopCard from "@/components/ui/card/AdminTopCard";
+import Sidebar from "@/components/Sidebar";
 
 const AdminPage = async () => {
     const session = await getServerSession(options);
@@ -16,15 +14,11 @@ const AdminPage = async () => {
     const data = await res.json();
 
     return (
-        <div className='relative'>
-            <VerticalNav/>
-
-            <main
-                className="w-screen h-screen absolute left-[300px]"
-                style={{ width: 'calc(100% - 300px)' }}
-            >
-                <AdminCard data={data}/>
-                <AdminHistoryItem/>
+        <div className='flex'>
+            <Sidebar/>
+            <main className="w-full ml-20 bg-gray-50">
+                <AdminTopCard data={data}/>
+                {/*<AdminHistoryItem/>*/}
             </main>
         </div>
     );
