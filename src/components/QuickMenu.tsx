@@ -2,7 +2,7 @@ import React from 'react';
 import Link from "next/link";
 import {User} from "@/model/user";
 import RiceMenuIcon from "@/components/ui/icons/RiceMenuIcon";
-import UseTicketIcon from "@/components/ui/icons/UseTicketIcon";
+import QrCodeIcon from "@/components/ui/icons/QrCodeIcon";
 import GetTicketIcon from "@/components/ui/icons/GetTicketIcon";
 import PaymentHistoryIcon from "@/components/ui/icons/PaymentHistoryIcon";
 import AdminPageIcon from "@/components/ui/icons/AdminPageIcon";
@@ -23,7 +23,7 @@ const QuickMenu = ({session}: Props) => {
         },
         {
             href: `/ticket/${session?.user?.username}`,
-            icon: <UseTicketIcon />,
+            icon: <QrCodeIcon />,
             label: "식권 사용"
         },
         {
