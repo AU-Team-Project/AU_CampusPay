@@ -2,8 +2,9 @@ import React from 'react';
 import Link from "next/link";
 import { ObjectId } from "mongodb";
 import TopNavbar from "@/components/Navbar";
-import {getServerSession} from "next-auth";
-import {options} from "@/app/api/auth/[...nextauth]/options";
+import { getServerSession } from "next-auth";
+import { options } from "@/app/api/auth/[...nextauth]/options";
+import PageNavigator from "@/components/ui/PageNavigator";
 
 type noticeData = {
     _id: ObjectId,
@@ -25,9 +26,10 @@ const NoticeManagementPage = async () => {
     return (
         <>
             <TopNavbar />
-            <div className="p-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <h2 className='mt-5 text-2xl text-center font-bold'>AU Campus 공지사항</h2>
+            <div className="p-8">
                 {findData.map((item: noticeData) => (
-                    <div key={item._id.toString()} className="border p-4 rounded-lg">
+                    <div key={item._id.toString()} className="border p-4 rounded-lg mb-4">
                         <h2 className="flex justify-between font-bold text-lg mb-2">
                             <Link href={`/admin/edit/find?post=${item._id}`}>
                                 <span className="text-blue-600 hover:underline">{item.title}</span>
@@ -45,6 +47,7 @@ const NoticeManagementPage = async () => {
                     </div>
                 ))}
             </div>
+            <PageNavigator/>
         </>
     );
 };
