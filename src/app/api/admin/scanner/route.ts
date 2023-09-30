@@ -23,7 +23,7 @@ export async function POST(request: Request) {
         console.log('body : ', body)
 
         // 이미 사용된 식권인 경우
-        if (ticket && ticket.state === "사용") {
+        if (ticket && ticket.state === true) {
             return NextResponse.json({
                 success: false,
                 status: 400,
@@ -39,7 +39,7 @@ export async function POST(request: Request) {
             },
             {
                 $set: {
-                    state: "사용"
+                    state: true
                 }
             }
         );
