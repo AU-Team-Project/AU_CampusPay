@@ -1,11 +1,11 @@
 import React from 'react';
 import {getServerSession} from "next-auth";
 import {options} from "@/app/api/auth/[...nextauth]/options";
+import {redirect} from "next/navigation";
+
 import AdminTopCard from "@/components/ui/card/AdminTopCard";
-import Sidebar from "@/components/admin/Sidebar";
 import BarChart from "@/components/ui/chart/BarChart";
 import RecentOrders from "@/components/admin/RecentOrders";
-import {redirect} from "next/navigation";
 
 const AdminPage = async () => {
     const session = await getServerSession(options);

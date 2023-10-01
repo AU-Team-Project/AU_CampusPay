@@ -29,7 +29,6 @@ const AdminTopCard = ({ data }: Props) => {
             icon: <AdminTodayPriceIcon/>
         },
     ]
-    console.log('data : ', data)
 
     return (
         <section className="p-4 grid lg:grid-col-5 gap-4">
