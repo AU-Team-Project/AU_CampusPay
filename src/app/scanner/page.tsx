@@ -1,5 +1,5 @@
 import React from 'react';
-import Scanner from "@/components/Scanner";
+import Scanner from "@/components/admin/Scanner";
 
 const QRCodeScanner = () => {
 
