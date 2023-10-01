@@ -20,7 +20,7 @@ const TabMenu = ({session}: Props) => {
     const [activeTab, setActiveTab] = useState('교직원');
 
     return (
-        <div className="m-5 mr-0 mb-0 col-span-1 bg-white md:col-span-2">
+        <div className="m-5 mb-0 col-span-1 bg-white rounded-lg shadow-lg md:col-span-2 md:mr-0">
             <div className="flex border-b mb-4">
                 {tabList.map((item) => (
                     <button

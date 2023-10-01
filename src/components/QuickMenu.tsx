@@ -47,7 +47,7 @@ const QuickMenu = ({session}: Props) => {
     }
 
     return (
-        <div className={`${getQuickMenuStyle(isLoggedOut)}`}>
+        <div className={`${getQuickMenuStyle(isLoggedOut)} rounded-lg shadow-lg`}>
             {/* 로그인 상태에 따른 유저 정보 표시 혹은 로그인/회원가입 버튼 표시 */}
             {links.map((link, index) => (
                 <Link key={index} href={link.href} className={`w-full ${getLoginStateQuickMenuStyle()}`}>
@@ -71,7 +71,7 @@ const QuickMenu = ({session}: Props) => {
 };
 
 function getQuickMenuStyle(isLoggedOut: boolean): string {
-    const baseStyle = 'mt-5 mr-5 p-5 bg-white flex flex-col items-center justify-center gap-4';
+    const baseStyle = 'mt-0 mx-5 md:mt-5 md:ml-0 p-5 bg-white flex flex-col items-center justify-center gap-4';
     const isLoggedOutStyle = `${isLoggedOut ? 'bg-opacity-50 relative' : ''}`
     return `${baseStyle} ${isLoggedOutStyle}`
 }
