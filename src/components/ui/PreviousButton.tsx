@@ -9,7 +9,7 @@ type PreviousButtonProps = {
 
 const PreviousButton = ({props, className}: PreviousButtonProps) => {
     const router = useRouter();
-    return <button className={className} onClick={()=> router.back()}>{props}</button>
+    return <button type="button" className={className} onClick={()=> router.back()}>{props}</button>
 };
 
 export default PreviousButton;
