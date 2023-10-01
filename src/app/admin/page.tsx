@@ -16,17 +16,16 @@ const AdminPage = async () => {
     const data = await res.json();
 
     return (
-        <div className='flex'>
+        <>
             <Sidebar/>
             <main className="w-full ml-20 bg-gray-50">
                 <AdminTopCard data={data}/>
-                {/*<AdminHistoryItem/>*/}
                 <div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'>
                     <BarChart/>
                     <RecentOrders/>
                 </div>
             </main>
-        </div>
+        </>
     );
 };
 
