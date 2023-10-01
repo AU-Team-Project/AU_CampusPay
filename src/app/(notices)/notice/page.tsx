@@ -31,11 +31,11 @@ const NoticeManagementPage = async () => {
                 {findData.map((item: noticeData) => (
                     <div key={item._id.toString()} className="border p-4 rounded-lg mb-4">
                         <h2 className="flex justify-between font-bold text-lg mb-2">
-                            <Link href={`/admin/edit/find?post=${item._id}`}>
+                            <Link href={`/edit/find?post=${item._id}`}>
                                 <span className="text-blue-600 hover:underline">{item.title}</span>
                             </Link>
                             {session?.user.role === 'admin' && (
-                                <Link href={`/admin/edit/find?post=${item._id}`}>
+                                <Link href={`/edit/find?post=${item._id}`}>
                                     <span className="text-[15px] text-blue-500 hover:underline">Edit</span>
                                 </Link>
                             )}

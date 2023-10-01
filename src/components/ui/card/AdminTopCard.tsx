@@ -46,8 +46,8 @@ const AdminTopCard = ({ data }: Props) => {
                             {item.label}
                         </p>
                     </div>
-                    <p className='p-2 bg-green-200 flex justify-center items-center rounded-lg'>
-                        <span className='text-green-700 text-lg'>
+                    <p className='p-2 bg-blue-200 flex justify-center items-center rounded-lg'>
+                        <span className='text-blue-custom text-lg'>
                             ???%
                         </span>
                     </p>

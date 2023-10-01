@@ -1,6 +1,6 @@
 'use client'
+import React, { useEffect, useRef, useState } from "react";
 import { BrowserQRCodeReader } from '@zxing/library';
-import { useEffect, useRef, useState } from "react";
 
 interface ApiResponse {
     success: boolean;
@@ -57,7 +57,6 @@ const QRScanner: React.FC = () => {
             }, 3000);
         }
     }, [popupMessage]);
-    console.log(popupMessage)
 
     return (
         <div className="relative">

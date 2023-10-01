@@ -1,10 +1,12 @@
 import React from 'react';
 import Link from "next/link";
 import Image from "next/image";
+
 import DashboardIcon from "@/components/ui/icons/DashboardIcon";
 import AdminTicketIcon from "@/components/ui/icons/AdminTicketIcon";
 import UserIcon from "@/components/ui/icons/UserIcon";
 import QrCodeIcon from "@/components/ui/icons/QrCodeIcon";
+import NoticeIcon from "@/components/ui/icons/NoticeIcon";
 
 const sideMenu = [
     {
@@ -12,12 +14,16 @@ const sideMenu = [
         icon: <DashboardIcon/>
     },
     {
-        href: '/admin',
+        href: '/admin/orders',
         icon: <AdminTicketIcon/>
     },
     {
-        href: '/admin',
+        href: '/admin/customers',
         icon: <UserIcon/>
+    },
+    {
+        href: '/notice',
+        icon: <NoticeIcon/>
     },
     {
         href: '/admin/scanner',

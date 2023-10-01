@@ -1,5 +1,5 @@
 import React from 'react';
-import {FaShoppingBag} from "react-icons/fa";
+import RecentOrdersIcon from "@/components/ui/icons/RecentOrdersIcon";
 
 const test = [
     {
@@ -39,7 +39,7 @@ const test = [
 
 const RecentOrders = () => {
     return (
-        <div className='w-full col-span-1 relative lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white overflow-scroll'>
+        <div className='w-full col-span-1 relative lg:h-[70vh] h-[50vh] m-auto p-4 border rounded-lg bg-white overflow-y-scroll'>
             <h1>RecentOrders</h1>
             <ul>
                 {test.map((orders, index) => (
@@ -47,8 +47,8 @@ const RecentOrders = () => {
                         key={index}
                         className='bg-gray-50 hover:bg-gray-100 rounded-lg my-3 p-2 flex items-center cursor-pointer'
                     >
-                        <div className='bg-purple-100 rounded-lg p-3'>
-                            <FaShoppingBag className='text-purple-700'/>
+                        <div className='bg-blue-100 rounded-lg p-3'>
+                            <RecentOrdersIcon className='text-blue-custom'/>
                         </div>
                         <div className='pl-4'>
                             <p className='text-gray-800 font-bold'>{orders.price} 원</p>

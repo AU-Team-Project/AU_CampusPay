@@ -9,15 +9,30 @@ import Image from 'next/image'
 
 const TopNavbar = () => {
     const {data: session} = useSession();
+
+    const navbarLink = [
+        {
+            href: `/confirmation/${session?.user.username}`,
+            label: '식권사용'
+        },
+        {
+            href: `/payment/${session?.user.username}`,
+            label: '식권구입'
+        },
+        {
+            href: `/history/${session?.user.username}`,
+            label: '결제내역'
+        },
+    ];
+
     const [isClicked, setIsClicked] = useState(false);
+
     const handleNavClick = () => {
         setIsClicked(!isClicked)
     }
 
     return (
         <header className=''>
-            {/** ### 네비게이션 메뉴 */}
-            {/** TODO : 관리자 페이지 session...role === admin */}
             <nav className='h-14 flex justify-between items-center bg-blue-custom text-white'>
                 <div className='pl-10'>
                     <Link className='flex items-center gap-1' href='/'>
@@ -44,29 +59,26 @@ const TopNavbar = () => {
                         </>
                     ) : (
                         <>
-                            <li>
-                                <Link href={`/confirmation/${session?.user.username}`}>식권사용</Link>
-                            </li>
-                            <li>
-                                <Link href={`/payment/${session?.user.username}`}>식권구입</Link>
-                            </li>
-                            <li>
-                                <Link href={`/history/${session?.user.username}`}>결제내역</Link>
-                            </li>
+                            {navbarLink.map((item, index) => (
+                                <li>
+                                    <Link href={item.href}>
+                                        {item.label}
+                                    </Link>
+                                </li>
+                            ))}
                             <li className='xl: pr-10'>
                                 <ColorButton text={'로그아웃'} onClick={() => signOut()}/>
                             </li>
                         </>
                     )}
                 </ul>
-                {/** ### 모바일 대응 */}
                 <button onClick={handleNavClick} className='pr-10 xmd:hidden max-xmd:block xl:hidden '>
                     <GiHamburgerMenu/>
                 </button>
             </nav>
+
             {/** ### TopNav Open 모바일 대응 (임시) */}
-            <div
-                className={`fixed top-0 right-0 w-screen h-full bg-gray-50 transition-transform duration-300 ${isClicked ? 'translate-x-0' : 'translate-x-full'}`}>
+            <div className={`fixed top-0 right-0 w-screen h-full bg-gray-50 transition-transform duration-300 ${isClicked ? 'translate-x-0' : 'translate-x-full'}`}>
                 <ul className='h-14 flex justify-between items-center bg-blue-custom text-white'>
                     <li className='pl-10'>
                         <Link className='flex items-center gap-1' href='/'>
@@ -83,21 +95,18 @@ const TopNavbar = () => {
                     </li>
                 </ul>
                 <ul className='pr-10 pl-10 text-lg'>
-                    <li className='pb-1.5'>
-                        <Link href={`/confirmation/${session?.user.username}`}>식권사용</Link>
-                    </li>
-                    <li className='pb-1.5'>
-                        <Link href={`/payment/${session?.user.username}`}>식권구입</Link>
-                    </li>
-                    <li className='pb-1.5'>
-                        <Link href={`/history/${session?.user.username}`}>결제내역</Link>
-                    </li>
+                    {navbarLink.map((item, index) => (
+                        <li>
+                            <Link href={item.href}>
+                                {item.label}
+                            </Link>
+                        </li>
+                    ))}
                     {session?.user?.name === 'root' && (
                         <li className='pb-1.5'>
                             <Link href='/admin'>관리자페이지</Link>
                         </li>
                     )}
-                    {/** TODO: Feature 정해진 후 배열에 담아 map 반복 */}
                     {!session ? (
                         <li>
                             <ColorButton text={'로그인'} onClick={() => signIn()}/>
