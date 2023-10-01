@@ -5,6 +5,7 @@ import {Menu} from "@/model/menu";
 import PageNavigator from "@/components/ui/PageNavigator";
 import {getServerSession} from "next-auth";
 import {options} from "@/app/api/auth/[...nextauth]/options";
+import {redirect} from "next/navigation";
 
 type Props = {
     params: {
@@ -15,8 +16,7 @@ type Props = {
 const ProfilePage = async ({params}: Props) => {
     const session = await getServerSession(options);
     if (!session) {
-        // 세션이 없을경우 처리
-        window.location.href = '/'
+        redirect('/')
     }
 
     const res = await fetch(`${process.env.SITE_URL}/api/confirmation/${params.slug}`)

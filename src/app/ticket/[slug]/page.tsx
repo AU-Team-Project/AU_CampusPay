@@ -6,19 +6,18 @@ import {getServerSession} from "next-auth";
 import {options} from "@/app/api/auth/[...nextauth]/options";
 import ColorButton from "@/components/ui/ColorButton";
 import PageNavigator from "@/components/ui/PageNavigator";
+import {redirect} from "next/navigation";
 
 type Props = {
     params: {
         slug: string;
     }
-
 }
 
 const TicketPage = async ({params}: Props) => {
     const session = await getServerSession(options);
     if (!session) {
-        // 세션이 없을경우 처리
-        window.location.href = '/';
+        redirect('/')
     }
 
     // 현재 로그인한 사용자 이름 또는 아이디
