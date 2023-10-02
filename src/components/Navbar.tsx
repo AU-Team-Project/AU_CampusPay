@@ -44,7 +44,7 @@ const TopNavbar = () => {
                         />
                     </Link>
                 </div>
-                <ul className='h-full flex justify-start items-center gap-3 max-xmd:hidden'>
+                <ul className='h-full flex justify-start items-center gap-3 hidden md:flex'>
                     {session?.user?.role === 'admin' &&
                         <li><Link href='/admin'>관리자 페이지</Link></li>
                     }
@@ -72,7 +72,7 @@ const TopNavbar = () => {
                         </>
                     )}
                 </ul>
-                <button onClick={handleNavClick} className='pr-10 xmd:hidden max-xmd:block xl:hidden '>
+                <button onClick={handleNavClick} className='pr-10 md:hidden'>
                     <GiHamburgerMenu/>
                 </button>
             </nav>
