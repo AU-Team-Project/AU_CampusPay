@@ -4,6 +4,10 @@ import {ObjectId} from "mongodb";
 import ColorButton from "@/components/ui/ColorButton";
 import {getServerSession} from "next-auth";
 import {options} from "@/app/api/auth/[...nextauth]/options";
+import EditForm from "@/components/EditForm";
+import {Edit} from "@sinclair/typebox/value";
+import {util} from "zod";
+import find = util.find;
 
 type Props = {
     params: {
@@ -22,18 +26,15 @@ const NoticeEditPage = async (params: Props) => {
     const findData = data.data;
 
     return (
-        <div>
-            <h2>수정 페이지</h2>
-            <form
-                action='api/admin/edit'
-                method='PUT'
-            >
-                <p>작성자 : {findData.username}</p>
-                <input type="text" name="username" defaultValue={findData._id} className='border-2' />
-                <input type="text" name="title" defaultValue={findData.title} className='border-2' />
-                <textarea name="content" defaultValue={findData.content} className='border-2'/>
-                <ColorButton text={'제출'}/>
-            </form>
+        <div className="w-full">
+            <div className="pt-3 flex justify-center text-center">
+                <span className="text-[30px] text-gray-700 font-semibold">
+                    공지 수정
+                </span>
+            </div>
+            <div className="md:px-52 flex justify-center">
+                <EditForm findData={findData}/>
+            </div>
         </div>
     );
 };
