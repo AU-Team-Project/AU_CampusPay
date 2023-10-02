@@ -33,6 +33,7 @@ const TopNavbar = () => {
 
     return (
         <header className=''>
+            {/** TopNav PC 환경 */}
             <nav className='h-14 flex justify-between items-center bg-blue-custom text-white'>
                 <div className='pl-10'>
                     <Link className='flex items-center gap-1' href='/'>
@@ -55,7 +56,7 @@ const TopNavbar = () => {
                 </button>
             </nav>
 
-            {/** ### TopNav Open 모바일 대응 (임시) */}
+            {/** TopNav Open 모바일 대응 */}
             <div className={`fixed top-0 right-0 w-screen h-full bg-gray-50 transition-transform duration-300 ${isClicked ? 'translate-x-0' : 'translate-x-full'}`}>
                 <ul className='h-14 flex justify-between items-center bg-blue-custom text-white'>
                     <li className='pl-10'>
