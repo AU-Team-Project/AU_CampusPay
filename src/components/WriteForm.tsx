@@ -81,7 +81,7 @@ const WriteForm = () => {
             </div>
             <div>
                 <textarea
-                    className="w-full md:min-h-[530px] md:max-h-[530px] min-h-full max-h-full p-5 appearance-none outline-none placeholder-gray-400 text-gray-900 text-[17px] focus:rounded-[15px] focus:bg-gray-100 focus:ring-blue-custom focus:border-blue-custom-deep focus:z-10 focus:scale-[1.01] ease-out duration-200 border-b-2 border-gray-300"
+                    className="w-full md:min-h-[550px] md:max-h-[550px] min-h-[800px] max-h-[800px] p-5 appearance-none outline-none placeholder-gray-400 text-gray-900 text-[17px] focus:rounded-[15px] focus:bg-gray-100 focus:ring-blue-custom focus:border-blue-custom-deep focus:z-10 focus:scale-[1.01] ease-out duration-200 border-b-2 border-gray-300"
                     name="content"
                     placeholder="공지의 내용"
                 />
