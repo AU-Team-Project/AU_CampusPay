@@ -3,28 +3,24 @@ import React, {useState} from 'react';
 import Link from "next/link";
 import {GiHamburgerMenu} from "react-icons/gi";
 import {AiOutlineClose} from "react-icons/ai";
-import {signIn, signOut, useSession} from "next-auth/react";
-import ColorButton from "@/components/ui/ColorButton";
+import {useSession} from "next-auth/react";
 import Image from 'next/image'
-import {User} from "@/model/user";
 import NavbarLink from "@/components/ui/NavbarLink";
-
-
 
 const TopNavbar = () => {
     const {data: session} = useSession();
 
     const navbarLink = [
         {
-            href: `/confirmation/${session?.user.username}`,
+            href: `/ticket/${session?.user?.username}`,
             label: '식권사용'
         },
         {
-            href: `/payment/${session?.user.username}`,
+            href: `/payment/${session?.user?.username}`,
             label: '식권구입'
         },
         {
-            href: `/history/${session?.user.username}`,
+            href: `/history/${session?.user?.username}`,
             label: '결제내역'
         },
     ];
