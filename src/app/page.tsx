@@ -30,7 +30,6 @@ export default async function Home() {
             <TopNavbar/>
             <main className='min-h-screen max-h-full bg-gray-200'>
                 <div className='grid md:grid-cols-3 gap-4 grid-cols-1'>
-                    {/* Todo : user 타입 정의 필요 */}
                     <TabMenu session={session}/>
                     <QuickMenu session={session}/>
 

@@ -1,7 +1,9 @@
 import React from 'react';
-import {useSearchParams} from "next/navigation";
+import {redirect, useSearchParams} from "next/navigation";
 import {ObjectId} from "mongodb";
 import ColorButton from "@/components/ui/ColorButton";
+import {getServerSession} from "next-auth";
+import {options} from "@/app/api/auth/[...nextauth]/options";
 
 type Props = {
     params: {
@@ -10,8 +12,12 @@ type Props = {
 }
 
 const NoticeEditPage = async (params: Props) => {
+    const session = await getServerSession(options);
+    if (session?.user.role !== 'admin') {
+        redirect('/')
+    }
+
     const res = await fetch(`${process.env.SITE_URL}/api/admin/find?post=651272f1316d83a83d5628a6`);
-    //const res = await fetch(`${process.env.SITE_URL}/api/admin/find?post=${params.params}`);
     const data = await res.json();
     const findData = data.data;
 

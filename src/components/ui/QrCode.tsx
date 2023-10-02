@@ -17,7 +17,7 @@ type Props = {
 const QrCode = ({props}: Props) => {
     const { data: session } = useSession();
     const canvasRef = useRef(null);
-    const data = props.id.toString();
+    const data = props.id ? props.id.toString() : '';
 
     useEffect(() => {
         if (canvasRef.current) {
