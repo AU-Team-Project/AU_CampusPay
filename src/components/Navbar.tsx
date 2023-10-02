@@ -6,6 +6,10 @@ import {AiOutlineClose} from "react-icons/ai";
 import {signIn, signOut, useSession} from "next-auth/react";
 import ColorButton from "@/components/ui/ColorButton";
 import Image from 'next/image'
+import {User} from "@/model/user";
+import NavbarLink from "@/components/ui/NavbarLink";
+
+
 
 const TopNavbar = () => {
     const {data: session} = useSession();
@@ -45,32 +49,10 @@ const TopNavbar = () => {
                     </Link>
                 </div>
                 <ul className='h-full flex justify-start items-center gap-3 hidden md:flex'>
-                    {session?.user?.role === 'admin' &&
-                        <li><Link href='/admin'>관리자 페이지</Link></li>
-                    }
-                    {!session ? (
-                        <>
-                            <li>
-                                <Link href='/register'>회원가입</Link>
-                            </li>
-                            <li className='xl: pr-10'>
-                                <ColorButton text={'로그인'} onClick={() => signIn()}/>
-                            </li>
-                        </>
-                    ) : (
-                        <>
-                            {navbarLink.map((item, index) => (
-                                <li>
-                                    <Link href={item.href}>
-                                        {item.label}
-                                    </Link>
-                                </li>
-                            ))}
-                            <li className='xl: pr-10'>
-                                <ColorButton text={'로그아웃'} onClick={() => signOut()}/>
-                            </li>
-                        </>
-                    )}
+                    <NavbarLink
+                        session={session}
+                        navbarLink={navbarLink}
+                    />
                 </ul>
                 <button onClick={handleNavClick} className='pr-10 md:hidden'>
                     <GiHamburgerMenu/>
@@ -91,31 +73,16 @@ const TopNavbar = () => {
                         </Link>
                     </li>
                     <li className='pr-10'>
-                        <button onClick={handleNavClick}><AiOutlineClose/></button>
+                        <button onClick={handleNavClick}>
+                            <AiOutlineClose/>
+                        </button>
                     </li>
                 </ul>
                 <ul className='pr-10 pl-10 text-lg'>
-                    {navbarLink.map((item, index) => (
-                        <li>
-                            <Link href={item.href}>
-                                {item.label}
-                            </Link>
-                        </li>
-                    ))}
-                    {session?.user?.name === 'root' && (
-                        <li className='pb-1.5'>
-                            <Link href='/admin'>관리자페이지</Link>
-                        </li>
-                    )}
-                    {!session ? (
-                        <li>
-                            <ColorButton text={'로그인'} onClick={() => signIn()}/>
-                        </li>
-                    ) : (
-                        <li className='xl: pr-10'>
-                            <ColorButton text={'로그아웃'} onClick={() => signOut()}/>
-                        </li>
-                    )}
+                    <NavbarLink
+                        session={session}
+                        navbarLink={navbarLink}
+                    />
                 </ul>
             </div>
         </header>
