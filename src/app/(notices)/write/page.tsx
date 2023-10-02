@@ -1,6 +1,5 @@
 'use client'
 import React from 'react';
-import {useSession} from "next-auth/react";
 import WriteForm from "@/components/WriteForm";
 
 const Page = () => {
@@ -12,7 +11,7 @@ const Page = () => {
                     공지 작성
                 </span>
             </div>
-            <div className="flex justify-center">
+            <div className="md:px-52 md:pb-12 flex justify-center">
                 <WriteForm/>
             </div>
 

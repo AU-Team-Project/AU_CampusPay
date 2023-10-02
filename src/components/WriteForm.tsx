@@ -43,7 +43,7 @@ const WriteForm = () => {
     }
 
     return (
-        <form className="w-[80%] px-10 py-5 flex flex-col justify-center gap-5 sm:w-full" onSubmit={handleSubmit}>
+        <form className="w-full px-10 py-5 flex flex-col justify-center gap-5" onSubmit={handleSubmit}>
             {Message && (
                 <div className="absolute inset-0 flex items-center justify-center bg-gray-800 bg-opacity-50 z-20">
                     <div className="bg-white rounded-lg p-5">
@@ -73,7 +73,7 @@ const WriteForm = () => {
             )}
             <div>
                 <input
-                    className="w-full h-[50px] p-5 appearance-none outline-none placeholder-gray-400 text-gray-900 text-[17px] focus:rounded-[15px] focus:bg-gray-100 focus:ring-blue-custom focus:border-blue-custom-deep focus:z-10 focus:scale-[1.01] sm:text-sm ease-out duration-200 border-b-2 border-gray-300"
+                    className="w-full h-[50px] p-5 appearance-none outline-none placeholder-gray-400 text-gray-900 text-[17px] focus:rounded-[15px] focus:bg-gray-100 focus:ring-blue-custom focus:border-blue-custom-deep focus:z-10 focus:scale-[1.01] duration-200 border-b-2 border-gray-300"
                     type="text"
                     name="title"
                     placeholder="공지의 제목"
@@ -81,15 +81,15 @@ const WriteForm = () => {
             </div>
             <div>
                 <textarea
-                    className="w-full min-h-[550px] max-h-[570px] p-5 appearance-none outline-none placeholder-gray-400 text-gray-900 text-[17px] focus:rounded-[15px] focus:bg-gray-100 focus:ring-blue-custom focus:border-blue-custom-deep focus:z-10 focus:scale-[1.01] sm:text-sm sm:min-h-[800px] sm:max-h-[800px] ease-out duration-200 border-b-2 border-gray-300"
+                    className="w-full md:min-h-[530px] md:max-h-[530px] min-h-full max-h-full p-5 appearance-none outline-none placeholder-gray-400 text-gray-900 text-[17px] focus:rounded-[15px] focus:bg-gray-100 focus:ring-blue-custom focus:border-blue-custom-deep focus:z-10 focus:scale-[1.01] ease-out duration-200 border-b-2 border-gray-300"
                     name="content"
                     placeholder="공지의 내용"
                 />
             </div>
             <div className="flex justify-between">
-                <PreviousButton props={"취소"} className={"group relative w-[200px] flex justify-center py-3 px-4 border border-blue-custom-hover border-transparent text-[18px] font-medium rounded-[25px] text-white bg-blue-custom-deep hover:bg-blue-custom-hover active:outline-none active:ring active:ring-offset-3 active:ring-blue-custom-hover sm:w-[120px] ease-out duration-200"}/>
+                <PreviousButton props={"취소"} className={"group relative w-[200px] flex justify-center py-3 px-4 border border-blue-custom-hover border-transparent text-[18px] font-medium rounded-[25px] text-white bg-blue-custom-deep hover:bg-blue-custom-hover active:outline-none active:ring active:ring-offset-3 active:ring-blue-custom-hover ease-out duration-200"}/>
                 <button
-                    className="group relative w-[200px] flex justify-center py-3 px-4 border border-blue-custom-hover border-transparent text-[18px] font-medium rounded-[25px] text-white bg-blue-custom-deep hover:bg-blue-custom-hover active:outline-none active:ring active:ring-offset-3 active:ring-blue-custom-hover sm:w-[120px] ease-out duration-200"
+                    className="group relative w-[200px] flex justify-center py-3 px-4 border border-blue-custom-hover border-transparent text-[18px] font-medium rounded-[25px] text-white bg-blue-custom-deep hover:bg-blue-custom-hover active:outline-none active:ring active:ring-offset-3 active:ring-blue-custom-hover ease-out duration-200"
                     type='submit'
                 >
                     제출
