@@ -31,7 +31,7 @@ const AdminTopCard = ({ data }: Props) => {
     ]
 
     return (
-        <section className="p-4 grid lg:grid-col-5 gap-4">
+        <section className="p-4 grid lg:grid-cols-6 gap-4">
             {ticket.map((item, index) => (
                 <article
                     key={index}
