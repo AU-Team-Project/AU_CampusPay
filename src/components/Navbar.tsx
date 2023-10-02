@@ -57,7 +57,7 @@ const TopNavbar = () => {
             </nav>
 
             {/** TopNav Open 모바일 대응 */}
-            <div className={`fixed top-0 right-0 w-screen h-full bg-gray-50 transition-transform duration-300 ${isClicked ? 'translate-x-0' : 'translate-x-full'}`}>
+            <div className={`fixed top-0 right-0 w-screen h-full bg-gray-50 transition-transform duration-300 z-50 ${isClicked ? 'translate-x-0' : 'translate-x-full'}`}>
                 <ul className='h-14 flex justify-between items-center bg-blue-custom text-white'>
                     <li className='pl-10'>
                         <Link className='flex items-center gap-1' href='/'>
@@ -75,7 +75,7 @@ const TopNavbar = () => {
                         </button>
                     </li>
                 </ul>
-                <ul className='pr-10 pl-10 text-lg'>
+                <ul className='pt-5 pr-10 pl-10 text-lg space-y-4'>
                     <NavbarLink
                         session={session}
                         navbarLink={navbarLink}
