@@ -28,8 +28,8 @@ const TicketPage = async ({params}: Props) => {
     const data = await res.json();
     const featDate = data.data;
 
-    // "state"가 미사용인 아이템만 출력
-    const unusedItems = featDate.slice(1).filter((item: Menu) => item.state === '미사용');
+    // "state"가 false인 아이템만 출력
+    const unusedItems = featDate.slice(1).filter((item: Menu) => !!item.state === false);
 
     return (
         <>
@@ -44,7 +44,7 @@ const TicketPage = async ({params}: Props) => {
                                     <Link href={`/confirmation/${encodeURIComponent(item.name)}?id=${encodeURIComponent(item._id)}&menu=${encodeURIComponent(item.menu ?? '')}&state=${encodeURIComponent(item.state ?? '')}`}>
                                         <h3 className="text-lg font-medium text-blue-600 mb-2">{item.menu}</h3>
                                         <p className="text-gray-500">금액: {item.amount}원</p>
-                                        <p className="text-gray-500">임시값: {item._id} and {item.state}</p>
+                                        <p className="text-gray-500">임시값: {item._id} and 미사용</p>
                                     </Link>
                                 </div>
                                 <div className="mt-3 md:mt-0">

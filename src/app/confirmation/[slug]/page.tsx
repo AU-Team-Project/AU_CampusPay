@@ -14,7 +14,7 @@ type Props = {
 }
 
 const ConfirmationPage = async ({params, searchParams}: Props) => {
-    const stateText = searchParams.state === '미사용' ? '사용가능' : '사용불가';
+    const stateText = searchParams.state === 'false' ? '사용가능' : '사용불가';
 
     return (
         <div className="h-screen flex flex-col justify-center items-center bg-gray-50">
