@@ -4,6 +4,7 @@ import PreviousButton from "@/components/ui/PreviousButton";
 import PaymentBtn from "@/components/ui/PaymentBtn";
 import CookItem from "@/components/CookItem";
 import XMarkIcon from "@/components/ui/icons/XmarkIcon";
+import Link from "next/link";
 
 // activeTab 문자열 타입
 type activeTab = '교직원' | '학생';
@@ -16,7 +17,7 @@ type productItem = {
 }
 
 // 메뉴 데이터 배열로 정의
-const menuData: Record<activeTab, {label: string; price:number;}[]> = {
+const menuData: Record<activeTab, { label: string; price: number; }[]> = {
     '교직원': [
         {label: '교직원 중식', price: 5000}
     ],
@@ -75,7 +76,8 @@ const PaymentContainer = () => {
 
                 <div className="grid grid-cols-1 gap-4">
                     {menuData[activeTab].map((item, idx) => (
-                        <div key={idx} className="border p-2 rounded" onClick={() => handleItemClick(item.label, item.price)}>
+                        <div key={idx} className="border p-2 rounded"
+                             onClick={() => handleItemClick(item.label, item.price)}>
                             <h4 className="font-bold">{item.label}</h4>
                             <p>{item.price} 원</p>
                         </div>
@@ -88,7 +90,7 @@ const PaymentContainer = () => {
                     <ul>
                         <li key={selectedItem.label} className="flex justify-between items-center">
                             <p>{selectedItem.label}</p>
-                            <p>{selectedItem.quantity} × {selectedItem.price} 원</p>
+                            <p>{selectedItem.price} 원</p>
                             <button onClick={handleItemDeselection}>
                                 <XMarkIcon/>
                             </button>
@@ -104,10 +106,11 @@ const PaymentContainer = () => {
             </div>
 
             <div className="flex justify-center gap-4 mt-6">
-                <PreviousButton
-                    props={'돌아가기'}
-                    className={'bg-white font-bold border-2 border-blue-600 py-3 px-10 rounded'}
-                />
+                <Link href={'/'}>
+                    <div className={'bg-white font-bold border-2 border-blue-600 py-3 px-10 rounded'}>
+                        돌아가기
+                    </div>
+                </Link>
                 <PaymentBtn
                     props={selectedItem}
                     className={'bg-blue-600 font-bold text-white py-3 px-10 rounded'}

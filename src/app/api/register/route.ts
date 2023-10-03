@@ -38,15 +38,29 @@ export async function POST(request: Request) {
          * ### 성공 응답 반환
          * - 성공 메시지를 변경하거나 사용자에게 반환할 추가 정보를 추가가능
          */
-        return NextResponse.json({ success: true, message: '회원가입이 성공적으로 완료되었습니다.' });
+        return NextResponse.json({
+            success: true,
+            status: 200,
+            message: '회원가입이 성공적으로 완료되었습니다.'
+        });
     } catch (err) {
         /** ### 에러 처리 */
         if (err instanceof Error) {
             /** ### 알려진 에러 처리 */
-            return NextResponse.json({success: false, message: '인터넷 또는 서버 오류 발생', error: err.message});
+            return NextResponse.json({
+                success: false,
+                status: 500,
+                message: '인터넷 또는 서버 오류 발생',
+                error: err.message
+            });
         } else {
             /** ### 알수없는 에러 처리 */
-            return NextResponse.json({success: false, message: '인터넷 또는 서버 오류 발생', error: "알 수 없는 에러"});
+            return NextResponse.json({
+                success: false,
+                status: 500,
+                message: '인터넷 또는 서버 오류 발생',
+                error: "알 수 없는 에러"
+            });
         }
     }
 }
