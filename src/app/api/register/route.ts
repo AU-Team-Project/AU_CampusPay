@@ -20,12 +20,33 @@ export async function POST(request: Request) {
     const student_number = formData.get('student_number');
     const phone = formData.get('phone');
 
+    // 입력 값 검증
+    if (!username || !email || !password || !student_number || !phone) {
+        return NextResponse.json({
+            success: false,
+            status: 400,
+            message: 'All fields are required.'
+        });
+    }
+
     try {
-        /** ### 데이터베이스 연결 */
+        // 데이터베이스 연결
         const db = (await connectDB).db(process.env.MONGODB_NAME as string);
-        /** ### 비밀번호 해시값 생성 */
-        const pwdHash: any = await bcrypt.hash(password, 10);
-        /** ### 회원정보 데이터베이스에 저장 */
+
+        // 이메일 중복 확인
+        const existingUser = await db.collection(process.env.MONGODB_USER as string).findOne({email});
+        if (existingUser) {
+            return NextResponse.json({
+                success: false,
+                status: 409,
+                message: 'Email is already in use.'
+            })
+        }
+
+        // 비밀번호 해시값 생성
+        const pwdHash: any = await bcrypt.hash(password, 25);
+
+        // 회원정보 데이터베이스에 저장
         await db.collection(process.env.MONGODB_USER as string).insertOne({
             email,
             username,
@@ -41,7 +62,7 @@ export async function POST(request: Request) {
         return NextResponse.json({
             success: true,
             status: 200,
-            message: '회원가입이 성공적으로 완료되었습니다.'
+            message: 'Registration successful.'
         });
     } catch (err) {
         /** ### 에러 처리 */
@@ -50,7 +71,7 @@ export async function POST(request: Request) {
             return NextResponse.json({
                 success: false,
                 status: 500,
-                message: '인터넷 또는 서버 오류 발생',
+                message: 'Server or network error',
                 error: err.message
             });
         } else {
@@ -58,8 +79,8 @@ export async function POST(request: Request) {
             return NextResponse.json({
                 success: false,
                 status: 500,
-                message: '인터넷 또는 서버 오류 발생',
-                error: "알 수 없는 에러"
+                message: 'Server or network error',
+                error: "Unknown error"
             });
         }
     }
