@@ -43,8 +43,22 @@ export async function POST(request: Request) {
             })
         }
 
-        // 비밀번호 해시값 생성
-        const pwdHash: any = await bcrypt.hash(password, 25);
+        // 비밀번호 해시값 생성에서 오류 발생
+        //원인: saltRounds의 값이 25일 경우, 해싱하는데에 2GHz core의 서버에서 1시간이 소요됨.
+        // const pwdHash: any = await bcrypt.hash(password, 25);
+        /**
+         * saltRounds=8: 약 0.025 초
+         * saltRounds=9: 약 0.05 초
+         * saltRounds=10: 약 0.1 초
+         * saltRounds=11: 약 0.2 초
+         * saltRounds=12: 약 0.4 초
+         * saltRounds=13: 약 1초
+         * saltRounds=14: 약 1.5초
+         * saltRounds=15: 약 3초
+         * saltRounds=25: 약 1시간
+         * saltRounds=31: 약 2~3일
+         * */
+        const pwdHash: string = await  bcrypt.hash(password, 12);
 
         // 회원정보 데이터베이스에 저장
         const user = await db.collection(process.env.MONGODB_USER as string).insertOne({
