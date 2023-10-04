@@ -2,11 +2,12 @@ import React from "react";
 import Link from "next/link";
 import {options} from "@/app/api/auth/[...nextauth]/options";
 import {getServerSession} from "next-auth";
+import {ObjectId} from "mongodb";
+
 import TabMenu from "@/components/TabMenu";
 import TopNavbar from "@/components/Navbar";
 import QuickMenu from "@/components/QuickMenu";
 import MoveNoticeIcon from "@/components/ui/icons/MoveNoticeIcon";
-import {ObjectId} from "mongodb";
 
 type NoticeItem = {
     _id: ObjectId;
@@ -41,6 +42,7 @@ export default async function Home() {
                                 <MoveNoticeIcon/>
                             </Link>
                         </div>
+
                         <div className='divide-y divide-gray-300'>
                             {factText.map((item: NoticeItem, index: number) => (
                                 <div

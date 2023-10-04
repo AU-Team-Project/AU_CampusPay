@@ -21,7 +21,7 @@ type Props = {
 const NoticeEditPage = async (params: Props,) => {
     const session = await getServerSession(options);
     if (session?.user.role !== 'admin') {
-        redirect('/')
+        redirect('/');
     }
 
     const res = await fetch(`${process.env.SITE_URL}/api/admin/find?post=${params.searchParams.post}`);

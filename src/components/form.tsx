@@ -9,23 +9,53 @@ import MobileIcon from "@/components/ui/icons/MobileIcon";
 
 const FormComponent = () => {
     const router = useRouter()
-    const [formData, setFormData] = useState();
 
-    const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        console.log(`user input : ${e.target.value}`);
+    // input 태그 상태 저장 (기본값 :null)
+    const [formData, setFormData] = useState({
+        email: '',
+        password: '',
+        username: '',
+        student_number: '',
+        phone: ''
+    });
+
+    const handleOnchange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value } = e.target;
+        setFormData(prevState => ({
+            ...prevState,
+            [name]: value
+        }))
+    }
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        const res = await fetch('/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData),
+        });
+
+        const result = await res.json();
+        console.log(result)
+        if (result.success) {
+            router.replace('/');
+        } else {
+            console.error('error')
+        }
     }
 
     const handleClickRoute = (e: any) => {
         alert('ok')
-        router.replace('/login');
+        router.replace('/');
     }
 
     return (
         <form
             className="mt-8 space-y-6"
-            action="/api/register"
-            method="POST"
-            encType="multipart/form-data"
+            onSubmit={handleSubmit}
         >
             <div className="rounded-md shadow-sm flex flex-col gap-4">
                 <div className="relative">
@@ -40,7 +70,8 @@ const FormComponent = () => {
                         required
                         className="appearance-none outline-none rounded-[10px] relative block w-full px-3 py-2 bg-gray-100 border border-gray-300 placeholder-gray-500 text-gray-900 focus:bg-gray-200 focus:ring-blue-custom focus:border-blue-custom-deep focus:z-10 focus:scale-[1.01] sm:text-sm ease-out duration-200"
                         placeholder="이메일 주소"
-                        onChange={handleInput}
+                        value={formData.email}
+                        onChange={handleOnchange}
                     />
                     <span className="absolute right-[10px] top-[50%] -mt-[8px] z-10">
                         <EmailIcon/>
@@ -58,7 +89,8 @@ const FormComponent = () => {
                         required
                         className="appearance-none outline-none rounded-[10px] relative block w-full px-3 py-2 bg-gray-100 border border-gray-300 placeholder-gray-500 text-gray-900 focus:bg-gray-200 focus:ring-blue-custom focus:border-blue-custom-deep focus:z-10 focus:scale-[1.01] sm:text-sm ease-out duration-200"
                         placeholder="비밀번호"
-                        onChange={handleInput}
+                        value={formData.password}
+                        onChange={handleOnchange}
                     />
                     <span className="absolute right-[10px] top-[50%] -mt-[8px] z-10">
                         <PasswordIcon/>
@@ -76,7 +108,8 @@ const FormComponent = () => {
                         required
                         className="appearance-none outline-none rounded-[10px] relative block w-full px-3 py-2 bg-gray-100 border border-gray-300 placeholder-gray-500 text-gray-900 focus:bg-gray-200 focus:ring-blue-custom focus:border-blue-custom-deep focus:z-10 focus:scale-[1.01] sm:text-sm ease-out duration-200"
                         placeholder="이름"
-                        onChange={handleInput}
+                        value={formData.username}
+                        onChange={handleOnchange}
                     />
                     <span className="absolute right-[10px] top-[50%] -mt-[8px] z-10">
                         <UserIcon/>
@@ -87,14 +120,15 @@ const FormComponent = () => {
                         학번
                     </label>
                     <input
-                        id="studentnumber"
-                        name="studentnumber"
+                        id="student_number"
+                        name="student_number"
                         type="text"
                         autoComplete="current-password"
                         required
                         className="appearance-none outline-none rounded-[10px] relative block w-full px-3 py-2 bg-gray-100 border border-gray-300 placeholder-gray-500 text-gray-900 focus:bg-gray-200 focus:ring-blue-custom focus:border-blue-custom-deep focus:z-10 focus:scale-[1.01] sm:text-sm ease-out duration-200"
                         placeholder="학번"
-                        onChange={handleInput}
+                        value={formData.student_number}
+                        onChange={handleOnchange}
                     />
                     <span className="absolute right-[10px] top-[50%] -mt-[8px] z-10">
                         <StudentIcon/>
@@ -112,7 +146,8 @@ const FormComponent = () => {
                         required
                         className="appearance-none outline-none rounded-[10px] relative block w-full px-3 py-2 bg-gray-100 border border-gray-300 placeholder-gray-500 text-gray-900 focus:bg-gray-200 focus:ring-blue-custom focus:border-blue-custom-deep focus:z-10 focus:scale-[1.01] sm:text-sm ease-out duration-200"
                         placeholder="휴대폰 번호"
-                        onChange={handleInput}
+                        value={formData.phone}
+                        onChange={handleOnchange}
                     />
                     <span className="absolute right-[10px] top-[50%] -mt-[8px] z-10">
                         <MobileIcon/>

@@ -1,3 +1,4 @@
+'use client'
 import React from 'react';
 import Link from "next/link";
 import {User} from "@/model/user";
@@ -6,6 +7,7 @@ import QrCodeIcon from "@/components/ui/icons/QrCodeIcon";
 import GetTicketIcon from "@/components/ui/icons/GetTicketIcon";
 import PaymentHistoryIcon from "@/components/ui/icons/PaymentHistoryIcon";
 import AdminPageIcon from "@/components/ui/icons/AdminPageIcon";
+import {signIn} from "next-auth/react";
 
 type Props = {
     session: {
@@ -59,11 +61,12 @@ const QuickMenu = ({session}: Props) => {
             {/** 로그인하지 않은 상태에서의 로그인 레이어 표시 */}
             {isLoggedOut && (
                 <div className="absolute inset-0 flex justify-center items-center">
-                    <Link
-                        href={`/login`}
-                        className={`bg-white font-bold ${getLoginStateQuickMenuStyle()}`}>
+                    <button
+                        onClick={() => signIn()}
+                        className={`bg-white font-bold ${getLoginStateQuickMenuStyle()}`}
+                    >
                         로그인 후 이용 가능합니다.
-                    </Link>
+                    </button>
                 </div>
             )}
         </div>
