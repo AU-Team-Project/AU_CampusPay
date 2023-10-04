@@ -11,17 +11,20 @@ import find = util.find;
 
 type Props = {
     params: {
-        slug: ObjectId;
+        slug : string;
+    }
+    searchParams: {
+        post: ObjectId;
     }
 }
 
-const NoticeEditPage = async (params: Props) => {
+const NoticeEditPage = async (params: Props,) => {
     const session = await getServerSession(options);
     if (session?.user.role !== 'admin') {
         redirect('/')
     }
 
-    const res = await fetch(`${process.env.SITE_URL}/api/admin/find?post=651272f1316d83a83d5628a6`);
+    const res = await fetch(`${process.env.SITE_URL}/api/admin/find?post=${params.searchParams.post}`);
     const data = await res.json();
     const findData = data.data;
 

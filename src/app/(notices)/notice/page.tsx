@@ -32,17 +32,25 @@ const NoticeManagementPage = async () => {
                     <div key={item._id.toString()} className="border p-4 rounded-lg mb-4">
                         <h2 className="flex justify-between font-bold text-lg mb-2">
                             <Link href={`/edit/find?post=${item._id}`}>
-                                <span className="text-blue-600 hover:underline">{item.title}</span>
+                                <span className="text-blue-600 hover:underline">
+                                    {item.title}
+                                </span>
                             </Link>
                             {session?.user.role === 'admin' && (
                                 <Link href={`/edit/find?post=${item._id}`}>
-                                    <span className="text-[15px] text-blue-500 hover:underline">Edit</span>
+                                    <span className="text-[15px] text-blue-500 hover:underline">
+                                        Edit
+                                    </span>
                                 </Link>
                             )}
                         </h2>
                         <div className="flex justify-between">
-                            <span className="font-light text-sm">{item.username}</span>
-                            <span className="font-light text-sm">{item.date}</span>
+                            <span className="font-light text-sm">
+                                {item.username}
+                            </span>
+                            <span className="font-light text-sm">
+                                {item.date}
+                            </span>
                         </div>
                     </div>
                 ))}

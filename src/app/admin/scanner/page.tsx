@@ -22,7 +22,7 @@ const QRScanner: React.FC = () => {
                 console.log(qrText);
 
                 try {
-                    const response = await fetch('/api/save', {
+                    const response = await fetch('/api/scanner', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'
