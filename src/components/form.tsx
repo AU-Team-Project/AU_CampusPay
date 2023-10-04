@@ -16,6 +16,7 @@ const FormComponent = () => {
     }
 
     const handleClickRoute = (e: any) => {
+        alert('ok')
         router.replace('/login');
     }
 

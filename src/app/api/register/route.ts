@@ -21,27 +21,26 @@ export async function POST(request: Request) {
     const phone = formData.get('phone');
 
     // 입력 값 검증
-    if (!username || !email || !password || !student_number || !phone) {
-        return NextResponse.json({
-            success: false,
-            status: 400,
-            message: 'All fields are required.'
-        });
-    }
+    // if (!username || !email || !password || !student_number || !phone) {
+    //     return NextResponse.json({
+    //         success: false,
+    //         status: 400,
+    //         message: 'All fields are required.'
+    //     });
+    // }
 
     try {
         // 데이터베이스 연결
         const db = (await connectDB).db(process.env.MONGODB_NAME as string);
-
         // 이메일 중복 확인
-        const existingUser = await db.collection(process.env.MONGODB_USER as string).findOne({email});
-        if (existingUser) {
-            return NextResponse.json({
-                success: false,
-                status: 409,
-                message: 'Email is already in use.'
-            })
-        }
+        // const existingUser = await db.collection(process.env.MONGODB_USER as string).findOne({email});
+        // if (existingUser) {
+        //     return NextResponse.json({
+        //         success: false,
+        //         status: 409,
+        //         message: 'Email is already in use.'
+        //     })
+        // }
 
         // 비밀번호 해시값 생성
         const pwdHash: any = await bcrypt.hash(password, 25);
@@ -62,7 +61,7 @@ export async function POST(request: Request) {
         return NextResponse.json({
             success: true,
             status: 200,
-            message: 'Registration successful.'
+            message: 'Registration successful.',
         });
     } catch (err) {
         /** ### 에러 처리 */

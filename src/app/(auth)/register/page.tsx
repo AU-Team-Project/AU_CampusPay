@@ -20,11 +20,6 @@ const RegisterPage = () => {
                         />
                     </Link>
                 </div>
-                <div>
-                    <h2 className="mt-10 text-center text-3xl font-extrabold text-blue-custom">
-                        회원가입
-                    </h2>
-                </div>
                 <FormComponent/>
             </div>
         </div>
