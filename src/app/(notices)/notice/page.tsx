@@ -27,6 +27,12 @@ const NoticeManagementPage = async () => {
         <>
             <TopNavbar />
             <h2 className='mt-5 text-2xl text-center font-bold'>AU Campus 공지사항</h2>
+                <Link href="/write" passHref>
+                    <span style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '-10px' }}>
+                        <span className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">공지 작성</span></span>
+                </Link>
+
+
             <div className="p-8">
                 {findData.map((item: noticeData) => (
                     <div key={item._id.toString()} className="border p-4 rounded-lg mb-4">
