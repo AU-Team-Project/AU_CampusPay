@@ -38,7 +38,7 @@ const TopNavbar = () => {
                 <div className='pl-10'>
                     <Link className='flex items-center gap-1' href='/'>
                         <Image
-                            src='/logo_Kor.svg'
+                            src='/CampusPay_Nav.svg'
                             width={125}
                             height={80}
                             alt='웹페이지 로고'
@@ -62,7 +62,7 @@ const TopNavbar = () => {
                     <li className='pl-10'>
                         <Link className='flex items-center gap-1' href='/'>
                             <Image
-                                src='/logo_Kor.svg'
+                                src='/CampusPay_Nav.svg'
                                 width={125}
                                 height={80}
                                 alt='웹페이지 로고'
