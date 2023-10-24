@@ -1,4 +1,17 @@
 //회원가입 /로그인  유효성 검사 //
+
+export const areAllFieldsEmpty = (formData: { [key: string]: string }): boolean => {
+  for (const key in formData) {
+    if (formData.hasOwnProperty(key)) {
+      if (formData[key].trim() !== '') {
+        return false;
+      }
+    }
+  }
+  return true;
+};
+
+
 // 이메일 주소 유효성 검사
 export const isValidEmail = (email: string): boolean => {
   const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
