@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import UserIcon from "@/components/ui/icons/UserIcon";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { ObjectId } from "mongodb";
+import {useRouter} from "next/navigation";
+import {useSession} from "next-auth/react";
 
 type UserData = {
     _id: ObjectId,
@@ -15,6 +17,12 @@ type UserData = {
 }
 
 const CustomerPage = () => {
+    const router = useRouter()
+    const session = useSession()
+    if (session?.data?.user?.role != 'admin' || !session) {
+        router.push('/')
+    }
+
     const [userData, setUserData] = useState<UserData[]>([]);
 
     useEffect(() => {
