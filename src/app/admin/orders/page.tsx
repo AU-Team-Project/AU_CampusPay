@@ -44,7 +44,7 @@ const test = [
 
 const OrdersPage = async () => {
     const session = await getServerSession(options);
-    if (session?.user?.role != 'admin') {
+    if (session?.user?.role != 'admin' || !session) {
         redirect('/')
     }
 

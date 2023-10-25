@@ -1,6 +1,8 @@
 'use client'
 import React, { useEffect, useRef, useState } from "react";
 import { BrowserQRCodeReader } from '@zxing/library';
+import {useSession} from "next-auth/react";
+import {useRouter} from "next/navigation";
 
 interface ApiResponse {
     success: boolean;
@@ -8,6 +10,13 @@ interface ApiResponse {
 }
 
 const QRScanner: React.FC = () => {
+    const router = useRouter();
+
+    const session = useSession();
+    if (session?.data?.user?.role != 'admin' || !session) {
+        router.push('/')
+    }
+
     const videoRef = useRef<HTMLVideoElement | null>(null);
     const [popupMessage, setPopupMessage] = useState<string | null>(null);
 
