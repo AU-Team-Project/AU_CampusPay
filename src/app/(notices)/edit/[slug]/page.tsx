@@ -1,13 +1,9 @@
 import React from 'react';
-import {redirect, useSearchParams} from "next/navigation";
+import {redirect} from "next/navigation";
 import {ObjectId} from "mongodb";
-import ColorButton from "@/components/ui/ColorButton";
 import {getServerSession} from "next-auth";
 import {options} from "@/app/api/auth/[...nextauth]/options";
 import EditForm from "@/components/EditForm";
-import {Edit} from "@sinclair/typebox/value";
-import {util} from "zod";
-import find = util.find;
 
 type Props = {
     params: {
@@ -18,7 +14,7 @@ type Props = {
     }
 }
 
-const NoticeEditPage = async (params: Props,) => {
+const NoticeEditPage = async (params: Props) => {
     const session = await getServerSession(options);
     if (session?.user.role !== 'admin') {
         redirect('/');

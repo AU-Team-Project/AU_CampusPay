@@ -8,6 +8,7 @@ import GetTicketIcon from "@/components/ui/icons/GetTicketIcon";
 import PaymentHistoryIcon from "@/components/ui/icons/PaymentHistoryIcon";
 import AdminPageIcon from "@/components/ui/icons/AdminPageIcon";
 import {signIn} from "next-auth/react";
+import {ObjectId} from "mongodb";
 
 type Props = {
     session: {
@@ -24,7 +25,7 @@ const QuickMenu = ({session}: Props) => {
             label: "식단표"
         },
         {
-            href: `/ticket/${session?.user?.username}`,
+            href: `/ticket/user?name=${session?.user?._id}`,
             icon: <QrCodeIcon />,
             label: "식권 사용"
         },

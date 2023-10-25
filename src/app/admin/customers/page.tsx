@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import UserIcon from "@/components/ui/icons/UserIcon";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { ObjectId } from "mongodb";
-import {redirect, useRouter} from "next/navigation";
+import {redirect} from "next/navigation";
 import {useSession} from "next-auth/react";
 
 type UserData = {
