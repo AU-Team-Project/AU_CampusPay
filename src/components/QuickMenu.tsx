@@ -35,7 +35,7 @@ const QuickMenu = ({session}: Props) => {
             label: "식권 구입"
         },
         {
-            href: `/history/${session?.user?.username}`,
+            href: `/history/user?name=${session?.user?._id}`,
             icon: <PaymentHistoryIcon />,
             label: "결제 내역"
         }
