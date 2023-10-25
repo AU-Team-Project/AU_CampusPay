@@ -21,7 +21,7 @@ const ProfilePage = async ({params}: Props) => {
 
     const res = await fetch(`${process.env.SITE_URL}/api/confirmation/${params.slug}`)
     const data = await res.json();
-    const fetchData = await data.data;
+    const fetchData = await data.data.reverse();
     console.log(fetchData)
 
     return (
