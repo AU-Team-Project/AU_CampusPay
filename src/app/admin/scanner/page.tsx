@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { BrowserQRCodeReader } from '@zxing/library';
 import {useSession} from "next-auth/react";
-import {useRouter} from "next/navigation";
+import {redirect, useRouter} from "next/navigation";
 
 interface ApiResponse {
     success: boolean;
@@ -10,11 +10,9 @@ interface ApiResponse {
 }
 
 const QRScanner: React.FC = () => {
-    const router = useRouter();
-
     const session = useSession();
     if (session?.data?.user?.role != 'admin' || !session) {
-        router.push('/')
+        redirect('/')
     }
 
     const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -28,7 +26,6 @@ const QRScanner: React.FC = () => {
             // Use result.getText() instead of result.text
             if (result && result.getText()) {
                 const qrText = result.getText();
-                console.log(qrText);
 
                 try {
                     const response = await fetch('/api/scanner', {

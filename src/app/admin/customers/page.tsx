@@ -1,9 +1,9 @@
-'use client';
+'use client'
 import React, { useEffect, useState } from 'react';
 import UserIcon from "@/components/ui/icons/UserIcon";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { ObjectId } from "mongodb";
-import {useRouter} from "next/navigation";
+import {redirect, useRouter} from "next/navigation";
 import {useSession} from "next-auth/react";
 
 type UserData = {
@@ -17,19 +17,17 @@ type UserData = {
 }
 
 const CustomerPage = () => {
-    const router = useRouter()
     const session = useSession()
     if (session?.data?.user?.role != 'admin' || !session) {
-        router.push('/')
+        redirect('/')
     }
 
     const [userData, setUserData] = useState<UserData[]>([]);
 
     useEffect(() => {
-        fetch('/api/user') 
+        fetch(`${process.env.SITE_URL}/api/user`)
             .then((response) => response.json())
             .then((data) => {
-                console.log(data); 
                 setUserData(data.users);
             })
             .catch((error) => console.error('Error:', error));
