@@ -21,7 +21,7 @@ const NoticeManagementPage = async () => {
     const session = await getServerSession(options);
     const res = await fetch(`${process.env.SITE_URL}/api/notice`);
     const data = await res.json();
-    const findData = data.data;
+    const findData = data.data.reverse();
 
     return (
         <>
