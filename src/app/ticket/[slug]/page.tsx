@@ -33,7 +33,7 @@ const TicketPage = async ({params}: Props) => {
     // 현재 로그인한 사용자 기준으로 데이터 패칭
     const res = await fetch(`${process.env.SITE_URL}/api/confirmation/user?name=${currentUserId}`)
     const data = await res.json();
-    const featDate = data.data;
+    const featDate = data.data.reverse();
 
     // "state"가 false인 아이템만 출력
     const unusedItems = featDate.filter((item: Menu) => !item.state);
