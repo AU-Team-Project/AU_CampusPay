@@ -46,7 +46,6 @@ export async function POST(request: NextRequest) {
 
         /** 결제 데이터 요청 응답에서 결제 데이터를 추출 */
         const paymentData = paymentDataResult.response;
-        console.log('paymentData : ', paymentData);
 
         /** 결제 시간 계산 */
         const {month, day} = getMonthAndDay();
