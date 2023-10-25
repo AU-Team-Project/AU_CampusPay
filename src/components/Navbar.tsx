@@ -45,7 +45,7 @@ const TopNavbar = () => {
                         />
                     </Link>
                 </div>
-                <ul className='h-full flex justify-start items-center gap-3 hidden md:flex'>
+                <ul className='font-bold h-full flex justify-start items-center gap-3 hidden md:flex'>
                     <NavbarLink
                         session={session}
                         navbarLink={navbarLink}

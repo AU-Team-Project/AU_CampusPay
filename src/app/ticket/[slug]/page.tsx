@@ -1,11 +1,13 @@
 import React from 'react';
-import TopNavbar from "@/components/Navbar";
 import {Menu} from "@/model/menu";
 import Link from "next/link";
+
+import TopNavbar from "@/components/Navbar";
 import {getServerSession} from "next-auth";
-import {options} from "@/app/api/auth/[...nextauth]/options";
 import ColorButton from "@/components/ui/ColorButton";
 import PageNavigator from "@/components/ui/PageNavigator";
+
+import {options} from "@/app/api/auth/[...nextauth]/options";
 import {redirect} from "next/navigation";
 
 type Props = {
@@ -29,7 +31,7 @@ const TicketPage = async ({params}: Props) => {
     const featDate = data.data;
 
     // "state"가 false인 아이템만 출력
-    const unusedItems = featDate.slice(1).filter((item: Menu) => !!item.state === false);
+    const unusedItems = featDate.slice(1).filter((item: Menu) => !item.state);
 
     return (
         <>
