@@ -38,10 +38,8 @@ const QRScanner: React.FC = () => {
 
                     const data: ApiResponse = await response.json();
                     if (data.success) {
-                        console.log("Data saved successfully:", data);
                         setPopupMessage('성공');
                     } else {
-                        console.error("Error saving data:", data.message);
                         setPopupMessage('실패');
                     }
                 } catch (error) {

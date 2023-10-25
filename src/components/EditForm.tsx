@@ -5,10 +5,10 @@ import {useRouter} from "next/navigation";
 
 type Props = {
     findData: {
-        username: string;
-        title: string;
-        content: string;
         _id: any;
+        username: any;
+        title: any;
+        content: any;
     };
 }
 
@@ -32,7 +32,7 @@ const EditForm = (props: Props) => {
         };
 
         try {
-            const response = await fetch('/api/admin/edit', {
+            const response = await fetch(`${process.env.SITE_URL}/api/admin/edit`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -41,15 +41,16 @@ const EditForm = (props: Props) => {
             });
 
             if (!response.ok) {
-                throw new Error('Network response was not ok');
+                const result = await response.json();
+                alert(result.message || '오류가 발생했습니다.');
+                return;
             }
 
             const result = await response.json();
             result.success ? router.push('/notice') : alert('오류로 인해 게시글을 수정하지 못했습니다.');
 
         } catch (error) {
-            //alert(`There was a problem with the fetch operation ${error}`)
-            //console.error(`There was a problem with the fetch operation: ${error}`);
+            alert(`There was a problem with the fetch operation ${error}`)
         }
     };
 
@@ -58,30 +59,32 @@ const EditForm = (props: Props) => {
             className="w-full px-10 py-5 flex flex-col justify-center gap-5"
             onSubmit={handleSubmit}
         >
-            <div className="w-fit flex rounded-[15px] px-3 py-2 bg-gray-100">
-                <span className="font-semibold">작성자 :</span>
-                <p className="ml-1">{findData.username}</p>
-            </div>
+            {findData ? (
+                <>
+                    <div className="w-fit flex rounded-[15px] px-3 py-2 bg-gray-100">
+                        <span className="font-semibold">작성자 :</span>
+                        <p className="ml-1">{findData.username}</p>
+                    </div>
 
-            <input
-                ref={_idRef}
-                type="hidden"
-                name="_id"
-                defaultValue={findData._id}
-            />
+                    <input
+                        ref={_idRef}
+                        type="hidden"
+                        name="_id"
+                        defaultValue={findData._id}
+                    />
 
-            <div>
-                <input
-                    ref={titleRef}
-                    className="w-full h-[50px] p-5 appearance-none outline-none placeholder-gray-400 text-gray-900 text-[17px] focus:rounded-[15px] focus:bg-gray-100 focus:ring-blue-custom focus:border-blue-custom-deep focus:z-10 focus:scale-[1.01] duration-200 border-b-2 border-gray-300"
-                    type="text"
-                    name="title"
-                    placeholder="공지의 제목"
-                    defaultValue={findData.title}
-                />
-            </div>
+                    <div>
+                        <input
+                            ref={titleRef}
+                            className="w-full h-[50px] p-5 appearance-none outline-none placeholder-gray-400 text-gray-900 text-[17px] focus:rounded-[15px] focus:bg-gray-100 focus:ring-blue-custom focus:border-blue-custom-deep focus:z-10 focus:scale-[1.01] duration-200 border-b-2 border-gray-300"
+                            type="text"
+                            name="title"
+                            placeholder="공지의 제목"
+                            defaultValue={findData.title}
+                        />
+                    </div>
 
-            <div>
+                    <div>
                 <textarea
                     ref={contentRef}
                     className="w-full md:min-h-[515px] md:max-h-[515px] min-h-[750px] max-h-[750px] p-5 appearance-none outline-none placeholder-gray-400 text-gray-900 text-[17px] focus:rounded-[15px] focus:bg-gray-100 focus:ring-blue-custom focus:border-blue-custom-deep focus:z-10 focus:scale-[1.01] ease-out duration-200 border-b-2 border-gray-300"
@@ -89,7 +92,11 @@ const EditForm = (props: Props) => {
                     placeholder="공지의 내용"
                     defaultValue={findData.content}
                 />
-            </div>
+                    </div>
+                </>
+            ) : (
+                <p>데이터 불러오는 중</p>
+            )}
 
             <div className="flex justify-between">
                 <PreviousButton

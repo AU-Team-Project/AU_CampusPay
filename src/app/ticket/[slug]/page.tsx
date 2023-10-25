@@ -9,10 +9,15 @@ import PageNavigator from "@/components/ui/PageNavigator";
 
 import {options} from "@/app/api/auth/[...nextauth]/options";
 import {redirect} from "next/navigation";
+import {ObjectId} from "mongodb";
+import {searchParamsToUrlQuery} from "next/dist/shared/lib/router/utils/querystring";
 
 type Props = {
     params: {
         slug: string;
+    }
+    searchParams: {
+        post: ObjectId;
     }
 }
 
@@ -26,12 +31,12 @@ const TicketPage = async ({params}: Props) => {
     const currentUserId = session?.user._id || session?.user.username;
     
     // 현재 로그인한 사용자 기준으로 데이터 패칭
-    const res = await fetch(`${process.env.SITE_URL}/api/confirmation/${currentUserId}`)
+    const res = await fetch(`${process.env.SITE_URL}/api/confirmation/user?name=${currentUserId}`)
     const data = await res.json();
     const featDate = data.data;
 
     // "state"가 false인 아이템만 출력
-    const unusedItems = featDate.slice(1).filter((item: Menu) => !item.state);
+    const unusedItems = featDate.filter((item: Menu) => !item.state);
 
     return (
         <>
@@ -46,7 +51,8 @@ const TicketPage = async ({params}: Props) => {
                                     <Link href={`/confirmation/${encodeURIComponent(item.name)}?id=${encodeURIComponent(item._id)}&menu=${encodeURIComponent(item.menu ?? '')}&state=${encodeURIComponent(item.state ?? '')}`}>
                                         <h3 className="text-lg font-medium text-blue-600 mb-2">{item.menu}</h3>
                                         <p className="text-gray-500">금액: {item.amount}원</p>
-                                        <p className="text-gray-500">임시값: {item._id} and 미사용</p>
+                                        <p className="text-gray-500">임시값: {item._id}</p>
+                                        <p className="text-gray-500">임시값: {item.name}</p>
                                     </Link>
                                 </div>
                                 <div className="mt-3 md:mt-0">
