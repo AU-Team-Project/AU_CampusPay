@@ -42,7 +42,7 @@ const FormComponent = () => {
                 [name]: value
             },
 
-            error: {
+            errors: {
                 ...prevForm.errors,
                 [name]: ''
             }
@@ -113,18 +113,26 @@ const FormComponent = () => {
 
         if (!form.data.email.trim()) {
             validationErrors.email = '이메일을 입력해주세요.';
+            isFormValid = false;
         } else if (!isValidEmail(form.data.email)) {
             validationErrors.email = '유효한 이메일 주소를 입력하세요.';
+            isFormValid = false;
         }
 
         if (!form.data.password.trim()) {
             validationErrors.password = '비밀번호를 입력해주세요.';
+            isFormValid = false;
         } else if (!isValidPassword(form.data.password)) {
             validationErrors.password = '비밀번호는 8-20자 길이여야 하며, 영문, 숫자, 특수문자를 포함해야 합니다.';
+            isFormValid = false;
         }
 
-        if (form.data.password !== form.data.passwordConfirm) {
+        if (!form.data.passwordConfirm.trim()) {
+            validationErrors.passwordConfirm = '비밀번호 확인란을 입력해주세요.';
+            isFormValid = false;
+        } else if (form.data.password !== form.data.passwordConfirm) {
             validationErrors.passwordConfirm = '비밀번호가 일치하지 않습니다.';
+            isFormValid = false;
         }
 
         if (!form.data.username.trim()) {
@@ -156,6 +164,7 @@ const FormComponent = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+
         if (!validateForm()) {
             return;
         }
@@ -181,6 +190,7 @@ const FormComponent = () => {
         <form
             className="mt-8 space-y-6"
             onSubmit={handleSubmit}
+            noValidate
         >
             <div className="rounded-md shadow-sm flex flex-col gap-4">
                 {inputData.map((input, index) => (
