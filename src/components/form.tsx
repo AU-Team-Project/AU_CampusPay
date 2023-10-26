@@ -7,81 +7,165 @@ import UserIcon from "@/components/ui/icons/UserIcon";
 import StudentIcon from "@/components/ui/icons/StudentIcon";
 import MobileIcon from "@/components/ui/icons/MobileIcon";
 import { isValidEmail, isValidPassword, isValidUsername, isValidStudentNumber, isValidPhoneNumber } from '@/service/auth';
+import FormInput from "@/components/ui/FormInput";
 
 const FormComponent = () => {
     const router = useRouter()
 
-    // input 태그 상태 저장 (기본값 :null)
-    const [formData, setFormData] = useState({
-        email: '',
-        password: '',
-        username: '',
-        student_number: '',
-        phone: ''
-    });
+    const [form, setForm] = useState({
+        data: {
+            email: '',
+            password: '',
+            passwordConfirm: '',
+            username: '',
+            student_number: '',
+            phone: ''
+        },
 
-    // 오류 메시지 상태 추가
-    const [errors, setErrors] = useState({
-        email: '',
-        password: '',
-        username: '',
-        student_number: '',
-        phone: ''
-    });
+        errors: {
+            email: '',
+            password: '',
+            passwordConfirm: '',
+            username: '',
+            student_number: '',
+            phone: ''
+        }
+    })
 
     const handleOnchange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
+
+        setForm(prevForm => ({
+            ...prevForm,
+            data: {
+                ...prevForm.data,
+                [name]: value
+            },
+
+            errors: {
+                ...prevForm.errors,
+                [name]: ''
+            }
         }));
+    };
 
-        // 입력 필드가 변경될 때마다 해당 오류 메시지를 초기화
-        setErrors(prevErrors => ({
-            ...prevErrors,
-            [name]: '',
-        }));
-    }
+    const inputData = [
+        {
+            id: 'email',
+            type: 'email',
+            autoComplete: 'email',
+            placeholder: '이메일 주소',
+            icon: <EmailIcon />,
+            errorMessage: form.errors.email,
+            value: form.data.email,
+        },
+        {
+            id: 'password',
+            type: 'password',
+            autoComplete: 'current-password',
+            placeholder: '비밀번호',
+            icon: <PasswordIcon />,
+            errorMessage: form.errors.password,
+            value: form.data.password,
+        },
+        {
+            id: 'passwordConfirm',
+            name: 'passwordConfirm',
+            type: 'password',
+            autoComplete: 'new-password',
+            placeholder: '비밀번호 확인',
+            icon: <PasswordIcon />,
+            errorMessage: form.errors.passwordConfirm,
+            value: form.data.passwordConfirm,
+        },
+        {
+            id: 'username',
+            type: 'text',
+            autoComplete: 'current-password',
+            placeholder: '이름',
+            icon: <UserIcon />,
+            errorMessage: form.errors.username,
+            value: form.data.username,
+        },
+        {
+            id: 'student_number',
+            type: 'text',
+            autoComplete: 'current-password',
+            placeholder: '학번',
+            icon: <StudentIcon />,
+            errorMessage: form.errors.student_number,
+            value: form.data.student_number,
+        },
+        {
+            id: 'phone',
+            type: 'text',
+            autoComplete: 'current-password',
+            placeholder: '휴대폰 번호',
+            icon: <MobileIcon />,
+            errorMessage: form.errors.phone,
+            value: form.data.phone,
+        },
+    ];
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        const validationErrors = {
-            email: '',
-            password: '',
-            username: '',
-            student_number: '',
-            phone: '',
-        };
+    const validateForm = () => {
+        const validationErrors = { ...form.errors }
+        let isFormValid = true;
 
-        if (!isValidEmail(formData.email)) {
+        if (!form.data.email.trim()) {
+            validationErrors.email = '이메일을 입력해주세요.';
+            isFormValid = false;
+        } else if (!isValidEmail(form.data.email)) {
             validationErrors.email = '유효한 이메일 주소를 입력하세요.';
+            isFormValid = false;
         }
 
-        if (!isValidPassword(formData.password)) {
+        if (!form.data.password.trim()) {
+            validationErrors.password = '비밀번호를 입력해주세요.';
+            isFormValid = false;
+        } else if (!isValidPassword(form.data.password)) {
             validationErrors.password = '비밀번호는 8-20자 길이여야 하며, 영문, 숫자, 특수문자를 포함해야 합니다.';
+            isFormValid = false;
         }
 
-        if (!isValidUsername(formData.username)) {
+        if (!form.data.passwordConfirm.trim()) {
+            validationErrors.passwordConfirm = '비밀번호 확인란을 입력해주세요.';
+            isFormValid = false;
+        } else if (form.data.password !== form.data.passwordConfirm) {
+            validationErrors.passwordConfirm = '비밀번호가 일치하지 않습니다.';
+            isFormValid = false;
+        }
+
+        if (!form.data.username.trim()) {
+            validationErrors.username = '이름을 입력해주세요.';
+        } else if (!isValidUsername(form.data.username)) {
             validationErrors.username = '올바른 이름을 입력하세요.';
         }
 
-        if (!isValidStudentNumber(formData.student_number)) {
+        if (!form.data.student_number.trim()) {
+            validationErrors.student_number = '학번을 입력해주세요.';
+        } else if (!isValidStudentNumber(form.data.student_number)) {
             validationErrors.student_number = '올바른 학번을 입력하세요.';
         }
 
-        if (!isValidPhoneNumber(formData.phone)) {
+        if (!form.data.phone.trim()) {
+            validationErrors.phone = '휴대폰 번호를 입력해주세요.';
+        } else if (!isValidPhoneNumber(form.data.phone)) {
             validationErrors.phone = '유효한 휴대폰 번호를 입력하세요.';
         }
 
         // 검사 결과를 상태 변수에 설정
-        setErrors(validationErrors);
+        setForm(prevForm => ({
+            ...prevForm,
+            errors: validationErrors
+        }))
 
-        if (Object.values(formData).some((value) => value.trim() === '')) {
-            return;
-        }
-    
-        // 에러가 하나라도 있으면 제출을 중단
-        if (Object.values(validationErrors).some((error) => error !== '')) {
+        return isFormValid;
+    }
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+
+        if (!validateForm()) {
             return;
         }
 
@@ -90,133 +174,38 @@ const FormComponent = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(formData),
+            body: JSON.stringify(form),
         });
 
         const result = await res.json();
-        console.log(result)
         if (result.success) {
-            alert('Ok'); // 유효성 검사 통과 시 Ok 알림 창 표시
-        router.replace('/');
+            alert('Ok');
+            router.replace('/');
         } else {
             console.error('error')
         }
     }
 
-
-
     return (
         <form
             className="mt-8 space-y-6"
             onSubmit={handleSubmit}
+            noValidate
         >
             <div className="rounded-md shadow-sm flex flex-col gap-4">
-                <div className="relative">
-                    <label htmlFor="email-address" className="sr-only">
-                        이메일 주소
-                    </label>
-                    <input
-                        id="email-address"
-                        name="email"
-                        type="email"
-                        autoComplete="email"
-                        required
-                        className="appearance-none outline-none rounded-[10px] relative block w-full px-3 py-2 bg-gray-100 border border-gray-300 placeholder-gray-500 text-gray-900 focus:bg-gray-200 focus:ring-blue-custom focus:border-blue-custom-deep focus:z-10 focus:scale-[1.01] sm:text-sm ease-out duration-200"
-                        placeholder="이메일 주소"
-                        value={formData.email}
+                {inputData.map((input, index) => (
+                    <FormInput
+                        key={index}
+                        id={input.id}
+                        type={input.type}
+                        autoComplete={input.autoComplete}
+                        placeholder={input.placeholder}
+                        icon={input.icon}
+                        errorMessage={input.errorMessage}
+                        value={input.value}
                         onChange={handleOnchange}
                     />
-                    <span className="absolute right-[10px] top-[50%] -mt-[8px] z-10">
-                        <EmailIcon />
-                    </span>
-                </div>
-                {/* 오류 메시지 출력 */}
-                {errors.email && (<p className="text-red-500 text-sm">{errors.email}</p>)}
-                <div className="relative">
-                    <label htmlFor="password" className="sr-only">
-                        비밀번호
-                    </label>
-                    <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        autoComplete="current-password"
-                        required
-                        className="appearance-none outline-none rounded-[10px] relative block w-full px-3 py-2 bg-gray-100 border border-gray-300 placeholder-gray-500 text-gray-900 focus:bg-gray-200 focus:ring-blue-custom focus:border-blue-custom-deep focus:z-10 focus:scale-[1.01] sm:text-sm ease-out duration-200"
-                        placeholder="비밀번호"
-                        value={formData.password}
-                        onChange={handleOnchange}
-                    />
-                    <span className="absolute right-[10px] top-[50%] -mt-[8px] z-10">
-                        <PasswordIcon />
-                    </span>
-                </div>
-                {/* 오류 메시지 출력 */}
-                {errors.password && (<p className="text-red-500 text-sm">{errors.password}</p>)}
-                <div className="relative">
-                    <label htmlFor="password" className="sr-only">
-                        이름
-                    </label>
-                    <input
-                        id="username"
-                        name="username"
-                        type="text"
-                        autoComplete="current-password"
-                        required
-                        className="appearance-none outline-none rounded-[10px] relative block w-full px-3 py-2 bg-gray-100 border border-gray-300 placeholder-gray-500 text-gray-900 focus:bg-gray-200 focus:ring-blue-custom focus:border-blue-custom-deep focus:z-10 focus:scale-[1.01] sm:text-sm ease-out duration-200"
-                        placeholder="이름"
-                        value={formData.username}
-                        onChange={handleOnchange}
-                    />
-                    <span className="absolute right-[10px] top-[50%] -mt-[8px] z-10">
-                        <UserIcon />
-                    </span>
-                </div>
-                {/* 오류 메시지 출력 */}
-                {errors.username && (<p className="text-red-500 text-sm">{errors.username}</p>)}
-                <div className="relative">
-                    <label htmlFor="password" className="sr-only">
-                        학번
-                    </label>
-                    <input
-                        id="student_number"
-                        name="student_number"
-                        type="text"
-                        autoComplete="current-password"
-                        required
-                        className="appearance-none outline-none rounded-[10px] relative block w-full px-3 py-2 bg-gray-100 border border-gray-300 placeholder-gray-500 text-gray-900 focus:bg-gray-200 focus:ring-blue-custom focus:border-blue-custom-deep focus:z-10 focus:scale-[1.01] sm:text-sm ease-out duration-200"
-                        placeholder="학번"
-                        value={formData.student_number}
-                        onChange={handleOnchange}
-                        
-                    />
-                    <span className="absolute right-[10px] top-[50%] -mt-[8px] z-10">
-                        <StudentIcon />
-                    </span>
-                </div>
-                {/* 오류 메시지 출력 */}
-                {errors.student_number && (<p className="text-red-500 text-sm">{errors.student_number}</p>)}
-                <div className="relative">
-                    <label htmlFor="phone" className="sr-only">
-                        전화번호
-                    </label>
-                    <input
-                        id="phone"
-                        name="phone"
-                        type="text"
-                        autoComplete="current-password"
-                        required
-                        className="appearance-none outline-none rounded-[10px] relative block w-full px-3 py-2 bg-gray-100 border border-gray-300 placeholder-gray-500 text-gray-900 focus:bg-gray-200 focus:ring-blue-custom focus:border-blue-custom-deep focus:z-10 focus:scale-[1.01] sm:text-sm ease-out duration-200"
-                        placeholder="휴대폰 번호"
-                        value={formData.phone}
-                        onChange={handleOnchange}
-                    />
-                    <span className="absolute right-[10px] top-[50%] -mt-[8px] z-10">
-                        <MobileIcon />
-                    </span>
-                </div>
-                {/* 오류 메시지 출력 */}
-                {errors.phone && (<p className="text-red-500 text-sm">{errors.phone}</p>)}
+                ))}
             </div>
             <button
                 type="submit"

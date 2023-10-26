@@ -13,8 +13,6 @@ const AdminPage = async () => {
         redirect('/')
     }
 
-    console.log('cltest')
-
     const res = await fetch(`${process.env.SITE_URL}/api/admin/stats/daily`);
     const data = await res.json();
 
