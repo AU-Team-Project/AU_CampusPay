@@ -39,7 +39,9 @@ const FormInput: React.FC<Props> = ({id, type, autoComplete, placeholder, icon, 
             </div>
 
             {/* 오류 메시지 출력 */}
-            {errorMessage && (<p className="text-red-500 text-sm">{errorMessage}</p>)}
+            {errorMessage && (
+                <p className="text-red-500 text-sm">{errorMessage}</p>
+            )}
         </>
     );
 };

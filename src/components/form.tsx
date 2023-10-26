@@ -12,44 +12,52 @@ import FormInput from "@/components/ui/FormInput";
 const FormComponent = () => {
     const router = useRouter()
 
-    const [formData, setFormData] = useState({
-        email: '',
-        password: '',
-        username: '',
-        student_number: '',
-        phone: ''
-    });
+    const [form, setForm] = useState({
+        data: {
+            email: '',
+            password: '',
+            passwordConfirm: '',
+            username: '',
+            student_number: '',
+            phone: ''
+        },
 
-    const [errors, setErrors] = useState({
-        email: '',
-        password: '',
-        username: '',
-        student_number: '',
-        phone: ''
-    });
+        errors: {
+            email: '',
+            password: '',
+            passwordConfirm: '',
+            username: '',
+            student_number: '',
+            phone: ''
+        }
+    })
 
     const handleOnchange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
-        setFormData(prevState => ({
-            ...prevState,
-            [name]: value
-        }));
-        setErrors(prevErrors => ({
-            ...prevErrors,
-            [name]: '',
+
+        setForm(prevForm => ({
+            ...prevForm,
+            data: {
+                ...prevForm.data,
+                [name]: value
+            },
+
+            error: {
+                ...prevForm.errors,
+                [name]: ''
+            }
         }));
     };
 
     const inputData = [
         {
             id: 'email',
-            name: 'email',
             type: 'email',
             autoComplete: 'email',
             placeholder: '이메일 주소',
             icon: <EmailIcon />,
-            errorMessage: errors.email,
-            value: formData.email,
+            errorMessage: form.errors.email,
+            value: form.data.email,
         },
         {
             id: 'password',
@@ -57,17 +65,18 @@ const FormComponent = () => {
             autoComplete: 'current-password',
             placeholder: '비밀번호',
             icon: <PasswordIcon />,
-            errorMessage: errors.password,
-            value: formData.password,
+            errorMessage: form.errors.password,
+            value: form.data.password,
         },
         {
-            id: 'password',
+            id: 'passwordConfirm',
+            name: 'passwordConfirm',
             type: 'password',
-            autoComplete: 'current-password',
+            autoComplete: 'new-password',
             placeholder: '비밀번호 확인',
             icon: <PasswordIcon />,
-            errorMessage: errors.password,
-            value: formData.password,
+            errorMessage: form.errors.passwordConfirm,
+            value: form.data.passwordConfirm,
         },
         {
             id: 'username',
@@ -75,8 +84,8 @@ const FormComponent = () => {
             autoComplete: 'current-password',
             placeholder: '이름',
             icon: <UserIcon />,
-            errorMessage: errors.username,
-            value: formData.username,
+            errorMessage: form.errors.username,
+            value: form.data.username,
         },
         {
             id: 'student_number',
@@ -84,8 +93,8 @@ const FormComponent = () => {
             autoComplete: 'current-password',
             placeholder: '학번',
             icon: <StudentIcon />,
-            errorMessage: errors.student_number,
-            value: formData.student_number,
+            errorMessage: form.errors.student_number,
+            value: form.data.student_number,
         },
         {
             id: 'phone',
@@ -93,51 +102,61 @@ const FormComponent = () => {
             autoComplete: 'current-password',
             placeholder: '휴대폰 번호',
             icon: <MobileIcon />,
-            errorMessage: errors.phone,
-            value: formData.phone,
+            errorMessage: form.errors.phone,
+            value: form.data.phone,
         },
     ];
 
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
+    const validateForm = () => {
+        const validationErrors = { ...form.errors }
+        let isFormValid = true;
 
-        const validationErrors = {
-            email: '',
-            password: '',
-            username: '',
-            student_number: '',
-            phone: '',
-        };
-
-        if (!isValidEmail(formData.email)) {
+        if (!form.data.email.trim()) {
+            validationErrors.email = '이메일을 입력해주세요.';
+        } else if (!isValidEmail(form.data.email)) {
             validationErrors.email = '유효한 이메일 주소를 입력하세요.';
         }
 
-        if (!isValidPassword(formData.password)) {
+        if (!form.data.password.trim()) {
+            validationErrors.password = '비밀번호를 입력해주세요.';
+        } else if (!isValidPassword(form.data.password)) {
             validationErrors.password = '비밀번호는 8-20자 길이여야 하며, 영문, 숫자, 특수문자를 포함해야 합니다.';
         }
 
-        if (!isValidUsername(formData.username)) {
+        if (form.data.password !== form.data.passwordConfirm) {
+            validationErrors.passwordConfirm = '비밀번호가 일치하지 않습니다.';
+        }
+
+        if (!form.data.username.trim()) {
+            validationErrors.username = '이름을 입력해주세요.';
+        } else if (!isValidUsername(form.data.username)) {
             validationErrors.username = '올바른 이름을 입력하세요.';
         }
 
-        if (!isValidStudentNumber(formData.student_number)) {
+        if (!form.data.student_number.trim()) {
+            validationErrors.student_number = '학번을 입력해주세요.';
+        } else if (!isValidStudentNumber(form.data.student_number)) {
             validationErrors.student_number = '올바른 학번을 입력하세요.';
         }
 
-        if (!isValidPhoneNumber(formData.phone)) {
+        if (!form.data.phone.trim()) {
+            validationErrors.phone = '휴대폰 번호를 입력해주세요.';
+        } else if (!isValidPhoneNumber(form.data.phone)) {
             validationErrors.phone = '유효한 휴대폰 번호를 입력하세요.';
         }
 
         // 검사 결과를 상태 변수에 설정
-        setErrors(validationErrors);
+        setForm(prevForm => ({
+            ...prevForm,
+            errors: validationErrors
+        }))
 
-        if (Object.values(formData).some((value) => value.trim() === '')) {
-            return;
-        }
-    
-        // 에러가 하나라도 있으면 제출을 중단
-        if (Object.values(validationErrors).some((error) => error !== '')) {
+        return isFormValid;
+    }
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        if (!validateForm()) {
             return;
         }
 
@@ -146,12 +165,12 @@ const FormComponent = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(formData),
+            body: JSON.stringify(form),
         });
 
         const result = await res.json();
         if (result.success) {
-            alert('Ok'); // 유효성 검사 통과 시 Ok 알림 창 표시
+            alert('Ok');
             router.replace('/');
         } else {
             console.error('error')
