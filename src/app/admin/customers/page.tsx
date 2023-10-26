@@ -25,7 +25,7 @@ const CustomerPage = () => {
     const [userData, setUserData] = useState<UserData[]>([]);
 
     useEffect(() => {
-        fetch(`${process.env.SITE_URL}/api/user`)
+        fetch(`/api/user`)
             .then((response) => response.json())
             .then((data) => {
                 setUserData(data.users);
