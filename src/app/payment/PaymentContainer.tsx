@@ -1,8 +1,6 @@
 'use client'
 import React, {useState} from 'react';
-import PreviousButton from "@/components/ui/PreviousButton";
 import PaymentBtn from "@/components/ui/PaymentBtn";
-import CookItem from "@/components/CookItem";
 import XMarkIcon from "@/components/ui/icons/XmarkIcon";
 import Link from "next/link";
 

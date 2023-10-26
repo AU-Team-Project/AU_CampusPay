@@ -1,6 +1,6 @@
 'use client'
 import React, {useEffect, useState} from 'react';
-import {getMonthAndDay, getFormattedDate} from "@/service/date";
+import {getMonthAndDay, getFormattedDate, formatDate} from "@/service/date";
 import {User} from "@/model/user";
 import {ObjectId} from "mongodb";
 
@@ -21,21 +21,22 @@ type Menu = {
 
 const MenuCard = ({activeTab, session}: Props) => {
     const [menus, setMenus] = useState<Menu[]>([]);
-    const formattedDate = getFormattedDate();
+    const formattedDate = formatDate(new Date());
     const {month, day} = getMonthAndDay();
     const todayDate = `${month}월 ${day}일`;
 
     useEffect(() => {
-        fetch('/api/cooks')
+        fetch('/api/cook')
             .then((res) => res.json())
             .then((data) => {
                 const todayMenus = data.data.filter((todayMenu: Menu) => {
-                    return todayMenu.date === formattedDate && todayMenu.role === activeTab;
+                    return todayMenu.date === formattedDate;
                 });
                 setMenus(todayMenus);
             });
     }, [activeTab]);
 
+    console.log(menus)
     return (
         <>
             {menus.length === 0 ? (

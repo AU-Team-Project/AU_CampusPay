@@ -8,8 +8,6 @@ export async function GET() {
             .find()
             .toArray();
 
-        console.log(users)
-
         return NextResponse.json({
             success: true,
             status: 200,
