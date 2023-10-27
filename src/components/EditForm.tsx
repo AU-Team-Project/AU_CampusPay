@@ -31,7 +31,7 @@ const EditForm = ({findData}: Props) => {
         };
 
         try {
-            const response = await fetch(`${process.env.SITE_URL}/api/admin/edit`, {
+            const response = await fetch('/api/admin/edit', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -39,14 +39,17 @@ const EditForm = ({findData}: Props) => {
                 body: JSON.stringify(data)
             });
 
+            const result = await response.json();
+
             if (!response.ok) {
-                const result = await response.json();
                 alert(result.message || '오류가 발생했습니다.');
                 return;
+            } else if (response.ok && result.success) {
+                alert(result.message);
+                router.push('/notice');
+            } else if (response.ok && !result.success) {
+                alert(result.message);
             }
-
-            const result = await response.json();
-            result.success ? router.push('/notice') : alert('오류로 인해 게시글을 수정하지 못했습니다.');
 
         } catch (error) {
             alert(`There was a problem with the fetch operation ${error}`)
