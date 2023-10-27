@@ -12,8 +12,7 @@ type Props = {
     };
 }
 
-const EditForm = (props: Props) => {
-    const { findData } = props;
+const EditForm = ({findData}: Props) => {
     const router = useRouter();
 
     // input name 값을 가져오기 위해(둠 요소에 직접 접근하기 위한) useRef 선언
