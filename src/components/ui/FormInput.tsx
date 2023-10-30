@@ -1,8 +1,5 @@
 'use client'
-import React, {useState} from 'react';
-import EmailIcon from "@/components/ui/icons/EmailIcon";
-import {useRouter} from "next/navigation";
-import {placeholder} from "@babel/types";
+import React from 'react';
 
 type Props = {
     id: string;

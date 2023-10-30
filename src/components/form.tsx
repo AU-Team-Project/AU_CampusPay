@@ -1,13 +1,16 @@
 'use client'
 import React, { useState } from 'react';
 import { useRouter } from "next/navigation";
+import { isValidEmail, isValidPassword, isValidUsername, isValidStudentNumber, isValidPhoneNumber } from '@/service/auth';
+
 import EmailIcon from "@/components/ui/icons/EmailIcon";
 import PasswordIcon from "@/components/ui/icons/PasswordIcon";
 import UserIcon from "@/components/ui/icons/UserIcon";
 import StudentIcon from "@/components/ui/icons/StudentIcon";
 import MobileIcon from "@/components/ui/icons/MobileIcon";
-import { isValidEmail, isValidPassword, isValidUsername, isValidStudentNumber, isValidPhoneNumber } from '@/service/auth';
 import FormInput from "@/components/ui/FormInput";
+import {Simulate} from "react-dom/test-utils";
+import error = Simulate.error;
 
 const FormComponent = () => {
     const router = useRouter()
@@ -174,7 +177,7 @@ const FormComponent = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(form),
+            body: JSON.stringify(form.data),
         });
 
         const result = await res.json();
@@ -182,7 +185,7 @@ const FormComponent = () => {
             alert('Ok');
             router.replace('/');
         } else {
-            console.error('error')
+            console.error('Registration error', result);
         }
     }
 

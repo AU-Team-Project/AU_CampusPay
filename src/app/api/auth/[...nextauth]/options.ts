@@ -59,7 +59,6 @@ export const options: NextAuthOptions = {
                     const lastAccess = new Date().toISOString().slice(0, 10).replace(/-/g,".");
                     await db.collection('user').updateOne({ _id: new ObjectId(user._id)}, { $set: {lastAccess}})
 
-                    console.log(user)
                     return user;
                 } catch (error) {
                     console.error(error);

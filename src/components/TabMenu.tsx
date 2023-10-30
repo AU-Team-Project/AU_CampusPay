@@ -1,7 +1,6 @@
 'use client'
 import { User } from '@/model/user';
-import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import MenuCard from "@/components/ui/MenuCard";
 
 type Props = {

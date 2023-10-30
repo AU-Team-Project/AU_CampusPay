@@ -18,10 +18,10 @@ const NavbarLink = ({ session, navbarLink }: { session: CustomSession | null, na
             </li>}
             {!session ? (
                 <>
-                    <li>
+                    <li className='text-primary-color'>
                         <Link href='/register'>회원가입</Link>
                     </li>
-                    <li className='xl: pr-10'>
+                    <li className='text-primary-color xl: pr-10'>
                         <ColorButton
                             text={'로그인'}
                             onClick={() => signIn()}
@@ -37,7 +37,7 @@ const NavbarLink = ({ session, navbarLink }: { session: CustomSession | null, na
                             </Link>
                         </li>
                     ))}
-                    <li className='xl: pr-10'>
+                    <li className='text-primary-color xl: pr-10'>
                         <ColorButton
                             text={'로그아웃'}
                             onClick={() => signOut()}

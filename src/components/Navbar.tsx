@@ -34,7 +34,7 @@ const TopNavbar = () => {
     return (
         <header>
             {/** TopNav PC 환경 */}
-            <nav className='h-14 flex justify-between items-center bg-blue-custom text-white'>
+            <nav className='h-14 flex justify-between items-center bg-white text-white'>
                 <div className='pl-10'>
                     <Link className='flex items-center gap-1' href='/'>
                         <Image
