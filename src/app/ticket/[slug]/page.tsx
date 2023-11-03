@@ -5,12 +5,10 @@ import Link from "next/link";
 import TopNavbar from "@/components/Navbar";
 import {getServerSession} from "next-auth";
 import ColorButton from "@/components/ui/ColorButton";
-import PageNavigator from "@/components/ui/PageNavigator";
 
 import {options} from "@/app/api/auth/[...nextauth]/options";
 import {redirect} from "next/navigation";
 import {ObjectId} from "mongodb";
-import {searchParamsToUrlQuery} from "next/dist/shared/lib/router/utils/querystring";
 
 type Props = {
     params: {
@@ -63,7 +61,6 @@ const TicketPage = async ({params}: Props) => {
                                 </div>
                             </div>
                         ))}
-                        <PageNavigator/>
                     </>
                 ) : (
                     <div className="py-10 px-6 border border-gray-300 rounded-lg shadow-md text-center">

@@ -6,6 +6,7 @@ import TabMenu from "@/components/TabMenu";
 import TopNavbar from "@/components/Navbar";
 import QuickMenu from "@/components/QuickMenu";
 import Announcement from "@/components/Announcement";
+import Footer from "@/components/footer";
 
 export default async function Home() {
     const session: any = await getServerSession(options)
@@ -20,6 +21,7 @@ export default async function Home() {
                     <Announcement/>
                 </div>
             </main>
+            <Footer/>
         </>
     )
 }
