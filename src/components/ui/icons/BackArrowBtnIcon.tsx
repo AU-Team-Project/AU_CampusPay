@@ -1,8 +1,8 @@
 import React from 'react';
-import {HiOutlineArrowCircleLeft} from "react-icons/hi";
+import {MdKeyboardArrowLeft} from "react-icons/md";
 
 const BackArrowBtnIcon = () => {
-    return <HiOutlineArrowCircleLeft/>
+    return <MdKeyboardArrowLeft/>
 };
 
 export default BackArrowBtnIcon;

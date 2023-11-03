@@ -1,8 +1,8 @@
 import React from 'react';
-import {HiOutlineArrowCircleRight} from "react-icons/hi";
+import {MdKeyboardArrowRight} from "react-icons/md";
 
 const NextArrowButton = () => {
-    return <HiOutlineArrowCircleRight/>
+    return <MdKeyboardArrowRight/>
 };
 
 export default NextArrowButton;

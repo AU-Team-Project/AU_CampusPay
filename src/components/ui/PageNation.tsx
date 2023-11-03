@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import {useRouter} from "next/navigation";
+import {useRouter, useSearchParams} from "next/navigation";
 import BackArrowBtnIcon from "@/components/ui/icons/BackArrowBtnIcon";
 import NextArrowButton from "@/components/ui/icons/NextArrowButton";
 
@@ -37,16 +37,8 @@ const PageNation = ({ currentPage, totalPages, onPageChange }: Props) => {
         pageNumbers.push(i)
     }
 
-    const backPageButton = () => {
-        onPageChange(currentPage - 1);
-    }
-
     const currentPageNumber = (number: number) => {
         onPageChange(number);
-    }
-
-    const NextPageButton = () => {
-        onPageChange(currentPage + 1);
     }
 
     const buttonStyle = "px-3 py-1 bg-gray-300 text-gray-700 rounded-full mr-2 hover:bg-gray-400 transition duration-300";
@@ -54,13 +46,13 @@ const PageNation = ({ currentPage, totalPages, onPageChange }: Props) => {
     return (
         <div className="flex justify-center items-center mt-4">
             {/* 이전 버튼 */}
-            <button
+            {/*<button
                 className={buttonStyle}
                 onChange={backPageButton}
                 disabled={currentPage === 1}
             >
                 <BackArrowBtnIcon/>
-            </button>
+            </button>*/}
             {/* 페이지 번호 */}
             {pageNumbers.map(number => (
                 <button
@@ -73,13 +65,13 @@ const PageNation = ({ currentPage, totalPages, onPageChange }: Props) => {
                 </button>
             ))}
             {/* 다음 버튼 */}
-            <button
+            {/*<button
                 className={buttonStyle}
-                onChange={NextPageButton}
+                onChange={nextPageButton}
                 disabled={currentPage === totalPages}
             >
                 <NextArrowButton/>
-            </button>
+            </button>*/}
         </div>
     );
 };
