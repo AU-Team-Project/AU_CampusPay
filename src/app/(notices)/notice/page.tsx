@@ -1,10 +1,10 @@
-import React from 'react';
+'use client'
+import React, {useEffect, useState} from 'react';
 import Link from "next/link";
 import { ObjectId } from "mongodb";
 import TopNavbar from "@/components/Navbar";
-import { getServerSession } from "next-auth";
-import { options } from "@/app/api/auth/[...nextauth]/options";
-import PageNavigator from "@/components/ui/PageNavigator";
+import {useSession} from "next-auth/react";
+import PageNation from "@/components/ui/PageNation";
 
 type noticeData = {
     _id: ObjectId,
@@ -17,24 +17,37 @@ type noticeData = {
     count: number;
 }
 
-const NoticeManagementPage = async () => {
-    const session = await getServerSession(options);
-    const res = await fetch(`${process.env.SITE_URL}/api/notice`);
-    const data = await res.json();
-    const findData = data.data.reverse();
+const NoticeManagementPage = () => {
+    const {data: session} = useSession();
+    const [posts, setPosts] = useState<noticeData[]>([]);
+    const [page, setPage] = useState(1);
+    const [totalPages, setTotalPages] = useState(20);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const res = await fetch(`/api/notice`);
+            const data = await res.json();
+            setPosts(data.data.reverse());
+        };
+
+        fetchData();
+    }, [page])
 
     return (
         <>
             <TopNavbar />
-            <h2 className='mt-5 text-2xl text-center font-bold'>AU Campus 공지사항</h2>
+            <h2 className='mt-5 text-2xl text-center font-bold'>
+                AU Campus 공지사항
+            </h2>
                 <Link href="/write" passHref>
                     <span style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '-10px' }}>
-                        <span className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">공지 작성</span></span>
+                        <span className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">
+                            공지 작성
+                        </span>
+                    </span>
                 </Link>
-
-
             <div className="p-8">
-                {findData.map((item: noticeData) => (
+                {posts.map((item: noticeData) => (
                     <div key={item._id.toString()} className="border p-4 rounded-lg mb-4">
                         <h2 className="flex justify-between font-bold text-lg mb-2">
                             <Link href={`/edit/find?post=${item._id}`}>
@@ -61,7 +74,11 @@ const NoticeManagementPage = async () => {
                     </div>
                 ))}
             </div>
-            <PageNavigator/>
+            <PageNation
+                currentPage={page}
+                totalPages={totalPages}
+                onPageChange={setPage}
+            />
         </>
     );
 };
