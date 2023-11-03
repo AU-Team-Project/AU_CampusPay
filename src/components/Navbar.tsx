@@ -32,7 +32,7 @@ const TopNavbar = () => {
     }
 
     return (
-        <header>
+        <header className='h-[150px]'>
             {/** TopNav PC 환경 */}
             <nav className='h-14 flex justify-between items-center bg-white text-white'>
                 <div className='pl-10'>

@@ -4,7 +4,7 @@ import {FiTwitter} from "react-icons/fi";
 
 const Footer = () => {
     return (
-        <footer className='py-10 flex gap-10 justify-center bg-black text-white max-h-[373px]'>
+        <footer className='py-10 flex gap-10 justify-center bg-footer-color text-white max-h-[373px]'>
             <div>
                 <small>
                     AU CampusPay는 안산대학교 졸업과제 출품작으로 실제 사용 가능한 식권을 판매하지 않으므로,<br/>
