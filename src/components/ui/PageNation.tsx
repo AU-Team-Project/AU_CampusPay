@@ -1,5 +1,6 @@
 'use client'
 import React from 'react';
+import {useRouter} from "next/navigation";
 import BackArrowBtnIcon from "@/components/ui/icons/BackArrowBtnIcon";
 import NextArrowButton from "@/components/ui/icons/NextArrowButton";
 
@@ -10,6 +11,7 @@ interface Props {
 }
 
 const PageNation = ({ currentPage, totalPages, onPageChange }: Props) => {
+    const router = useRouter();
     const pageNumbers = [];
     let startPage, endPage;
 

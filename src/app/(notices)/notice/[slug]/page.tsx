@@ -17,21 +17,25 @@ type noticeData = {
     count: number;
 }
 
-const NoticeManagementPage = () => {
+const NoticePage = () => {
     const {data: session} = useSession();
+
     const [posts, setPosts] = useState<noticeData[]>([]);
     const [page, setPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(20);
+    const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await fetch(`/api/notice`);
+            const res = await fetch(`/api/notice?page=${page}`);
             const data = await res.json();
+
             setPosts(data.data.reverse());
+            setTotalPages(Math.ceil(data.totalPages / 10));
         };
 
         fetchData();
     }, [page])
+
 
     return (
         <>
@@ -40,7 +44,7 @@ const NoticeManagementPage = () => {
                 AU Campus 공지사항
             </h2>
                 <Link href="/write" passHref>
-                    <span style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '-10px' }}>
+                    <span className='flex justify-center'>
                         <span className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">
                             공지 작성
                         </span>
@@ -83,4 +87,4 @@ const NoticeManagementPage = () => {
     );
 };
 
-export default NoticeManagementPage;
+export default NoticePage;
