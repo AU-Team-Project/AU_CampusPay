@@ -10,43 +10,61 @@ type CustomSession = {
     user: User;
 }
 
-const NavbarLink = ({ session, navbarLink }: { session: CustomSession | null, navbarLink: { href: string, label: string }[] }) => {
-    return (
-        <>
-            {session?.user?.role === 'admin' && <li>
-                <Link href='/admin'>관리자 페이지</Link>
-            </li>}
-            {!session ? (
-                <>
-                    <li className='text-primary-color'>
-                        <Link href='/register'>회원가입</Link>
-                    </li>
-                    <li className='text-primary-color xl: pr-10'>
-                        <ColorButton
-                            text={'로그인'}
-                            onClick={() => signIn()}
-                        />
-                    </li>
-                </>
-            ) : (
-                <>
-                    {navbarLink.map((item, index) => (
-                        <li key={index}>
-                            <Link href={item.href}>
-                                {item.label}
+const NavbarLink = ({session}: { session: CustomSession | null }) => {
+    const userRole = session?.user?.role;
+
+    const getLinkItem = () => {
+        switch (userRole) {
+            case 'admin':
+                return (
+                    <>
+                        <li className='text-primary-color'>
+                            <Link href='/admin'>
+                                관리자 페이지
                             </Link>
                         </li>
-                    ))}
-                    <li className='text-primary-color xl: pr-10'>
-                        <ColorButton
-                            text={'로그아웃'}
-                            onClick={() => signOut()}
-                        />
-                    </li>
-                </>
-            )}
-        </>
-    );
+                        <li className='text-primary-color xl:pr-10'>
+                            <ColorButton
+                                text={'로그아웃'}
+                                onClick={() => signOut()}
+                            />
+                        </li>
+                    </>
+                )
+            case 'customer':
+                return (
+                    <>
+                        <li className='text-primary-color'>
+                            <button onClick={() => alert('준비중 입니다.')}>
+                                마이 페이지
+                            </button>
+                        </li>
+                        <li className='text-primary-color xl:pr-10'>
+                            <ColorButton
+                                text={'로그아웃'}
+                                onClick={() => signOut()}
+                            />
+                        </li>
+                    </>
+                )
+            default:
+                return !session ? (
+                    <>
+                        <li className='text-primary-color'>
+                            <Link href='/register'>회원가입</Link>
+                        </li>
+                        <li className='text-primary-color xl: pr-10'>
+                            <ColorButton
+                                text={'로그인'}
+                                onClick={() => signIn()}
+                            />
+                        </li>
+                    </>
+                ) : null;
+        }
+    }
+
+    return <>{getLinkItem()}</>
 };
 
 export default NavbarLink;

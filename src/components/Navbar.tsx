@@ -1,16 +1,16 @@
 'use client'
 import React, {useState} from 'react';
 import Link from "next/link";
-import {GiHamburgerMenu} from "react-icons/gi";
-import {AiOutlineClose} from "react-icons/ai";
-import {useSession} from "next-auth/react";
 import Image from 'next/image'
+
 import NavbarLink from "@/components/ui/NavbarLink";
+import {useSession} from "next-auth/react";
+import {AiOutlineClose} from "react-icons/ai";
+import {GiHamburgerMenu} from "react-icons/gi";
 
-const TopNavbar = () => {
+const Navbar = () => {
     const {data: session} = useSession();
-
-    const navbarLink = [
+    /*const navbarLink = [
         {
             href: `/ticket/${session?.user?.username}`,
             label: '식권사용'
@@ -23,7 +23,7 @@ const TopNavbar = () => {
             href: `/history/${session?.user?.username}`,
             label: '결제내역'
         },
-    ];
+    ];*/
 
     const NavbarRoute = [
         {
@@ -63,21 +63,18 @@ const TopNavbar = () => {
         <header className='mt-5 h-[145px] flex-col'>
             {/* PC */}
             <div className='h-14 flex justify-between items-center bg-white text-white'>
-                <div className='ml-[155px] flex flex-grow justify-center'>
+                <div className={`ml-[${!session ? '155' : '175'}px] flex flex-grow justify-center`}>
                     <Link className='flex items-center gap-1' href='/'>
                         <Image
                             src='/AU_CampusPay_Black_EN.svg'
                             alt='웹페이지 로고'
-                            width={170}
+                            width={190}
                             height={80}
                         />
                     </Link>
                 </div>
                 <ul className='font-bold h-full justify-start items-center gap-3 hidden md:flex'>
-                    <NavbarLink
-                        session={session}
-                        navbarLink={navbarLink}
-                    />
+                    <NavbarLink session={session}/>
                 </ul>
                 <button onClick={handleNavClick} className='pr-10 md:hidden'>
                     <GiHamburgerMenu/>
@@ -115,14 +112,11 @@ const TopNavbar = () => {
                     </li>
                 </ul>
                 <ul className='pt-5 pr-10 pl-10 text-lg space-y-4'>
-                    <NavbarLink
-                        session={session}
-                        navbarLink={navbarLink}
-                    />
+                    <NavbarLink session={session}/>
                 </ul>
             </div>
         </header>
     );
 };
 
-export default TopNavbar;
+export default Navbar;

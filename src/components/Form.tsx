@@ -9,8 +9,6 @@ import UserIcon from "@/components/ui/icons/UserIcon";
 import StudentIcon from "@/components/ui/icons/StudentIcon";
 import MobileIcon from "@/components/ui/icons/MobileIcon";
 import FormInput from "@/components/ui/FormInput";
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
 
 const FormComponent = () => {
     const router = useRouter()

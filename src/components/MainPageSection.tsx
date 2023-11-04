@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, {useEffect} from 'react';
 import Image from "next/image";
 import Link from "next/link";
 
@@ -113,8 +113,9 @@ const sections = [
 ];
 
 const MainPageSection = ({session}: any) => {
+    console.log(session)
     return (
-        <div>
+        <div className='flex flex-col'>
             {/* 인덱스 페이지 섹션 1 */}
             <section className='h-screen flex justify-center items-center gap-5 bg-section1-color'>
                 <div className='relative'>
@@ -207,8 +208,8 @@ const MainPageSection = ({session}: any) => {
                 </div>
             </section>
             {/* 인덱스 페이지 섹션 4 */}
-            <section className='h-screen flex justify-center items-center gap-5 bg-section4-color'>
-                <div>
+            <section className='h-screen bg-section4-color relative'>
+                <div className='h-screen absolute top-0 left-0'>
                     <Image
                         src={'/img/index/Calendar.svg'}
                         alt={'메인페이지 식단표 섹션 이미지'}
@@ -216,7 +217,7 @@ const MainPageSection = ({session}: any) => {
                         height={650}
                     />
                 </div>
-                <div>
+                <div className='absolute right-0 mr-20 mt-28'>
                     <div>
                         <h1 className='text-[50px] font-semibold'>
                             보기 쉬운 식단표
@@ -227,7 +228,7 @@ const MainPageSection = ({session}: any) => {
                         </p>
                     </div>
                     <button
-                        className='w-[300px] h-[80px] text-[35px] font-medium bg-footer-color rounded-[10px]'
+                        className='w-[300px] h-[80px] text-[35px] mt-10 font-medium bg-footer-color rounded-[10px]'
                         onClick={() => alert('준비중 입니다.')}
                     >
                         식단표 보러가기
