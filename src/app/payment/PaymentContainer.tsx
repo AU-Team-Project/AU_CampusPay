@@ -5,7 +5,7 @@ import XMarkIcon from "@/components/ui/icons/XmarkIcon";
 import Link from "next/link";
 
 // activeTab 문자열 타입
-type activeTab = '교직원' | '학생';
+type activeTab = '학생' | '교직원' | '기숙사';
 
 // 유저가 선택한 상품의 타입
 type productItem = {
@@ -16,10 +16,14 @@ type productItem = {
 
 // 메뉴 데이터 배열로 정의
 const menuData: Record<activeTab, { label: string; price: number; }[]> = {
+    '학생': [
+        {label: '학생 중식1', price: 4000},
+        {label: '학생 중식2', price: 4000}
+    ],
     '교직원': [
         {label: '교직원 중식', price: 5000}
     ],
-    '학생': [
+    '기숙사': [
         {label: '학생 조식', price: 1000},
         {label: '학생 중식1', price: 4000},
         {label: '학생 중식2', price: 4000},
@@ -58,62 +62,81 @@ const PaymentContainer = () => {
 
     return (
         <>
-            <div className="m-5 mb-0 min-h-[60vh] col-span-2 bg-white">
-                <div className="flex border-b mb-4">
+            <div className="col-span-2 flex flex-col items-center">
+                <div className="w-[900px] h-[70px] flex border-b mb-[35px] text-[22px] text-white bg-[#454545] rounded-[5px]">
+                    <button
+                        onClick={() => setActiveTab('학생')}
+                        className={`py-2 px-4 w-full text-center ${activeTab === '학생' ? 'bg-[#009223] font-bold rounded-l-[5px] rounded-r-[50px]' : ''}`}
+                    >학생
+                    </button>
                     <button
                         onClick={() => setActiveTab('교직원')}
-                        className={`py-2 px-4 w-full text-center ${activeTab === '교직원' ? 'border-b-2 border-blue-500 font-semibold' : ''}`}
+                        className={`py-2 px-4 w-full text-center ${activeTab === '교직원' ? 'bg-[#009223] font-bold rounded-[50px]' : ''}`}
                     >교직원
                     </button>
                     <button
-                        onClick={() => setActiveTab('학생')}
-                        className={`py-2 px-4 w-full text-center ${activeTab === '학생' ? 'border-b-2 border-blue-500 font-semibold' : ''}`}
-                    >학생
+                        onClick={() => setActiveTab('기숙사')}
+                        className={`py-2 px-4 w-full text-center ${activeTab === '기숙사' ? 'bg-[#009223] font-bold rounded-l-[50px] rounded-r-[5px]' : ''}`}
+                    >기숙사
                     </button>
                 </div>
 
-                <div className="grid grid-cols-1 gap-4">
+                <div className="grid grid-cols-1">
                     {menuData[activeTab].map((item, idx) => (
-                        <div key={idx} className="border p-2 rounded"
-                             onClick={() => handleItemClick(item.label, item.price)}>
-                            <h4 className="font-bold">{item.label}</h4>
-                            <p>{item.price} 원</p>
+                        <div key={idx} className="flex gap-3 bg-white mb-[30px] w-[900px] h-[100px] rounded-[5px]">
+                            <div className="m-3 min-w-[460px] grid grid-cols-2 grid-rows-2 leading-[35px]">
+                                <h4 className="font-bold text-[22px]">{item.label}</h4>
+                                <p className="text-[#FFCE32] font-semibold text-right">{item.price} 원</p>
+                                <h3 className="text-[#555555]">메뉴 메뉴 메뉴 메뉴</h3> {/* 오늘의 메뉴 구성 추가 예정  */}
+                                <p className="text-right">2023.11.04</p> {/* 메뉴에 담긴 오늘의 날짜 추가 예정 */}
+                            </div>
+                            <button className="ml-[320px] m-3 w-[75px] h-[75px] bg-[#ececec] text-white font-medium text-[55px] rounded-[5px]"
+                                    onClick={() => handleItemClick(item.label, item.price)}>
+                                +
+                            </button>
                         </div>
                     ))}
                 </div>
             </div>
 
-            <div className='p-5 border-4'>
-                {selectedItem && (
-                    <ul>
-                        <li key={selectedItem.label} className="flex justify-between items-center">
-                            <p>{selectedItem.label}</p>
-                            <p>{selectedItem.price} 원</p>
-                            <button onClick={handleItemDeselection}>
+            <div className='flex flex-col justify-center items-center'>
+                {selectedItem ? (
+                    <ul className="relative w-[900px] h-[150px] bg-[#ececec] leading-[150px] text-center rounded-[5px]">
+                        <li key={selectedItem.label} className="my-8 mx-14">
+                            <div className="m-3 min-w-[760px] grid grid-cols-2 grid-rows-2 gap-[17px] leading-[35px]">
+                                <p className="text-[22px] text-[#555555] text-left">{selectedItem.label}</p>
+                                <p></p>
+                                <p className="text-[18px] text-[#555555] text-left">메뉴 메뉴 메뉴 메뉴</p>
+                                <p className="text-[18px] text-[#3284FF] text-right">
+                                    결제금액: {selectedItem ? selectedItem.price * selectedItem.quantity : 0} 원
+                                </p>
+                            </div>
+                            <button className="absolute p-5 right-0 top-0" onClick={handleItemDeselection}>
                                 <XMarkIcon/>
                             </button>
                         </li>
                     </ul>
+                ): (
+                    <ul className="w-[900px] h-[150px] bg-[#ececec] text-[#555555] text-center rounded-[5px]">
+                        <li className="my-16">
+                            장바구니가 비었습니다.
+                        </li>
+                    </ul>
                 )}
 
-                <div className="mt-4 text-right">
-                    <h3 className="font-bold">
-                        결제금액: {selectedItem ? selectedItem.price * selectedItem.quantity : 0} 원
-                    </h3>
+                <div className="flex justify-center gap-[300px] mt-[30px]">
+                    <Link href={'/'}>
+                        <div className={'bg-[#393939] font-semibold text-center leading-[65px] text-white w-[300px] h-[65px] rounded-[5px]'}>
+                            돌아가기
+                        </div>
+                    </Link>
+                    <PaymentBtn
+                        props={selectedItem}
+                        className={'bg-[#009223] font-semibold text-white w-[300px] h-[65px] rounded-[5px]'}
+                    />
                 </div>
             </div>
 
-            <div className="flex justify-center gap-4 mt-6">
-                <Link href={'/'}>
-                    <div className={'bg-white font-bold border-2 border-blue-600 py-3 px-10 rounded'}>
-                        돌아가기
-                    </div>
-                </Link>
-                <PaymentBtn
-                    props={selectedItem}
-                    className={'bg-blue-600 font-bold text-white py-3 px-10 rounded'}
-                />
-            </div>
         </>
     );
 };

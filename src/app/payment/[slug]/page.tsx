@@ -3,6 +3,7 @@ import PaymentContainer from "@/app/payment/PaymentContainer";
 import {getServerSession} from "next-auth";
 import {options} from "@/app/api/auth/[...nextauth]/options";
 import {redirect} from "next/navigation";
+import Navbar from "@/components/Navbar";
 
 const PaymentsPage = async () => {
     const session = await getServerSession(options);
@@ -13,11 +14,15 @@ const PaymentsPage = async () => {
     }
 
     return (
-        <div className="w-full min-h-screen bg-gray-100 py-8">
-            <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-md p-6">
-                <PaymentContainer/>
+        <>
+            <Navbar/>
+            <div className="min-h-screen bg-[#f7f7f7]">
+                <div className="w-full h-[125px] bg-[#F58D8D]"></div> {/* 이미지 넣을거임. */}
+                <div className="relative bottom-[35px]">
+                    <PaymentContainer/>
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 
