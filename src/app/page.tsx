@@ -1,11 +1,9 @@
 import React from "react";
+import Image from 'next/image';
 import {options} from "@/app/api/auth/[...nextauth]/options";
 import {getServerSession} from "next-auth";
 
-import TabMenu from "@/components/TabMenu";
 import TopNavbar from "@/components/Navbar";
-import QuickMenu from "@/components/QuickMenu";
-import Announcement from "@/components/Announcement";
 import Footer from "@/components/footer";
 
 export default async function Home() {
@@ -16,28 +14,46 @@ export default async function Home() {
             <TopNavbar/>
             <main className='min-h-screen max-h-full bg-gray-200 text-white'>
                 {/* 인덱스 페이지 섹션 1 */}
-                <section className='h-screen bg-section1-color'>
+                <section className='h-screen flex bg-section1-color'>
                     <div>
-                        <h1 className='text-[50px]'>
-                            점심을 위한 더 나은 방법
-                        </h1>
-                        <p className='text-[27px]'>
-                            AU CampusPay는 안산대학교 학생을 위한,<br/>
-                            빠르고 간편한 식권 구입 시스템입니다.
-                        </p>
+                        <Image
+                            src={'/img/index/Project.svg'}
+                            alt={'메인페이지 첫 번째 소개 섹션 이미지'}
+                            width={300}
+                            height={300}
+                        />
                     </div>
                     <div>
-                        <h1 className='text-[30px] font-semibold'>
-                            빠르고 쉬운 식권 인증 시스템.
-                        </h1>
-                        <p className='text-[22px]'>
-                            온라인 구매와 QR코드 인증 시스템이 합쳐진 빠른 인증 시스템을 활용한<br/>
-                            더 나은 시스템을 제공합니다.
-                        </p>
+                        <div>
+                            <h1 className='text-[50px]'>
+                                점심을 위한 더 나은 방법
+                            </h1>
+                            <p className='text-[27px]'>
+                                AU CampusPay는 안산대학교 학생을 위한,<br/>
+                                빠르고 간편한 식권 구입 시스템입니다.
+                            </p>
+                        </div>
+                        <div>
+                            <h1 className='text-[30px] font-semibold'>
+                                빠르고 쉬운 식권 인증 시스템.
+                            </h1>
+                            <p className='text-[22px]'>
+                                온라인 구매와 QR코드 인증 시스템이 합쳐진 빠른 인증 시스템을 활용한<br/>
+                                더 나은 시스템을 제공합니다.
+                            </p>
+                        </div>
                     </div>
                 </section>
                 {/* 인덱스 페이지 섹션 2 */}
-                <section className='h-screen bg-section2-color'>
+                <section className='h-screen flex bg-section2-color'>
+                    <div>
+                        <Image
+                            src={'/img/index/Iphone.svg'}
+                            alt={'메인페이지 두 번째 소개 섹션 이미지'}
+                            width={300}
+                            height={300}
+                        />
+                    </div>
                     <div>
                         <div>
                             <h1 className='text-[50px]'>
@@ -54,7 +70,15 @@ export default async function Home() {
                     </div>
                 </section>
                 {/* 인덱스 페이지 섹션 3 */}
-                <section className='h-screen bg-section3-color'>
+                <section className='h-screen flex bg-section3-color'>
+                    <div>
+                        <Image
+                            src={'/img/index/Scanner.svg'}
+                            alt={'메인페이지 스캐너 섹션 이미지'}
+                            width={300}
+                            height={300}
+                        />
+                    </div>
                     <div>
                         <h1 className='text-[50px]'>
                             배치된 스캐너를 이용한 간편 인증.
@@ -66,7 +90,15 @@ export default async function Home() {
                     </div>
                 </section>
                 {/* 인덱스 페이지 섹션 4 */}
-                <section className='h-screen bg-section4-color'>
+                <section className='h-screen flex bg-section4-color'>
+                    <div>
+                        <Image
+                            src={'/img/index/Calendar.svg'}
+                            alt={'메인페이지 식단표 섹션 이미지'}
+                            width={300}
+                            height={300}
+                        />
+                    </div>
                     <div>
                         <div>
                             <h1 className='text-[50px] font-semibold'>
@@ -83,7 +115,15 @@ export default async function Home() {
                     </div>
                 </section>
                 {/* 인덱스 페이지 섹션 5 */}
-                <section className='h-screen bg-section5-color'>
+                <section className='h-screen flex bg-section5-color'>
+                    <div>
+                        <Image
+                            src={'/img/index/Chatbot.svg'}
+                            alt={'메인페이지 챗봇 섹션 이미지'}
+                            width={300}
+                            height={300}
+                        />
+                    </div>
                     <div>
                         <div>
                             <h1 className='text-[50px]'>
