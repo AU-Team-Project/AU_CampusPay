@@ -1,12 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import {connectDB} from "@/app/api/db/mongoDb";
 import {getMonthAndDay} from "@/service/date";
+import {getServerSession} from "next-auth";
+import {options} from "@/app/api/auth/[...nextauth]/options";
 
 export async function POST(request: NextRequest) {
+    const session = await getServerSession(options);
+
     /** JSON 요청 본문에서 "imp_uid"와 "merchant_uid"를 추출. */
     const { imp_uid, merchant_uid } = await request.json();
-    console.log(`imp_uid : ${imp_uid}`)
-    console.log(`merchant_uid : ${merchant_uid}`)
 
     try {
         /** IAMPORT API를 호출하여 토큰을 가져옴. */
@@ -44,7 +46,6 @@ export async function POST(request: NextRequest) {
 
         /** 결제 데이터 요청 응답에서 결제 데이터를 추출 */
         const paymentData = paymentDataResult.response;
-        console.log('paymentData : ', paymentData);
 
         /** 결제 시간 계산 */
         const {month, day} = getMonthAndDay();
@@ -64,6 +65,7 @@ export async function POST(request: NextRequest) {
          */
         const db = (await connectDB).db(process.env.MONGODB_NAME as string);
         const result = await db.collection(process.env.MONGODB_PAYMENT as string).insertOne({
+            userid: session?.user?._id,
             amount: paymentData.amount,
             name: paymentData.buyer_name,
             email: paymentData.buyer_email,
@@ -72,15 +74,20 @@ export async function POST(request: NextRequest) {
             imp: paymentData.imp_uid,
             merchant: paymentData.merchant_uid,
             pg: paymentData.pg_provider,
-            state: '미사용',
+            state: false,
             time: todayDate,
         })
+
+        console.log('paymentData._id :', paymentData._id)
 
         /** QRCode 생성용 데이터 생성 */
         const qrData = result.insertedId.toString();
 
         /** 응답 반환 : 결제 데이터 */
-        return NextResponse.json({ paymentData, qrData });
+        return NextResponse.json({
+            paymentData,
+            qrData
+        });
     } catch (error) {
         /** 오류 발생시 콘솔에서 오류 메세지 출력 및 500 코드를 포함한 오류 메세지 반환 */
         if (error instanceof Error) {

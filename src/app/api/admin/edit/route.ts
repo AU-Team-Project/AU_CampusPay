@@ -2,15 +2,19 @@ import {connectDB} from "@/app/api/db/mongoDb";
 import {NextResponse} from "next/server";
 import { ObjectId } from 'mongodb';
 
-export async function PUT(request: Request) {
+export async function POST(request: Request) {
     const db = (await connectDB).db(process.env.MONGODB_NAME as string);
+
     if (!request.body) {
         return NextResponse.json({
             success: false,
+            status: 400,
             message: '요청 본문이 비어있습니다.'
         });
     }
-    const body = await request.json(); // JSON 파싱
+
+    // JSON 파싱
+    const body = await request.json();
 
     // 게시글 수정을 위한 데이터
     const putEditPost = {

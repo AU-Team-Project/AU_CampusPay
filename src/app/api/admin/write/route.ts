@@ -7,7 +7,7 @@ import {getMonthAndDay} from "@/service/date";
 export async function POST(request: Request) {
     try {
         const session = await getServerSession(options);
-        /*if (!session) {
+        if (!session) {
             return NextResponse.json({
                 status: 405,
                 error: '로그인이 필요합니다.'
@@ -19,7 +19,7 @@ export async function POST(request: Request) {
                 status: 403,
                 error: '관리자만 접근이 가능합니다.'
             });
-        }*/
+        }
 
         const bodyData = await request.json();
         const { user_id, username, title, content } = bodyData;
@@ -54,7 +54,8 @@ export async function POST(request: Request) {
             success: true,
             status: 200,
             message: '게시물이 등록되었습니다.',
-        })
+        });
+
     } catch (err) {
         return NextResponse.json({
             success: false,

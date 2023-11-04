@@ -1,45 +1,73 @@
 import React from 'react';
-import TopNavbar from "@/components/Navbar";
 import {Menu} from "@/model/menu";
 import Link from "next/link";
+
+import TopNavbar from "@/components/Navbar";
+import {getServerSession} from "next-auth";
+import ColorButton from "@/components/ui/ColorButton";
+import PageNavigator from "@/components/ui/PageNavigator";
+
+import {options} from "@/app/api/auth/[...nextauth]/options";
+import {redirect} from "next/navigation";
+import {ObjectId} from "mongodb";
+import {searchParamsToUrlQuery} from "next/dist/shared/lib/router/utils/querystring";
 
 type Props = {
     params: {
         slug: string;
     }
+    searchParams: {
+        post: ObjectId;
+    }
 }
 
 const TicketPage = async ({params}: Props) => {
-    const res = await fetch(`${process.env.SITE_URL}/api/confirmation/${params.slug}`)
-    const data = await res.json();
+    const session = await getServerSession(options);
+    if (!session) {
+        redirect('/')
+    }
 
-    const unusedItems = data.data.slice(1).filter((item: Menu) => item.state === '미사용');
-    console.log(params)
+    // 현재 로그인한 사용자 이름 또는 아이디
+    const currentUserId = session?.user._id || session?.user.username;
+    // 현재 로그인한 사용자 기준으로 데이터 패칭
+    const res = await fetch(`${process.env.SITE_URL}/api/confirmation/user?name=${currentUserId}`)
+    const data = await res.json();
+    const featDate = data.data.reverse();
+
+    // "state"가 false인 아이템만 출력
+    const unusedItems = featDate.filter((item: Menu) => !item.state);
 
     return (
         <>
             <TopNavbar/>
-            <main className='mx-5'>
+            <main className='mx-5 my-10'>
+                <h2 className="text-2xl font-bold mb-5">내 식권 목록</h2>
                 {unusedItems.length > 0 ? (
-                    unusedItems.map((item: Menu) => (
-                        <div key={item._id} className='max-w-2xl m-auto my-5 p-5 flex justify-between border border-gray-200 rounded-lg shadow-md bg-white'>
-                            <div className="flex-grow">
-                                <Link href={`/confirmation/${item._id}`}>
-                                    <div className="cursor-pointer">
-                                        <p className="text-gray-700 font-medium mb-2">[{item.state}] {item.menu}</p>
-                                        <p className="text-xl font-bold">{item.amount}원</p>
-                                    </div>
-                                </Link>
+                    <>
+                        {unusedItems.map((item: Menu) => (
+                            <div key={item._id} className='mb-5 flex flex-col md:flex-row items-start md:items-center p-5 border border-gray-300 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300 bg-white'>
+                                <div className="md:flex-grow">
+                                    <Link href={`/confirmation/${encodeURIComponent(item.name)}?id=${encodeURIComponent(item._id)}&menu=${encodeURIComponent(item.menu ?? '')}&state=${encodeURIComponent(item.state ?? '')}`}>
+                                        <h3 className="text-lg font-medium text-blue-600 mb-2">{item.menu}</h3>
+                                        <p className="text-gray-500">금액: {item.amount}원</p>
+                                        <p className="text-gray-500">임시값: {item._id}</p>
+                                        <p className="text-gray-500">임시값: {item.name}</p>
+                                    </Link>
+                                </div>
+                                <div className="mt-3 md:mt-0">
+                                    <ColorButton
+                                        text='취소요청'
+                                        className='px-4 py-2 bg-red-500 text-white text-xs rounded font-medium tracking-wide hover:bg-red-600 transition ease-in-out duration-300'
+                                    />
+                                </div>
                             </div>
-                            <div>
-                                <button className="mt-6 px-4 py-2 bg-red-500 text-white text-xs rounded-full font-medium tracking-wide hover:bg-red-600 transition ease-in-out duration-300">
-                                    취소요청
-                                </button>
-                            </div>
-                        </div>
-                    ))
+                        ))}
+                        <PageNavigator/>
+                    </>
                 ) : (
-                    <p>사용 가능한 식권이 없습니다.</p>
+                    <div className="py-10 px-6 border border-gray-300 rounded-lg shadow-md text-center">
+                        <p className="text-gray-500">사용 가능한 식권이 없습니다.</p>
+                    </div>
                 )}
             </main>
         </>

@@ -1,39 +1,29 @@
 import React from 'react';
-import VerticalNav from "@/components/adminNav";
 import {getServerSession} from "next-auth";
 import {options} from "@/app/api/auth/[...nextauth]/options";
+import {redirect} from "next/navigation";
+
+import AdminTopCard from "@/components/ui/card/AdminTopCard";
+import BarChart from "@/components/ui/chart/BarChart";
+import RecentOrders from "@/components/admin/RecentOrders";
 
 const AdminPage = async () => {
     const session = await getServerSession(options);
-    if(!session?.user.role || !session) {
-        window.location.href='/';
+    if (!session?.user.role || !session) {
+        redirect('/')
     }
 
     const res = await fetch(`${process.env.SITE_URL}/api/admin/stats/daily`);
     const data = await res.json();
-    console.log(data.data)
-    console.log(data.totalAmount)
-    console.log(data.totalTicket)
-    console.log(data.profit)
 
     return (
-        <div className="flex">
-            <div className="w-[400px]">
-                <VerticalNav />
+        <>
+            <AdminTopCard data={data}/>
+            <div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'>
+                <BarChart/>
+                <RecentOrders/>
             </div>
-            {/* 커밋용 주석 */}
-            <main className="w-screen grid-cols-3 grid-rows-2">
-                <div className="w-1/3">
-                    하루 판매 티켓 수 : {data.totalTicket}
-                </div>
-                <div className="w-1/3">
-                    하루 거래 금액 : {data.totalAmount}
-                </div>
-                <div className="w-1/3">
-                    판매 순수익 : {data.profit}
-                </div>
-            </main>
-        </div>
+        </>
     );
 };
 

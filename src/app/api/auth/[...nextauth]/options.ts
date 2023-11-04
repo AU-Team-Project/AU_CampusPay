@@ -40,6 +40,7 @@ export const options: NextAuthOptions = {
                     }
                     /** MongoDB 접근 */
                     let db = (await connectDB).db(process.env.MONGODB_NAME);
+
                     /**
                      * 자격증명이 없는 경우
                      * (credentials: null || undefined 또는 객체에 email, password 속성이 없는 경우)
@@ -48,15 +49,16 @@ export const options: NextAuthOptions = {
                     let user = await db.collection(process.env.MONGODB_USER as string).findOne({
                         email: credentials.email
                     });
+
                     if (!user) throw new Error("User not found");
                     /** 일반 사용자(customer) 계정의 비밀번호 검증 */
                     const isPasswordValid: boolean = await bcrypt.compare(credentials.password, user.password);
                     if (!isPasswordValid) throw new Error("Invalid password");
+
                     /** [MS2 UserAccount] 로그인 날짜 업데이트 */
                     const lastAccess = new Date().toISOString().slice(0, 10).replace(/-/g,".");
                     await db.collection('user').updateOne({ _id: new ObjectId(user._id)}, { $set: {lastAccess}})
 
-                    console.log(user)
                     return user;
                 } catch (error) {
                     console.error(error);
@@ -82,6 +84,7 @@ export const options: NextAuthOptions = {
                 token.user.email = user.email;
                 token.user.password = user.password;
                 token.user.phone = user.phone;
+                token.user.student_number = user.student_number;
                 token.user.role = user.role;
                 token.user.lastAccess  = user.lastAccess;
 

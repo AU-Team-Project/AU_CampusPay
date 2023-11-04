@@ -1,23 +1,30 @@
 'use client'
 import React from 'react';
 import {useRouter} from "next/navigation";
-import {RequestPayParams, RequestPayResponse} from "@/types/portone";
 import {useSession} from "next-auth/react";
-import {getFormattedDate, getMonthAndDay} from "@/service/date";
+import {RequestPayParams, RequestPayResponse} from "@/types/portone";
 
-type PaymentContainerProps = {
-    props: {
-        name: string
-        amount: number
-    }
+// 선택된 상품 타입
+type productItem = {
+    label: string;
+    price: number;
+    quantity: number;
 }
 
-const PaymentBtn = ({props}: PaymentContainerProps) => {
+// 컴포넌트 속성 타입
+type PaymentContainerProps = {
+    props: productItem | null;
+    className?: string
+}
+
+const PaymentBtn = ({props, className}: PaymentContainerProps) => {
     const { data: session } = useSession();
     const router = useRouter();
 
+    // 결제 이벤트 핸들러
     const paymentHandler = () => {
-        if (!window.IMP) return;
+        /** "props"는 상품 데이터거나 null */
+        if (!window.IMP || !props) return;
         /** ### 1. 가맹점 식별 */
         const { IMP } = window;
         IMP.init(process.env.NEXT_PUBLIC_IAMPORT_IMP as string);
@@ -39,8 +46,8 @@ const PaymentBtn = ({props}: PaymentContainerProps) => {
             // 주문번호는 결제창 요청 시 항상 고유 값으로 채번 되어야 합니다.
             // 결제 완료 이후 결제 위변조 대사 작업시 주문번호를 이용하여 검증이 필요하므로 주문번호는 가맹점 서버에서 고유하게(unique)채번하여 DB 상에 저장해주세요
             merchant_uid: `mid_${new Date().getTime()}`,
-            name: props.name,
-            amount: props.amount,
+            name: props.label,
+            amount: props.price,
             buyer_name: session?.user.username,
             buyer_tel: session?.user.phone,
             buyer_email: session?.user.email,
@@ -79,7 +86,7 @@ const PaymentBtn = ({props}: PaymentContainerProps) => {
     }
 
     return (
-        <button onClick={paymentHandler}>결제하기</button>
+        <button onClick={paymentHandler} className={className}>결제하기</button>
     );
 };
 
