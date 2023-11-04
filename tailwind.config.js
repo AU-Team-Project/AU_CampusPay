@@ -14,6 +14,10 @@ module.exports = {
       },
       backgroundImage: {
         'mid-bg-image': "url('/img/Cafeteria.jpg')"
+      },
+      spacing: {
+        '155': '155px',
+        '175': '175px',
       }
     },
   },

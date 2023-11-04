@@ -63,7 +63,7 @@ const Navbar = () => {
         <header className='mt-5 h-[145px] flex-col'>
             {/* PC */}
             <div className='h-14 flex justify-between items-center bg-white text-white'>
-                <div className={`ml-[${!session ? '155' : '175'}px] flex flex-grow justify-center`}>
+                <div className={(!session ? 'ml-155' : 'ml-175') + " flex flex-grow justify-center"}>
                     <Link className='flex items-center gap-1' href='/'>
                         <Image
                             src='/AU_CampusPay_Black_EN.svg'
