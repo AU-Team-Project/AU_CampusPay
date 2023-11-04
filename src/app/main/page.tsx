@@ -9,7 +9,7 @@ import TabMenu from "@/components/TabMenu";
 import IndexCalendar from "@/components/ui/icons/IndexCalendar";
 import IndexCart from "@/components/ui/icons/IndexCart";
 import IndexSpeaker from "@/components/ui/icons/IndexSpeaker";
-import Footer from "@/components/footer";
+import Footer from "@/components/Footer";
 
 const indexData = [
     {
