@@ -106,16 +106,16 @@ const MainPageSection = ({ session }: MainPageSectionProps) => {
                 </div>
             </section>
             {/* 인덱스 페이지 섹션 4*/}
-            <section className='h-screen bg-section4-color relative'>
-                <div className='h-screen absolute top-0 left-0'>
+            <section className='h-screen bg-section4-color flex justify-center items-center gap-20'>
+                <div>
                     <Image
                         src={'/img/index/Calendar.svg'}
                         alt={'메인페이지 식단표 섹션 이미지'}
-                        width={1100}
-                        height={650}
+                        width={650}
+                        height={300}
                     />
                 </div>
-                <div className='absolute right-0 mr-20 mt-28'>
+                <div>
                     <div>
                         <h1 className='text-[50px] font-semibold'>
                             보기 쉬운 식단표
