@@ -12,7 +12,6 @@ type CustomSession = {
 
 const NavbarLink = ({session}: { session: CustomSession | null }) => {
     const userRole = session?.user?.role;
-
     const getLinkItem = () => {
         switch (userRole) {
             case 'admin':
@@ -35,9 +34,12 @@ const NavbarLink = ({session}: { session: CustomSession | null }) => {
                 return (
                     <>
                         <li className='text-primary-color'>
-                            <button onClick={() => alert('준비중 입니다.')}>
+                            {/*<button onClick={() => alert('준비중 입니다.')}>
                                 마이 페이지
-                            </button>
+                            </button>*/}
+                            <Link href={`/users/accounts/${session?.user?.student_number}`}>
+                                마이 페이지
+                            </Link>
                         </li>
                         <li className='text-primary-color xl:pr-10'>
                             <ColorButton

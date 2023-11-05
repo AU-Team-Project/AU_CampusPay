@@ -1,6 +1,6 @@
 import React from "react";
 import {options} from "@/app/api/auth/[...nextauth]/options";
-import {getServerSession} from "next-auth";
+import {getServerSession, Session} from "next-auth";
 
 import TopNavbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
