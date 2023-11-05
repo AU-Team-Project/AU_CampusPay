@@ -29,7 +29,7 @@ const Navbar = () => {
         {
             id: 1,
             label: '식단표',
-            href: `/`,
+            href: `/payment/${session?.user?.username}`,
         },
         {
             id: 2,
@@ -48,7 +48,7 @@ const Navbar = () => {
         },
         {
             id: 5,
-            label: '식단표',
+            label: '식권구입',
             href: `/payment/${session?.user?.username}`,
         }
     ];
@@ -63,7 +63,7 @@ const Navbar = () => {
         <header className='mt-5 h-[145px] flex-col'>
             {/* PC */}
             <div className='h-14 flex justify-between items-center bg-white text-white'>
-                <div className={(!session ? 'ml-155' : 'ml-175') + " flex flex-grow justify-center"}>
+                <div className={(!session ? 'ml-[220px]' : 'ml-[245px]') + " flex flex-grow justify-center"}>
                     <Link className='flex items-center gap-1' href='/'>
                         <Image
                             src='/AU_CampusPay_Black_EN.svg'
