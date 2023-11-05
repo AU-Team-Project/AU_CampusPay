@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import PreviousButton from "@/components/ui/PreviousButton";
+import PreviousButton from "@/components/ui/Button/PreviousButton";
 import {useRouter} from "next/navigation";
 
 type Props = {

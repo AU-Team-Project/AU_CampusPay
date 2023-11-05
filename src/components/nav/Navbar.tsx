@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import Link from "next/link";
 import Image from 'next/image'
 
-import NavbarLink from "@/components/ui/NavbarLink";
+import NavbarLink from "@/components/nav/NavbarLink";
 import {useSession} from "next-auth/react";
 import {AiOutlineClose} from "react-icons/ai";
 import {GiHamburgerMenu} from "react-icons/gi";

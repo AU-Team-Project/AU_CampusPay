@@ -3,7 +3,7 @@ import {redirect} from "next/navigation";
 import {ObjectId} from "mongodb";
 import {getServerSession} from "next-auth";
 import {options} from "@/app/api/auth/[...nextauth]/options";
-import EditForm from "@/components/EditForm";
+import EditForm from "@/components/form/EditForm";
 
 type Props = {
     params: {

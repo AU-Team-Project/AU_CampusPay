@@ -3,7 +3,7 @@ import {getServerSession} from "next-auth";
 import {options} from "@/app/api/auth/[...nextauth]/options";
 
 import Image from 'next/image';
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/nav/Navbar";
 import TabMenu from "@/components/TabMenu";
 
 import IndexCalendar from "@/components/ui/Icons/IndexCalendar";

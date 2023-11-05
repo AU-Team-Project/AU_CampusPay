@@ -1,6 +1,6 @@
 import React from 'react';
 import HistoryItem from "@/components/HistoryItem";
-import PreviousButton from "@/components/ui/PreviousButton";
+import PreviousButton from "@/components/ui/Button/PreviousButton";
 import {Menu} from "@/model/menu";
 import {getServerSession} from "next-auth";
 import {options} from "@/app/api/auth/[...nextauth]/options";

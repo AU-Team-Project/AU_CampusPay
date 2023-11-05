@@ -3,7 +3,7 @@ import PaymentContainer from "@/app/payment/PaymentContainer";
 import {getServerSession} from "next-auth";
 import {options} from "@/app/api/auth/[...nextauth]/options";
 import {redirect} from "next/navigation";
-import Navbar from "@/components/Navbar";
+import Navbar from "@/components/nav/Navbar";
 
 const PaymentsPage = async () => {
     const session = await getServerSession(options);

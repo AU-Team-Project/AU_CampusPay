@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from 'react';
 import Link from "next/link";
 import { ObjectId } from "mongodb";
-import TopNavbar from "@/components/Navbar";
+import TopNavbar from "@/components/nav/Navbar";
 import {useSession} from "next-auth/react";
 import PageNation from "@/components/ui/PageNation";
 

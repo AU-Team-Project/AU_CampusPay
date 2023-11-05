@@ -1,7 +1,7 @@
 'use client'
 import { User } from '@/model/user';
 import React, { useState } from 'react';
-import MenuCard from "@/components/ui/MenuCard";
+import MenuCard from "@/components/ui/Card/MenuCard";
 
 type Props = {
     session: {

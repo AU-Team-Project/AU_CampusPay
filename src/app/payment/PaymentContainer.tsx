@@ -1,6 +1,6 @@
 'use client'
 import React, {useState} from 'react';
-import PaymentBtn from "@/components/ui/PaymentBtn";
+import PaymentBtn from "@/components/ui/Button/PaymentBtn";
 import XMarkIcon from "@/components/ui/Icons/XmarkIcon";
 import Link from "next/link";
 

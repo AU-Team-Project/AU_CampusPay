@@ -2,9 +2,9 @@ import React from 'react';
 import {Menu} from "@/model/menu";
 import Link from "next/link";
 
-import TopNavbar from "@/components/Navbar";
+import TopNavbar from "@/components/nav/Navbar";
 import {getServerSession} from "next-auth";
-import ColorButton from "@/components/ui/ColorButton";
+import ColorButton from "@/components/ui/Button/ColorButton";
 
 import {options} from "@/app/api/auth/[...nextauth]/options";
 import {redirect} from "next/navigation";

@@ -1,6 +1,6 @@
 'use client'
 import React from 'react';
-import WriteForm from "@/components/WriteForm";
+import WriteForm from "@/components/form/WriteForm";
 
 const Page = () => {
 

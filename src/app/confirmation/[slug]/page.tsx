@@ -1,6 +1,6 @@
 import React from 'react';
 import QrCode from "@/components/ui/QrCode";
-import PreviousButton from "@/components/ui/PreviousButton";
+import PreviousButton from "@/components/ui/Button/PreviousButton";
 
 type Props = {
     params: {

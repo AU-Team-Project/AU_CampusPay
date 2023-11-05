@@ -8,7 +8,7 @@ import PasswordIcon from "@/components/ui/Icons/PasswordIcon";
 import UserIcon from "@/components/ui/Icons/UserIcon";
 import StudentIcon from "@/components/ui/Icons/StudentIcon";
 import MobileIcon from "@/components/ui/Icons/MobileIcon";
-import FormInput from "@/components/ui/FormInput";
+import FormInput from "@/components/ui/Input/FormInput";
 
 const FormComponent = () => {
     const router = useRouter()

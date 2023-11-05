@@ -1,6 +1,6 @@
 'use client'
 import { useEffect, useState } from 'react';
-import PreviousButton from "@/components/ui/PreviousButton";
+import PreviousButton from "@/components/ui/Button/PreviousButton";
 import {useSession} from "next-auth/react";
 import Link from "next/link";
 interface ApiResponse {
