@@ -1,7 +1,7 @@
 import React from 'react';
-import AdminTicketIcon from "@/components/ui/icons/AdminTicketIcon";
-import AdminTodayPriceIcon from "@/components/ui/icons/AdminTodayPriceIcon";
-import UserIcon from "@/components/ui/icons/UserIcon";
+import AdminTicketIcon from "@/components/ui/Icons/AdminTicketIcon";
+import AdminTodayPriceIcon from "@/components/ui/Icons/AdminTodayPriceIcon";
+import UserIcon from "@/components/ui/Icons/UserIcon";
 
 type Props = {
     data: {

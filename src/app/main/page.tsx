@@ -6,9 +6,9 @@ import Image from 'next/image';
 import Navbar from "@/components/Navbar";
 import TabMenu from "@/components/TabMenu";
 
-import IndexCalendar from "@/components/ui/icons/IndexCalendar";
-import IndexCart from "@/components/ui/icons/IndexCart";
-import IndexSpeaker from "@/components/ui/icons/IndexSpeaker";
+import IndexCalendar from "@/components/ui/Icons/IndexCalendar";
+import IndexCart from "@/components/ui/Icons/IndexCart";
+import IndexSpeaker from "@/components/ui/Icons/IndexSpeaker";
 import Footer from "@/components/Footer";
 
 const indexData = [

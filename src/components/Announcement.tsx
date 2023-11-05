@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from "next/link";
-import MoveNoticeIcon from "@/components/ui/icons/MoveNoticeIcon";
+import MoveNoticeIcon from "@/components/ui/Icons/MoveNoticeIcon";
 import {ObjectId} from "mongodb";
 
 type NoticeItem = {

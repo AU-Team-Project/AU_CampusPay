@@ -1,6 +1,6 @@
 import React from 'react';
 import {BsThreeDotsVertical} from "react-icons/bs";
-import RecentOrdersIcon from "@/components/ui/icons/RecentOrdersIcon";
+import RecentOrdersIcon from "@/components/ui/Icons/RecentOrdersIcon";
 
 import {getServerSession} from "next-auth";
 import {options} from "@/app/api/auth/[...nextauth]/options";

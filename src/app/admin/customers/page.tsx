@@ -1,6 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react';
-import UserIcon from "@/components/ui/icons/UserIcon";
+import UserIcon from "@/components/ui/Icons/UserIcon";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { ObjectId } from "mongodb";
 import {redirect} from "next/navigation";

@@ -34,9 +34,6 @@ const NavbarLink = ({session}: { session: CustomSession | null }) => {
                 return (
                     <>
                         <li className='text-primary-color'>
-                            {/*<button onClick={() => alert('준비중 입니다.')}>
-                                마이 페이지
-                            </button>*/}
                             <Link href={`/users/accounts/${session?.user?.student_number}`}>
                                 마이 페이지
                             </Link>

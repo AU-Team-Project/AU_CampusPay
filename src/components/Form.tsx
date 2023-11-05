@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 import { useRouter } from "next/navigation";
 import { isValidEmail, isValidPassword, isValidUsername, isValidStudentNumber, isValidPhoneNumber } from '@/service/auth';
 
-import EmailIcon from "@/components/ui/icons/EmailIcon";
-import PasswordIcon from "@/components/ui/icons/PasswordIcon";
-import UserIcon from "@/components/ui/icons/UserIcon";
-import StudentIcon from "@/components/ui/icons/StudentIcon";
-import MobileIcon from "@/components/ui/icons/MobileIcon";
+import EmailIcon from "@/components/ui/Icons/EmailIcon";
+import PasswordIcon from "@/components/ui/Icons/PasswordIcon";
+import UserIcon from "@/components/ui/Icons/UserIcon";
+import StudentIcon from "@/components/ui/Icons/StudentIcon";
+import MobileIcon from "@/components/ui/Icons/MobileIcon";
 import FormInput from "@/components/ui/FormInput";
 
 const FormComponent = () => {

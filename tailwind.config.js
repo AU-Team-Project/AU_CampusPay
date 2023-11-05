@@ -11,6 +11,7 @@ module.exports = {
         'section4-color': '#9A8498',
         'section5-color': '#B97F7F',
         'footer-color': '#454545',
+        'black-color': '#555555',
       },
       backgroundImage: {
         'mid-bg-image': "url('/img/Cafeteria.jpg')"

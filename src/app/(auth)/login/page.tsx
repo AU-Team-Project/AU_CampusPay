@@ -3,8 +3,8 @@ import React, {useState} from 'react';
 import {signIn} from "next-auth/react";
 import Link from "next/link";
 import Image from "next/image";
-import EmailIcon from "@/components/ui/icons/EmailIcon";
-import PasswordIcon from "@/components/ui/icons/PasswordIcon";
+import EmailIcon from "@/components/ui/Icons/EmailIcon";
+import PasswordIcon from "@/components/ui/Icons/PasswordIcon";
 import {isValidEmail, isValidPassword} from '@/service/auth';
 
 const LoginPage = () => {

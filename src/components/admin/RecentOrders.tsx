@@ -1,5 +1,5 @@
 import React from 'react';
-import RecentOrdersIcon from "@/components/ui/icons/RecentOrdersIcon";
+import RecentOrdersIcon from "@/components/ui/Icons/RecentOrdersIcon";
 
 const test = [
     {

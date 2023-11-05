@@ -3,11 +3,11 @@ import { useState } from 'react';
 import Link from "next/link";
 import Image from "next/image";
 
-import DashboardIcon from "@/components/ui/icons/DashboardIcon";
-import AdminTicketIcon from "@/components/ui/icons/AdminTicketIcon";
-import UserIcon from "@/components/ui/icons/UserIcon";
-import QrCodeIcon from "@/components/ui/icons/QrCodeIcon";
-import NoticeIcon from "@/components/ui/icons/NoticeIcon";
+import DashboardIcon from "@/components/ui/Icons/DashboardIcon";
+import AdminTicketIcon from "@/components/ui/Icons/AdminTicketIcon";
+import UserIcon from "@/components/ui/Icons/UserIcon";
+import QrCodeIcon from "@/components/ui/Icons/QrCodeIcon";
+import NoticeIcon from "@/components/ui/Icons/NoticeIcon";
 import { AiOutlineClose } from "react-icons/ai";
 import { GiHamburgerMenu } from "react-icons/gi";
 

@@ -10,20 +10,6 @@ import {GiHamburgerMenu} from "react-icons/gi";
 
 const Navbar = () => {
     const {data: session} = useSession();
-    /*const navbarLink = [
-        {
-            href: `/ticket/${session?.user?.username}`,
-            label: '식권사용'
-        },
-        {
-            href: `/payment/${session?.user?.username}`,
-            label: '식권구입'
-        },
-        {
-            href: `/history/${session?.user?.username}`,
-            label: '결제내역'
-        },
-    ];*/
 
     const NavbarRoute = [
         {
@@ -66,7 +52,7 @@ const Navbar = () => {
                 <div className={(!session ? 'ml-[220px]' : 'ml-[245px]') + " flex flex-grow justify-center"}>
                     <Link className='flex items-center gap-1' href='/'>
                         <Image
-                            src='/AU_CampusPay_Black_EN.svg'
+                            src='/AUCampusPay_Yellow.svg'
                             alt='웹페이지 로고'
                             width={190}
                             height={80}

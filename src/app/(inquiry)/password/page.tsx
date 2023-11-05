@@ -2,7 +2,7 @@
 import React, {useState} from 'react';
 import Link from "next/link";
 import Image from "next/image";
-import EmailIcon from "@/components/ui/icons/EmailIcon";
+import EmailIcon from "@/components/ui/Icons/EmailIcon";
 
 const tabList = [
     {

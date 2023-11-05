@@ -1,8 +1,8 @@
 'use client'
 import React from 'react';
 import {useRouter, useSearchParams} from "next/navigation";
-import BackArrowBtnIcon from "@/components/ui/icons/BackArrowBtnIcon";
-import NextArrowButton from "@/components/ui/icons/NextArrowButton";
+import BackArrowBtnIcon from "@/components/ui/Icons/BackArrowBtnIcon";
+import NextArrowButton from "@/components/ui/Icons/NextArrowButton";
 
 interface Props {
     currentPage: number;

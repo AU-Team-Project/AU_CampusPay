@@ -1,7 +1,7 @@
 'use client'
 import React, {useState} from 'react';
 import PaymentBtn from "@/components/ui/PaymentBtn";
-import XMarkIcon from "@/components/ui/icons/XmarkIcon";
+import XMarkIcon from "@/components/ui/Icons/XmarkIcon";
 import Link from "next/link";
 
 // activeTab 문자열 타입

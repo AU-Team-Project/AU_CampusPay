@@ -2,11 +2,11 @@
 import React from 'react';
 import Link from "next/link";
 import {User} from "@/model/user";
-import RiceMenuIcon from "@/components/ui/icons/RiceMenuIcon";
-import QrCodeIcon from "@/components/ui/icons/QrCodeIcon";
-import GetTicketIcon from "@/components/ui/icons/GetTicketIcon";
-import PaymentHistoryIcon from "@/components/ui/icons/PaymentHistoryIcon";
-import AdminPageIcon from "@/components/ui/icons/AdminPageIcon";
+import RiceMenuIcon from "@/components/ui/Icons/RiceMenuIcon";
+import QrCodeIcon from "@/components/ui/Icons/QrCodeIcon";
+import GetTicketIcon from "@/components/ui/Icons/GetTicketIcon";
+import PaymentHistoryIcon from "@/components/ui/Icons/PaymentHistoryIcon";
+import AdminPageIcon from "@/components/ui/Icons/AdminPageIcon";
 import {signIn} from "next-auth/react";
 import {ObjectId} from "mongodb";
 
