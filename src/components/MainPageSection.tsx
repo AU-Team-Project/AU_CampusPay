@@ -121,10 +121,10 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                             앉은 자리에서 간편하게 구매.
                         </h1>
                         <div className='relative'>
-                            <p className={`text-[27px] absolute left-[-700px] ${scroll > 700 ? 'sectionScroll left-4' : 'setSectionScroll'}`}>
+                            <p className={`text-[27px] absolute left-[-700px] ${scroll > 700 ? 'sectionScroll left-[4px]' : 'setSectionScroll'}`}>
                                 핸드폰과 노트북만으로 카카오페이를 이용해,
                             </p>
-                            <p className={`text-[27px] absolute left-[-700px] top-10 ${scroll > 800 ? 'sectionScroll top-0 left-4' : 'setSectionScroll'}`}>
+                            <p className={`text-[27px] absolute left-[-700px] top-10 ${scroll > 800 ? 'sectionScroll top-0 left-[4px]' : 'setSectionScroll'}`}>
                                 그 자리에서 간편하게 식권을 구매할 수 있습니다.
                             </p>
                         </div>
@@ -170,7 +170,7 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                 </div>
             </section>
             {/* 인덱스 페이지 섹션 4*/}
-            <section className='h-screen bg-section4-color flex justify-center items-center gap-20'>
+            <section className='h-[100vh] bg-section4-color flex justify-center items-center gap-20'>
                 <div>
                     <Image
                         src={'/img/index/Calendar.svg'}
@@ -179,9 +179,9 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                         height={300}
                     />
                 </div>
-                <div>
-                    <div>
-                        <h1 className='text-[50px] font-semibold'>
+                <div className={'w-[572px] relative'}>
+                    <div className={`absolute ${scroll > 2850 ? 'top-[-100px] opacity-100 duration-1200' : 'top-[-10px] opacity-0 duration-1200'}`}>
+                        <h1 className='mb-5 text-[50px] font-semibold'>
                             보기 쉬운 식단표
                         </h1>
                         <p className='text-[27px]'>
@@ -192,7 +192,7 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                         </p>
                     </div>
                     <button
-                        className='w-[300px] h-[80px] text-[35px] mt-10 font-medium bg-footer-color rounded-[10px]'
+                        className={`w-[300px] h-[80px] text-[35px] mt-32 font-medium bg-footer-color rounded-[10px] ${scroll > 2990 ? 'opacity-100 duration-1500' : 'opacity-0 duration-1200'}`}
                         onClick={() => alert('준비중 입니다.')}
                     >
                         식단표 보러가기
@@ -210,17 +210,17 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                     />
                 </div>
                 <div>
-                    <div>
-                        <h1 className='text-[50px]'>
+                    <div className={'w-[621px] relative'}>
+                        <h1 className={`text-[50px] absolute ${scroll > 3761 ? 'top-[-100px] opacity-100 duration-1500' : 'top-0 opacity-0 duration-1200'}`}>
                             챗봇을 통한 안내 시스템
                         </h1>
-                        <p className='text-[27px]'>
+                        <p className={`text-[27px] absolute ${scroll > 3944 ? 'top-[0px] opacity-100 duration-1200' : 'top-32 opacity-0 duration-1200'}`}>
                             AU CampusPay의 카카오톡 챗봇을 추가하면,<br/>
                             각종 이용 안내 및 오류 해결 방안을 얻을 수 있습니다.
                         </p>
                     </div>
                     <button
-                        className='w-[335px] h-[80px] mt-20 bg-footer-color font-medium text-[35px] rounded-[10px]'
+                        className={`w-[335px] h-[80px] mt-32 bg-footer-color font-medium text-[35px] rounded-[10px] ${scroll > 3944 ? 'opacity-100 duration-1200' : 'opacity-0 duration-1200'}`}
                         onClick={() => alert('준비중 입니다.')}
                     >
                         챗봇 추가하기
