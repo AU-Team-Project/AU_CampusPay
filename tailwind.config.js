@@ -19,6 +19,11 @@ module.exports = {
       spacing: {
         '155': '155px',
         '175': '175px',
+      },
+      transitionDuration: {
+        '1200': '1200ms',
+        '1500': '1500ms',
+        '3000': '3000ms'
       }
     },
   },

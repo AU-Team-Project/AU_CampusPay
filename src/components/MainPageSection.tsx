@@ -1,5 +1,5 @@
 'use client'
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,7 +11,50 @@ interface MainPageSectionProps {
     }
 }
 
-const MainPageSection = ({ session }: MainPageSectionProps) => {
+const MainPageSection = ({session}: MainPageSectionProps) => {
+    const [scroll, setScroll] = useState(0);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            setScroll(window.scrollY || document.documentElement.scrollTop);
+        }
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        }
+    }, [])
+    console.log(scroll)
+
+    // 이미지 수평 이동 계산 함수
+    const calculateTranslateX = () => {
+        // 최대 스크롤 거리
+        const maxScrollDistance = 600;
+        // 이미지가 이동할 최대 거리 (픽셀)
+        const maxTranslateX = 500;
+
+        if (scroll < maxScrollDistance) {
+            // 스크롤 위치에 따라 이동 거리 계산
+            return (scroll / maxScrollDistance) * maxTranslateX - maxTranslateX;
+        } else {
+            return 0; // 최대 이동 거리에 도달하면 더 이상 이동하지 않음
+        }
+    };
+
+    // 이미지 투명도 계산 함수
+    const calculateOpacity = () => {
+        // 스크롤이 300px보다 작으면 이미지 안보임
+        if (scroll < 300) {
+            return 0;
+            // 스크롤이 300px, 600px 사이일때 이미지 투명도 증가
+        } else if (scroll >= 650 && scroll <= 800) {
+            return (scroll - 600) / 600;
+            // 스크롤이 600px 넘으면 이미지 완전히 렌더링
+        } else {
+            return 1;
+        }
+    }
+
     return (
         <div className='flex flex-col'>
             {/* 인덱스 페이지 섹션 1 */}
@@ -57,8 +100,14 @@ const MainPageSection = ({ session }: MainPageSectionProps) => {
                 </div>
             </section>
             {/* 인덱스 페이지 섹션 2*/}
-            <section className='h-[100vh] flex justify-center items-center gap-5 bg-section2-color'>
-                <div>
+            <section className='h-[100vh] flex justify-center items-center gap-20 bg-section2-color'>
+                <div
+                    className={`${scroll > 470 ? 'duration-1500' : 'duration-1000'}`}
+                    style={{
+                        opacity: calculateOpacity(),
+                        transform: `translateX${calculateTranslateX()}px`
+                    }}
+                >
                     <Image
                         src={'/img/index/Iphone.svg'}
                         alt={'메인페이지 두 번째 소개 섹션 이미지'}
@@ -68,39 +117,50 @@ const MainPageSection = ({ session }: MainPageSectionProps) => {
                 </div>
                 <div>
                     <div>
-                        <h1 className='text-[50px]'>
+                        <h1 className={`animate font-bold ${scroll > 620 ? 'setSectionTitle' : 'sectionTitle'}`}>
                             앉은 자리에서 간편하게 구매.
                         </h1>
-                        <p className='text-[27px]'>
+                        <p className={`text-[27px] ${scroll > 700 ? 'sectionScroll' : 'setSectionScroll'}`}>
                             핸드폰과 노트북만으로 카카오페이를 이용해,<br/>
                             그 자리에서 간편하게 식권을 구매할 수 있습니다.
                         </p>
                     </div>
-                    <Link href={`/payment/${session?.user?.username}`}>
+                    <Link
+                        href={`/payment/${session?.user?.username}`}
+                        className={`${scroll > 835 ? 'transition duration-[3s] opacity-100' : 'transition duration-[1s] opacity-0'}`}
+                    >
                         <div
-                            className='w-[720px] h-[80px] mt-28 text-[35px] flex justify-center items-center font-medium bg-footer-color rounded-[10px]'>
+                            className={`w-[720px] h-[80px] mt-28 text-[35px] flex justify-center items-center font-medium bg-footer-color rounded-[10px]`}>
                             <span>식권 구매하기</span>
                         </div>
                     </Link>
                 </div>
             </section>
             {/* 인덱스 페이지 섹션 3*/}
-            <section className='h-screen flex justify-center gap-20 items-center bg-section3-color'>
+            <section className='h-screen flex justify-center gap-20 items-center bg-section3-color relative'>
                 <div>
                     <Image
+                        className={`absolute left-48 ${scroll > 1650 ? 'top-[100px] duration-1500' : 'top-[800px] duration-3000'}`}
                         src={'/img/index/Scanner.svg'}
                         alt={'메인페이지 스캐너 섹션 이미지'}
-                        width={380}
-                        height={484}
+                        width={560}
+                        height={684}
                     />
                 </div>
                 <div>
-                    <h1 className='mb-5 text-[50px]'>
-                        배치된 스캐너를 이용한<br/>간편 인증.
+                    <h1 className={`mb-5 font-bold text-[50px] absolute top-80 right-0 ${scroll > 1650 ? 'right-96 duration-1500' : 'right-0 duration-1200'}`}>
+                        배치된 스캐너를
                     </h1>
-                    <p className='text-[27px]'>
-                        카페테리아에 비치된 스캐너에, QR 식권을<br/>
-                        스캐너에 비추는 것 만으로, 끝나는 빠르고<br/>
+                    <h1 className={`mb-5 font-bold text-[50px] absolute top-[24rem] right-0 ${scroll > 1700 ? 'right-[300px] duration-1500' : 'right-0 duration-1200'}`}>
+                        이용한 간편 인증.
+                    </h1>
+                    <p className={`text-[27px] absolute right-[300px] ${scroll > 1730 ? 'top-[30rem] duration-1200' : 'top-[1000px] duration-1500'}`}>
+                        카페테리아에 비치된 스캐너에, QR 식권을
+                    </p>
+                    <p className={`text-[27px] absolute right-[300px] ${scroll > 1880 ? 'top-[34rem] duration-1200' : 'top-[1000px] duration-1500'}`}>
+                        스캐너에 비추는 것 만으로, 끝나는 빠르고
+                    </p>
+                    <p className={`text-[27px] absolute top-[38rem] right-[430px] ${scroll > 1970 ? 'right-[21rem] duration-1200' : 'top-[1000px] duration-1500'}`}>
                         간편한 인증을 할 수 있습니다.
                     </p>
                 </div>
@@ -121,7 +181,9 @@ const MainPageSection = ({ session }: MainPageSectionProps) => {
                             보기 쉬운 식단표
                         </h1>
                         <p className='text-[27px]'>
-                            식당 별로 매 주 단위로 정리된 식단표를 통해,<br/>
+                            식당 별로 매 주 단위로 정리된 식단표를 통해,
+                        </p>
+                        <p className='text-[27px]'>
                             빠르고 직관적으로 식단을 파악할 수 있습니다.
                         </p>
                     </div>

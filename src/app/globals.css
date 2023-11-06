@@ -9,3 +9,24 @@ body {
 ol, li {
     list-style: none;
 }
+
+/* Section 2 */
+.sectionTitle {
+    font-size: 70px;
+    transition: 1.5s;
+}
+
+.setSectionTitle {
+    font-size: 50px;
+    transition: 1.5s;
+}
+
+.sectionScroll {
+    font-size: 27px;
+    transition: 1.5s;
+}
+
+.setSectionScroll {
+    font-size: 3rem;
+    transition: 1.5s;
+}
