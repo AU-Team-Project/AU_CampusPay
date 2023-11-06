@@ -13,7 +13,7 @@ const RegisterPage = () => {
                 <div className='px-10 flex justify-center'>
                     <Link className='flex items-center gap-1' href='/'>
                         <Image
-                            src='/Logo_AU_CampusPay_Blue.svg'
+                            src='/AUCampusPay_Yellow.svg'
                             width={225}
                             height={100}
                             alt='웹페이지 로고'

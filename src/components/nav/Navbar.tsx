@@ -68,7 +68,7 @@ const Navbar = () => {
             </div>
             {/* Global Navigation Menu */}
             <nav className='pt-7'>
-                <ul className='flex justify-center gap-20'>
+                <ul className='text-[18px] flex justify-center gap-20'>
                     {NavbarRoute.map((item => (
                         <li key={item.id}>
                             <Link href={item.href}>
