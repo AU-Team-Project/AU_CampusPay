@@ -117,20 +117,24 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                 </div>
                 <div>
                     <div>
-                        <h1 className={`animate font-bold ${scroll > 620 ? 'setSectionTitle' : 'sectionTitle'}`}>
+                        <h1 className={`mb-5 font-bold ${scroll > 620 ? 'setSectionTitle' : 'sectionTitle'}`}>
                             앉은 자리에서 간편하게 구매.
                         </h1>
-                        <p className={`text-[27px] ${scroll > 700 ? 'sectionScroll' : 'setSectionScroll'}`}>
-                            핸드폰과 노트북만으로 카카오페이를 이용해,<br/>
-                            그 자리에서 간편하게 식권을 구매할 수 있습니다.
-                        </p>
+                        <div className='relative'>
+                            <p className={`text-[27px] absolute left-[-700px] ${scroll > 700 ? 'sectionScroll left-4' : 'setSectionScroll'}`}>
+                                핸드폰과 노트북만으로 카카오페이를 이용해,
+                            </p>
+                            <p className={`text-[27px] absolute left-[-700px] top-10 ${scroll > 800 ? 'sectionScroll top-0 left-4' : 'setSectionScroll'}`}>
+                                그 자리에서 간편하게 식권을 구매할 수 있습니다.
+                            </p>
+                        </div>
                     </div>
                     <Link
                         href={`/payment/${session?.user?.username}`}
                         className={`${scroll > 835 ? 'transition duration-[3s] opacity-100' : 'transition duration-[1s] opacity-0'}`}
                     >
                         <div
-                            className={`w-[720px] h-[80px] mt-28 text-[35px] flex justify-center items-center font-medium bg-footer-color rounded-[10px]`}>
+                            className={`w-[720px] h-[80px] mt-52 text-[35px] flex justify-center items-center font-medium bg-footer-color rounded-[10px]`}>
                             <span>식권 구매하기</span>
                         </div>
                     </Link>
@@ -140,7 +144,7 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
             <section className='h-screen flex justify-center gap-20 items-center bg-section3-color relative'>
                 <div>
                     <Image
-                        className={`absolute left-48 ${scroll > 1650 ? 'top-[100px] duration-1500' : 'top-[800px] duration-3000'}`}
+                        className={`absolute left-48 ${scroll > 1650 ? 'top-[100px] duration-1500 ease-in' : 'top-[800px] duration-3000'}`}
                         src={'/img/index/Scanner.svg'}
                         alt={'메인페이지 스캐너 섹션 이미지'}
                         width={560}
@@ -148,19 +152,19 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                     />
                 </div>
                 <div>
-                    <h1 className={`mb-5 font-bold text-[50px] absolute top-80 right-0 ${scroll > 1650 ? 'right-96 duration-1500' : 'right-0 duration-1200'}`}>
+                    <h1 className={`mb-5 font-bold text-[70px] absolute top-60 right-0 ${scroll > 1650 ? 'right-96 duration-1500' : 'right-0 duration-1200'}`}>
                         배치된 스캐너를
                     </h1>
-                    <h1 className={`mb-5 font-bold text-[50px] absolute top-[24rem] right-0 ${scroll > 1700 ? 'right-[300px] duration-1500' : 'right-0 duration-1200'}`}>
+                    <h1 className={`mb-5 font-semibold text-[50px] absolute top-[22rem] right-0 ${scroll > 1700 ? 'right-[300px] duration-1500' : 'right-0 duration-1200'}`}>
                         이용한 간편 인증.
                     </h1>
-                    <p className={`text-[27px] absolute right-[300px] ${scroll > 1730 ? 'top-[30rem] duration-1200' : 'top-[1000px] duration-1500'}`}>
+                    <p className={`text-[27px] absolute right-[200px] ${scroll > 1730 ? 'top-[30rem] duration-1200' : 'top-[1000px] duration-1500'}`}>
                         카페테리아에 비치된 스캐너에, QR 식권을
                     </p>
-                    <p className={`text-[27px] absolute right-[300px] ${scroll > 1880 ? 'top-[34rem] duration-1200' : 'top-[1000px] duration-1500'}`}>
+                    <p className={`text-[27px] absolute right-[205px] ${scroll > 1880 ? 'top-[34rem] duration-1200' : 'top-[1000px] duration-1500'}`}>
                         스캐너에 비추는 것 만으로, 끝나는 빠르고
                     </p>
-                    <p className={`text-[27px] absolute top-[38rem] right-[430px] ${scroll > 1970 ? 'right-[21rem] duration-1200' : 'top-[1000px] duration-1500'}`}>
+                    <p className={`text-[27px] absolute right-[345px] ${scroll > 1970 ? 'top-[38rem] duration-1200' : 'top-[1000px] duration-1500'}`}>
                         간편한 인증을 할 수 있습니다.
                     </p>
                 </div>
