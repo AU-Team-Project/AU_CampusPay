@@ -64,6 +64,7 @@ const LoginPage = () => {
                     />
                 </Link>
             </div>
+            {/* Main */}
             <div className="w-screen flex items-center justify-center pb-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-max w-full my-36 py-20 space-y-8 p-6 bg-white rounded-md shadow-md">
                     <div className="mb-16 px-10 flex flex-col justify-center">

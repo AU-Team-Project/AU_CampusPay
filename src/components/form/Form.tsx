@@ -163,6 +163,17 @@ const FormComponent = () => {
         return isFormValid;
     }
 
+    const generateErrorMessages = () => {
+        const errorMessages = Object.values(form.errors).filter(error => error !== '');
+        return errorMessages.length > 0 && (
+            <div className="text-red-500 text-sm mt-2">
+                {errorMessages.map((error, index) => (
+                    <div key={index}>{error}</div>
+                ))}
+            </div>
+        );
+    };
+
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
@@ -202,12 +213,12 @@ const FormComponent = () => {
                         autoComplete={input.autoComplete}
                         placeholder={input.placeholder}
                         icon={input.icon}
-                        errorMessage={input.errorMessage}
                         value={input.value}
                         onChange={handleOnchange}
                     />
                 ))}
             </div>
+            {generateErrorMessages()}
             <button type="submit" className="group relative w-full flex justify-center py-3 px-4 border border-blue-custom-hover border-transparent text-[18px] font-medium rounded-[25px] text-white bg-footer-color hover:bg-blue-custom-hover active:outline-none active:ring active:ring-offset-3 active:ring-blue-custom-hover ease-out duration-200">
                 회원가입
             </button>
