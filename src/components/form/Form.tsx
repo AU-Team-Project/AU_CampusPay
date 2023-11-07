@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react';
+import React, {useMemo, useState} from 'react';
 import { useRouter } from "next/navigation";
 import { isValidEmail, isValidPassword, isValidUsername, isValidStudentNumber, isValidPhoneNumber } from '@/service/auth';
 
@@ -10,10 +10,24 @@ import StudentIcon from "@/components/ui/Icons/StudentIcon";
 import MobileIcon from "@/components/ui/Icons/MobileIcon";
 import FormInput from "@/components/ui/Input/FormInput";
 
+interface FormState {
+    data: {
+        email: string;
+        password: string;
+        passwordConfirm: string;
+        username: string;
+        student_number: string;
+        phone: string;
+    };
+    errors: {
+        [key: string]: string;
+    };
+}
+
 const FormComponent = () => {
     const router = useRouter()
 
-    const [form, setForm] = useState({
+    const [form, setForm] = useState<FormState>({
         data: {
             email: '',
             password: '',
@@ -22,17 +36,10 @@ const FormComponent = () => {
             student_number: '',
             phone: ''
         },
+        errors: {}
+    });
 
-        errors: {
-            email: '',
-            password: '',
-            passwordConfirm: '',
-            username: '',
-            student_number: '',
-            phone: ''
-        }
-    })
-
+    // 폼 데이터 상태 업데이트
     const handleOnchange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
 
@@ -42,7 +49,7 @@ const FormComponent = () => {
                 ...prevForm.data,
                 [name]: value
             },
-
+            // 필드를 변경할 때마다 관련된 오류를 초기화
             errors: {
                 ...prevForm.errors,
                 [name]: ''
@@ -50,10 +57,11 @@ const FormComponent = () => {
         }));
     };
 
-    const inputData = [
+    const inputData = useMemo(() => [
         {
             id: 'email',
             type: 'email',
+            name: 'email',
             autoComplete: 'email',
             placeholder: '이메일 주소',
             icon: <EmailIcon />,
@@ -63,6 +71,7 @@ const FormComponent = () => {
         {
             id: 'password',
             type: 'password',
+            name: 'password',
             autoComplete: 'current-password',
             placeholder: '비밀번호',
             icon: <PasswordIcon />,
@@ -71,8 +80,8 @@ const FormComponent = () => {
         },
         {
             id: 'passwordConfirm',
-            name: 'passwordConfirm',
             type: 'password',
+            name: 'passwordConfirm',
             autoComplete: 'new-password',
             placeholder: '비밀번호 확인',
             icon: <PasswordIcon />,
@@ -82,7 +91,8 @@ const FormComponent = () => {
         {
             id: 'username',
             type: 'text',
-            autoComplete: 'current-password',
+            name: 'username',
+            autoComplete: 'name',
             placeholder: '이름',
             icon: <UserIcon />,
             errorMessage: form.errors.username,
@@ -91,7 +101,8 @@ const FormComponent = () => {
         {
             id: 'student_number',
             type: 'text',
-            autoComplete: 'current-password',
+            name: 'student_number',
+            autoComplete: 'off',
             placeholder: '학번',
             icon: <StudentIcon />,
             errorMessage: form.errors.student_number,
@@ -100,18 +111,20 @@ const FormComponent = () => {
         {
             id: 'phone',
             type: 'text',
-            autoComplete: 'current-password',
+            name: 'phone',
+            autoComplete: 'tel',
             placeholder: '휴대폰 번호',
             icon: <MobileIcon />,
             errorMessage: form.errors.phone,
             value: form.data.phone,
         },
-    ];
+    ], [form.errors, form.data]);
 
     const validateForm = () => {
-        const validationErrors = { ...form.errors }
+        const validationErrors = { ...form.errors }; // 오류 객체 복사
         let isFormValid = true;
 
+        // Email 검증
         if (!form.data.email.trim()) {
             validationErrors.email = '이메일을 입력해주세요.';
             isFormValid = false;
@@ -120,6 +133,7 @@ const FormComponent = () => {
             isFormValid = false;
         }
 
+        // Password 검증
         if (!form.data.password.trim()) {
             validationErrors.password = '비밀번호를 입력해주세요.';
             isFormValid = false;
@@ -128,6 +142,7 @@ const FormComponent = () => {
             isFormValid = false;
         }
 
+        // Password Confirm 검증
         if (!form.data.passwordConfirm.trim()) {
             validationErrors.passwordConfirm = '비밀번호 확인란을 입력해주세요.';
             isFormValid = false;
@@ -136,29 +151,29 @@ const FormComponent = () => {
             isFormValid = false;
         }
 
+        // Username 검증
         if (!form.data.username.trim()) {
             validationErrors.username = '이름을 입력해주세요.';
         } else if (!isValidUsername(form.data.username)) {
             validationErrors.username = '올바른 이름을 입력하세요.';
         }
 
+        // Student Number 검증
         if (!form.data.student_number.trim()) {
             validationErrors.student_number = '학번을 입력해주세요.';
         } else if (!isValidStudentNumber(form.data.student_number)) {
             validationErrors.student_number = '올바른 학번을 입력하세요.';
         }
 
+        // Phone 검증
         if (!form.data.phone.trim()) {
             validationErrors.phone = '휴대폰 번호를 입력해주세요.';
         } else if (!isValidPhoneNumber(form.data.phone)) {
             validationErrors.phone = '유효한 휴대폰 번호를 입력하세요.';
         }
 
-        // 검사 결과를 상태 변수에 설정
-        setForm(prevForm => ({
-            ...prevForm,
-            errors: validationErrors
-        }))
+        // 검사 결과를 form.errors에 설정
+        setForm({ ...form, errors: validationErrors });
 
         return isFormValid;
     }
@@ -177,10 +192,12 @@ const FormComponent = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
+        // 폼 유효성 검사를 수행하고, 유효하지 않을 경우 false 반환
         if (!validateForm()) {
             return;
         }
 
+        // 폼 데이터 서버에 전송
         const res = await fetch('/api/register', {
             method: 'POST',
             headers: {
@@ -190,11 +207,13 @@ const FormComponent = () => {
         });
 
         const result = await res.json();
+
+        // 결과에 따른 처리 수행
         if (result.success) {
-            alert('Ok');
-            router.replace('/');
+            alert('가입에 성공했습니다!'); // 성공 메시지
+            router.replace('/'); // 성공 시 홈페이지로 리다이렉트
         } else {
-            console.error('Registration error', result);
+            console.error('가입 오류', result); // 실패 시 콘솔에 오류 로깅
         }
     }
 
