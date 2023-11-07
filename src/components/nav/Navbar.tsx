@@ -52,7 +52,7 @@ const Navbar = () => {
                 <div className={(!session ? 'ml-[220px]' : 'ml-[245px]') + " flex flex-grow justify-center"}>
                     <Link className='flex items-center gap-1' href='/'>
                         <Image
-                            src='/AUCampusPay_Yellow.svg'
+                            src='/NewLogo.svg'
                             alt='웹페이지 로고'
                             width={190}
                             height={80}

@@ -16,26 +16,25 @@ const LoginPage = () => {
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
-        const {email, password} = e.target.elements;
+        const email = e.target.elements.email.value;
+        const password = e.target.elements.password.value;
 
-        const emailVal = email.value;
-        const passwordVal = password.value;
 
         // 이메일 유효성 검사
-        if (!isValidEmail(emailVal)) {
+        if (!isValidEmail(email)) {
             setEmailError('유효한 이메일 주소를 입력하세요.');
             return;
+        } else {
+            setEmailError('');
         }
 
         // 비밀번호 유효성 검사
-        if (!isValidPassword(passwordVal)) {
+        if (!isValidPassword(password)) {
             setPasswordError('비밀번호는 8-20자 길이여야 하며, 영문, 숫자, 특수문자를 포함해야 합니다.');
             return;
+        } else {
+            setPasswordError('');
         }
-
-        // 에러 메세지 초기화
-        setEmailError('');
-        setPasswordError('');
 
         // 로그인 시도
         const response = await signIn('Credentials', {
