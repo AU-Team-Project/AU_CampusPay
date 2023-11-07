@@ -2,6 +2,7 @@ import React from 'react';
 import FormComponent from "@/components/form/Form";
 import Link from "next/link";
 import Image from "next/image";
+import SmallNavbar from "@/components/nav/SmallNavbar";
 
 const RegisterPage = () => {
     /**
@@ -10,18 +11,9 @@ const RegisterPage = () => {
     return (
         <div className={'h-[100vh]'}>
             {/* Header */}
-            <div className="p-5 shadow">
-                <Link className="flex items-center gap-1" href="/">
-                    <Image
-                        src="/AUCampusPay_Yellow.svg"
-                        width={225}
-                        height={100}
-                        alt="웹페이지 로고"
-                    />
-                </Link>
-            </div>
+            <SmallNavbar/>
             {/* Main */}
-            <div className="w-screen flex items-center justify-center pb-12 px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-center pb-12 px-4 sm:px-6 lg:px-8">
                 <div className="w-[620px] h-full mt-5 space-y-8 p-6 bg-white rounded-md shadow-md">
                     <FormComponent/>
                 </div>

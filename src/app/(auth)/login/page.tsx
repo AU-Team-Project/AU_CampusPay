@@ -8,6 +8,7 @@ import PasswordIcon from "@/components/ui/Icons/PasswordIcon";
 import {isValidEmail, isValidPassword} from '@/service/auth';
 import {useRouter} from "next/navigation";
 import FormInput from "@/components/ui/Input/FormInput";
+import SmallNavbar from "@/components/nav/SmallNavbar";
 
 const LoginPage = () => {
     const router = useRouter();
@@ -52,24 +53,15 @@ const LoginPage = () => {
     };
 
     return (
-        <>
+        <div className={'overflow-x-hidden'}>
             {/* Header */}
-            <div className="p-5 shadow">
-                <Link className="flex items-center gap-1" href="/">
-                    <Image
-                        src="/AUCampusPay_Yellow.svg"
-                        width={225}
-                        height={100}
-                        alt="웹페이지 로고"
-                    />
-                </Link>
-            </div>
+            <SmallNavbar/>
             {/* Main */}
-            <div className="w-screen flex items-center justify-center pb-12 px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-center pb-12 px-4 sm:px-6 lg:px-8">
                 <div className="max-w-max w-full my-36 py-20 space-y-8 p-6 bg-white rounded-md shadow-md">
                     <div className="mb-16 px-10 flex flex-col justify-center">
                         <h1 className={'text-2xl'}>
-                            CampusPay에 오신 것을 환영합니다.
+                            <span className={'font-semibold'}>CampusPay</span>에 오신 것을 환영합니다.
                         </h1>
                         <p className={'mt-2 text-center'}>
                             시작하려면 로그인하세요.
@@ -125,7 +117,7 @@ const LoginPage = () => {
                     </form>
                 </div>
             </div>
-        </>
+        </div>
     );
 };
 
