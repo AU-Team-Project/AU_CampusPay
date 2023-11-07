@@ -49,7 +49,7 @@ const Sidebar = () => {
                     className='p-1 top-1 bg-blue-custom rounded-[50%]'
                 >
                     <Image
-                        src='/AU_White.svg'
+                        src='/AU_Small_SVG.svg'
                         width={60}
                         height={60}
                         alt='웹페이지 로고'

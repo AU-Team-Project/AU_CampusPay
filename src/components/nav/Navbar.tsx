@@ -20,7 +20,7 @@ const Navbar = () => {
         {
             id: 2,
             label: '이용방법',
-            href: `/`,
+            href: `/guide`,
         },
         {
             id: 3,
@@ -48,7 +48,7 @@ const Navbar = () => {
     return (
         <header className='mt-5 h-[145px] flex-col'>
             {/* PC */}
-            <div className='h-14 flex justify-between items-center bg-white text-white'>
+            <div className='h-14 flex justify-between items-center text-white'>
                 <div className={(!session ? 'ml-[220px]' : 'ml-[245px]') + " flex flex-grow justify-center"}>
                     <Link className='flex items-center gap-1' href='/'>
                         <Image
