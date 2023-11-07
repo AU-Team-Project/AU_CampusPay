@@ -25,7 +25,10 @@ module.exports = {
         '1200': '1200ms',
         '1500': '1500ms',
         '3000': '3000ms'
-      }
+      },
+      boxShadow: {
+        'custom': '0 2px 4px rgba(0, 0, 0, 0.1)',
+      },
     },
   },
   plugins: [],

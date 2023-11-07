@@ -28,7 +28,7 @@ const sideMenu = [
         name: '사용자 관리'
     },
     {
-        href: '/notice',
+        href: '/notice/lists?page=1',
         icon: <NoticeIcon />,
         name: '공지 관리'
     },
@@ -40,7 +40,6 @@ const sideMenu = [
 ];
 
 const Sidebar = () => {
-
     return (
         <div className='flex w-20 ease-out duration-200'>
             <div className='fixed w-20 z-40 top-0 bottom-0 h-full p-4 bg-white border-r-[1px] flex flex-col ease-out duration-300'>
