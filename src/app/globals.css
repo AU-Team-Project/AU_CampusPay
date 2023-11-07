@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    scroll-behavior: smooth;
+}
+
 html,
 body {
     box-sizing: border-box;
@@ -30,4 +34,24 @@ ol, li {
 .setSectionScroll {
     font-size: 3rem;
     transition: 1.5s;
+}
+
+/* GuideSection 을 위한 키프레임 이벤트 (모듈화 예정) */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fadeInUp {
+    opacity: 0; /* 초기 상태는 보이지 않게 설정 */
+    animation-name: fadeInUp;
+    animation-fill-mode: forwards; /* 애니메이션이 끝난 상태를 유지 */
+    animation-duration: 1s; /* 애니메이션 지속 시간 */
+    animation-timing-function: ease-out; /* 속도 곡선 */
 }
