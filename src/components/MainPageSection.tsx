@@ -58,7 +58,7 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
     return (
         <div className='flex flex-col'>
             {/* 인덱스 페이지 섹션 1 */}
-            <section className='h-screen flex justify-center items-center gap-5 bg-section1-color'>
+            <section className='h-screen flex justify-center items-center gap-5'>
                 <div className='relative'>
                     <Image
                         src={'/img/index/Project.svg'}
@@ -67,7 +67,7 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                         height={457}
                     />
                 </div>
-                <div>
+                <div className={'text-black-color'}>
                     <div>
                         <h1 className='text-[50px]'>
                             점심을 위한 더 나은 방법

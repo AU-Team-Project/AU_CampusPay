@@ -12,7 +12,7 @@ export default async function Home() {
     return (
         <div>
             <TopNavbar/>
-            <main className='w-screen min-h-screen max-h-full bg-gray-200 text-white'>
+            <main className='w-screen min-h-screen max-h-full text-white'>
                 <MainPageSection session={session}/>
             </main>
             <Footer/>
