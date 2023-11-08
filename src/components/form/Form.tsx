@@ -9,6 +9,7 @@ import UserIcon from "@/components/ui/Icons/UserIcon";
 import StudentIcon from "@/components/ui/Icons/StudentIcon";
 import MobileIcon from "@/components/ui/Icons/MobileIcon";
 import FormInput from "@/components/ui/Input/FormInput";
+import ColorButton from "@/components/ui/Button/ColorButton";
 
 interface FormState {
     data: {
@@ -238,9 +239,11 @@ const FormComponent = () => {
                 ))}
             </div>
             {generateErrorMessages()}
-            <button type="submit" className="group relative w-full flex justify-center py-3 px-4 border border-blue-custom-hover border-transparent text-[18px] font-medium rounded-[25px] text-white bg-footer-color hover:bg-blue-custom-hover active:outline-none active:ring active:ring-offset-3 active:ring-blue-custom-hover ease-out duration-200">
-                회원가입
-            </button>
+            <ColorButton
+                buttonType={'submit'}
+                text={'회원가입'}
+                className="group relative w-full flex justify-center py-3 px-4 border border-blue-custom-hover border-transparent text-[18px] font-medium rounded-[25px] text-white bg-footer-color hover:bg-blue-custom-hover active:outline-none active:ring active:ring-offset-3 active:ring-blue-custom-hover ease-out duration-200"
+            />
         </form>
     );
 };

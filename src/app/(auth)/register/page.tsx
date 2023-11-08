@@ -1,7 +1,5 @@
 import React from 'react';
 import FormComponent from "@/components/form/Form";
-import Link from "next/link";
-import Image from "next/image";
 import SmallNavbar from "@/components/nav/SmallNavbar";
 
 const RegisterPage = () => {
