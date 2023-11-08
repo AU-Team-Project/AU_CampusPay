@@ -2,13 +2,15 @@ import React from 'react';
 
 type Props = {
     text: string;
+    buttonType?: 'submit' | 'button' | 'reset';
     className?: string;
     onClick?: () => void;
 }
 
-const ColorButton = ({text, onClick, className}: Props) => {
+const ColorButton = ({buttonType, text, onClick, className}: Props) => {
     return (
         <button
+            type={buttonType}
             className={className}
             onClick={onClick}
         >

@@ -10,6 +10,7 @@ import EmailIcon from "@/components/ui/Icons/EmailIcon";
 import PasswordIcon from "@/components/ui/Icons/PasswordIcon";
 import FormInput from "@/components/ui/Input/FormInput";
 import SmallNavbar from "@/components/nav/SmallNavbar";
+import ColorButton from "@/components/ui/Button/ColorButton";
 
 const LoginPage = () => {
     const router = useRouter();
@@ -95,6 +96,7 @@ const LoginPage = () => {
                         onSubmit={handleSubmit}
                         noValidate
                     >
+                        {/* Login Input */}
                         <div className="rounded-md shadow-sm flex flex-col gap-4">
                             <FormInput
                                 id="email"
@@ -121,11 +123,11 @@ const LoginPage = () => {
                         </div>
                         {/* Submit OR Register, Inquiry */}
                         <div>
-                            <button
-                                type="submit"
+                            <ColorButton
+                                buttonType={'submit'}
+                                text={'로그인'}
                                 className={`${isSubmitting ? 'bg-gray-300' : 'bg-footer-color'} "group relative w-full flex justify-center py-3 px-4 border border-blue-custom-hover border-transparent text-[18px] font-medium rounded-[25px] text-white bg-footer-color hover:bg-blue-custom-hover active:outline-none active:ring active:ring-offset-3 active:ring-blue-custom-hover ease-out duration-200"`}
-                            >로그인
-                            </button>
+                            />
                             <div className="mt-5 flex justify-around text-[12px] text-gray-600">
                                 <Link
                                     href={'/register'}
