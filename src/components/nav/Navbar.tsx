@@ -3,7 +3,6 @@ import React, {useState} from 'react';
 import Link from "next/link";
 import Image from 'next/image'
 
-import NavbarLink from "@/components/nav/NavbarLink";
 import {signIn, signOut, useSession} from "next-auth/react";
 import {AiOutlineClose} from "react-icons/ai";
 import {GiHamburgerMenu} from "react-icons/gi";
@@ -154,7 +153,7 @@ const Navbar = () => {
                     </li>
                 </ul>
                 <ul className='pt-5 pr-10 pl-10 text-lg space-y-4'>
-                    <NavbarLink session={session}/>
+                    {getLinkItem(session)}
                 </ul>
             </div>
         </header>

@@ -67,12 +67,12 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                         height={457}
                     />
                 </div>
-                <div className={'text-black-color'}>
+                <div className={'text-black'}>
                     <div>
-                        <h1 className='text-[50px]'>
+                        <h1 className='text-[50px] font-bold text-title-font-color'>
                             점심을 위한 더 나은 방법
                         </h1>
-                        <p className='text-[27px]'>
+                        <p className='text-[27px] text-sub-font-color'>
                             AU CampusPay는 안산대학교 학생을 위한,<br/>
                             빠르고 간편한 식권 구입 시스템입니다.
                         </p>
@@ -87,10 +87,10 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                             />
                         </div>
                         <div>
-                            <h1 className='text-[30px] font-semibold'>
+                            <h1 className='text-[30px] text-title-font-color font-semibold'>
                                 빠르고 쉬운 식권 인증 시스템.
                             </h1>
-                            <p className='text-[22px]'>
+                            <p className='text-[22px] text-sub-font-color'>
                                 온라인 구매와 QR코드 인증 시스템이 합쳐진<br/>
                                 빠른 인증 시스템을 활용한 더 나은 시스템을<br/>
                                 제공합니다.
@@ -115,16 +115,14 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                         height={381}
                     />
                 </div>
-                <div>
+                <div className={'w-[372px]'}>
                     <div>
-                        <h1 className={`mb-5 font-bold ${scroll > 620 ? 'setSectionTitle' : 'sectionTitle'}`}>
-                            앉은 자리에서 간편하게 구매.
+                        <h1 className={`w-[529px] mb-5 font-bold text-section2-text-color ${scroll > 620 ? 'setSectionTitle' : 'sectionTitle'}`}>
+                            앉은 자리에서<br/>간편하게
                         </h1>
-                        <div className='relative'>
-                            <p className={`text-[27px] absolute left-[-700px] ${scroll > 700 ? 'sectionScroll left-[4px]' : 'setSectionScroll'}`}>
-                                핸드폰과 노트북만으로 카카오페이를 이용해,
-                            </p>
-                            <p className={`text-[27px] absolute left-[-700px] top-10 ${scroll > 800 ? 'sectionScroll top-0 left-[4px]' : 'setSectionScroll'}`}>
+                        <div className='w-[704px] relative text-[27px]'>
+                            <p className={`absolute text-sub-font-color left-[-700px] leading-loose ${scroll > 700 ? 'sectionScroll left-[4px]' : 'setSectionScroll'}`}>
+                                핸드폰과 노트북만으로 카카오페이를 이용해,<br/>
                                 그 자리에서 간편하게 식권을 구매할 수 있습니다.
                             </p>
                         </div>
@@ -134,7 +132,7 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                         className={`${scroll > 835 ? 'transition duration-[3s] opacity-100' : 'transition duration-[1s] opacity-0'}`}
                     >
                         <div
-                            className={`w-[720px] h-[80px] mt-52 text-[35px] flex justify-center items-center font-medium bg-footer-color rounded-[10px]`}>
+                            className={`w-[320px] h-[80px] mt-40 text-[35px] flex justify-center items-center font-medium bg-gray-500 rounded-[10px]`}>
                             <span>식권 구매하기</span>
                         </div>
                     </Link>
@@ -144,7 +142,7 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
             <section className='h-screen flex justify-center gap-20 items-center bg-section3-color relative'>
                 <div>
                     <Image
-                        className={`absolute left-48 ${scroll > 1650 ? 'top-[100px] duration-1500 ease-in' : 'top-[800px] duration-3000'}`}
+                        className={`absolute left-48 ${scroll > 1650 ? 'top-[100px] duration-1500 ease-in opacity-100' : 'top-[800px] duration-3000 opacity-0'}`}
                         src={'/img/index/Scanner.svg'}
                         alt={'메인페이지 스캐너 섹션 이미지'}
                         width={560}
@@ -152,19 +150,13 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                     />
                 </div>
                 <div>
-                    <h1 className={`mb-5 font-bold text-[70px] absolute top-60 right-0 ${scroll > 1650 ? 'right-96 duration-1500' : 'right-0 duration-1200'}`}>
-                        배치된 스캐너를
+                    <h1 className={`mb-5 font-bold text-[70px] absolute top-60 right-52 text-section3-text-color ${scroll > 1650 ? 'right-96 duration-1500' : 'right-0 duration-1200'}`}>
+                        스캐너를 이용한<br/>
+                        간편 인증.
                     </h1>
-                    <h1 className={`mb-5 font-semibold text-[50px] absolute top-[22rem] right-0 ${scroll > 1700 ? 'right-[300px] duration-1500' : 'right-0 duration-1200'}`}>
-                        이용한 간편 인증.
-                    </h1>
-                    <p className={`text-[27px] absolute right-[200px] ${scroll > 1730 ? 'top-[30rem] duration-1200' : 'top-[1000px] duration-1500'}`}>
-                        카페테리아에 비치된 스캐너에, QR 식권을
-                    </p>
-                    <p className={`text-[27px] absolute right-[205px] ${scroll > 1880 ? 'top-[34rem] duration-1200' : 'top-[1000px] duration-1500'}`}>
-                        스캐너에 비추는 것 만으로, 끝나는 빠르고
-                    </p>
-                    <p className={`text-[27px] absolute right-[345px] ${scroll > 1970 ? 'top-[38rem] duration-1200' : 'top-[1000px] duration-1500'}`}>
+                    <p className={`text-[27px] absolute right-[200px] text-sub-font-color leading-loose ${scroll > 1730 ? 'top-[30rem] duration-1200 opacity-100' : 'top-[600px] duration-1500 opacity-0'}`}>
+                        카페테리아에 비치된 스캐너에, QR 식권을<br/>
+                        스캐너에 비추는 것 만으로, 끝나는 빠르고<br/>
                         간편한 인증을 할 수 있습니다.
                     </p>
                 </div>
@@ -179,15 +171,13 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                         height={300}
                     />
                 </div>
-                <div className={'w-[572px] relative'}>
-                    <div className={`absolute ${scroll > 2850 ? 'top-[-100px] opacity-100 duration-1200' : 'top-[-10px] opacity-0 duration-1200'}`}>
-                        <h1 className='mb-5 text-[50px] font-semibold'>
+                <div className={'w-[572px] relative right-36'}>
+                    <div className={`absolute ${scroll > 2850 ? 'top-[-80px] opacity-100 duration-1200' : 'top-[-10px] opacity-0 duration-1200'}`}>
+                        <h1 className='mb-5 text-[50px] text-bold font-semibold text-section4-text-color'>
                             보기 쉬운 식단표
                         </h1>
-                        <p className='text-[27px]'>
-                            식당 별로 매 주 단위로 정리된 식단표를 통해,
-                        </p>
-                        <p className='text-[27px]'>
+                        <p className='text-[20px] text-sub-font-color leading-loose'>
+                            식당 별로 매 주 단위로 정리된 식단표를 통해,<br/>
                             빠르고 직관적으로 식단을 파악할 수 있습니다.
                         </p>
                     </div>
@@ -211,20 +201,20 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                 </div>
                 <div>
                     <div className={'w-[621px] relative'}>
-                        <h1 className={`text-[50px] absolute ${scroll > 3761 ? 'top-[-100px] opacity-100 duration-1500' : 'top-0 opacity-0 duration-1200'}`}>
+                        <h1 className={`text-[50px] text-section5-text-color font-bold absolute ${scroll > 3300 ? 'top-[-100px] opacity-100 duration-1500' : 'top-0 opacity-0 duration-1200'}`}>
                             챗봇을 통한 안내 시스템
                         </h1>
-                        <p className={`text-[27px] absolute ${scroll > 3944 ? 'top-[0px] opacity-100 duration-1200' : 'top-32 opacity-0 duration-1200'}`}>
+                        <p className={`text-[20px] absolute leading-loose text-sub-font-color ${scroll > 3700 ? 'top-[0px] opacity-100 duration-1200' : 'top-32 opacity-0 duration-1200'}`}>
                             AU CampusPay의 카카오톡 챗봇을 추가하면,<br/>
                             각종 이용 안내 및 오류 해결 방안을 얻을 수 있습니다.
                         </p>
                     </div>
-                    <button
+                    {/*<button
                         className={`w-[335px] h-[80px] mt-32 bg-footer-color font-medium text-[35px] rounded-[10px] ${scroll > 3944 ? 'opacity-100 duration-1200' : 'opacity-0 duration-1200'}`}
                         onClick={() => alert('준비중 입니다.')}
                     >
                         챗봇 추가하기
-                    </button>
+                    </button>*/}
                 </div>
             </section>
         </div>
