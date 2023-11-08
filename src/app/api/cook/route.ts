@@ -12,8 +12,10 @@ export async function GET(req: NextRequest) {
 
         const page = parseInt(req.nextUrl.searchParams.get('page') || '1');
         const pageSize = 10;
+        const item: string = req.nextUrl.searchParams.get('restaurant') || '0';
+        const findItem: number = parseInt(item);
         const findCollection = await cookCollection
-            .find()
+            .find( { cook_id: { $gt: findItem, $lt: findItem+100000 } } )
             .skip((page - 1) * pageSize)
             .limit(pageSize)
             .toArray();

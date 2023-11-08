@@ -5,12 +5,11 @@ import Link from "next/link";
 import PageNation from "@/components/ui/PageNation";
 import { ObjectId } from "mongodb";
 
-{/* [slug]== 식당 탭에 따른 메뉴 표시 기능 이후 추가 예정 */}
-// type Props = {
-//     params: {
-//         slug: string;
-//     }
-// }
+type Props = {
+    params: {
+        slug: string;
+    }
+}
 
 type cookData = {
     _id: ObjectId;
@@ -35,61 +34,88 @@ const tabList = [
     }
 ]
 
-const getDateInfo = (dateString: string) => {
-    const itemDate = new Date(dateString);
-    const dateInfo = `${itemDate.getFullYear()}.${itemDate.getMonth() + 1}.${itemDate.getDate()}`;
-    const days = ['일', '월', '화', '수', '목', '금', '토'];
-    const week = days[itemDate.getDay()];
-    return { dateInfo, week };
-};
 
-const getRestaurant = (cook_id: number) => {
-    const restaurantCode = cook_id.toString().substring(0, 1);
-    switch (restaurantCode) {
-        case '1':
-            return '학생';
-        case '2':
-            return '교직원';
-        case '3':
-            return '기숙사';
-        default:
-            return '존재하지 않는 식당';
+const MenuPage = (params: Props) => {
+    const currentpath = params.params.slug
+    const getDateInfo = (dateString: string) => {
+        const itemDate = new Date(dateString);
+        const dateInfo = `${itemDate.getFullYear()}.${itemDate.getMonth() + 1}.${itemDate.getDate()}`;
+        const days = ['일', '월', '화', '수', '목', '금', '토'];
+        const week = days[itemDate.getDay()];
+        return { dateInfo, week };
+    };
+
+    const getRestaurant = (cook_id: number) => {
+        const restaurantCode = cook_id.toString().substring(0, 1);
+        switch (restaurantCode) {
+            case '1':
+                return '학생';
+            case '2':
+                return '교직원';
+            case '3':
+                return '기숙사';
+            default:
+                return '존재하지 않는 식당';
+        }
+    };
+
+    const getMenuName = (cook_id: number) => {
+        const menuCode = cook_id.toString().substring(5);
+        switch (menuCode) {
+            case '1':
+                return '[중식] 일품1';
+            case '2':
+                return '[중식] 일품2';
+            case '3':
+                return '조식';
+            case '4':
+                return '석식';
+            default:
+                return '존재하지 않는 메뉴';
+        }
+    };
+
+    const getPathName = (currentpath: string) => {
+        switch (currentpath) {
+            case 'student':
+                return '학생';
+            case 'staff':
+                return '교직원';
+            case 'dormitory':
+                return '기숙사';
+            default:
+                return '존재하지 않는 식당';
+        }
+    };
+
+    const splitMenu = (menu: []) => {
+        const splitMenus = menu.join(", ");
+        return splitMenus;
     }
-};
 
-const getMenuName = (cook_id: number) => {
-    const menuCode = cook_id.toString().substring(5);
-    switch (menuCode) {
-        case '1':
-            return '[중식] 일품1';
-        case '2':
-            return '[중식] 일품2';
-        case '3':
-            return '조식';
-        case '4':
-            return '석식';
-        default:
-            return '존재하지 않는 메뉴';
+    const findItem = (currentpath: string) => {
+        switch (currentpath) {
+            case 'student':
+                return 100000;
+            case 'staff':
+                return 200000;
+            case 'dormitory':
+                return 300000;
+            default:
+                return '클라이언트 오류';
+        }
     }
-};
+    console.log(findItem(currentpath));
 
-const splitMenu = (menu: []) => {
-    const splitMenus = menu.join(", ");
-    return splitMenus;
-}
+    const [activeTab, setActiveTab] = useState(getPathName(currentpath) || '');
 
-const LunchTablePage = () => {
-    const [activeTab, setActiveTab] = useState('학생');
-    {/* 탭에 따른 이벤트 추가 예정 */}
-    // const tabIndex = tabList.findIndex(tab => tab.label === activeTab);
-    
     const [menus, setMenus] = useState<cookData[]>([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
         const fetchData = async () => {
-            const res = await fetch(`/api/cook?page=${page}`);
+            const res = await fetch(`/api/cook?page=${page}&restaurant=${findItem(currentpath)}`);
             const data = await res.json();
 
             setMenus(data.data.reverse());
@@ -110,10 +136,9 @@ const LunchTablePage = () => {
                     <div className="flex h-[60px] text-[22px] text-white bg-[#555555]">
                         {tabList.map((item) => (
                             <Link
-                                href={item.path}
+                                href={`${item.path}?page=${page}&restaurant=${findItem(currentpath)}`}
                                 key={item.label}
-                                onClick={() => setActiveTab(item.label)}
-                                className={`leading-[60px] w-full text-center ${activeTab === item.label ? "font-semibold bg-[#009223] rounded-r-[50px]" : ""}`}
+                                className={`leading-[60px] w-full text-center ${activeTab === item.label ? "font-semibold bg-[#009223]" : ""}`}
                             >
                                 {item.label}
                             </Link>
@@ -144,22 +169,22 @@ const LunchTablePage = () => {
                         const menuDetail = splitMenu(item.menu);
 
                         return (
-                            <div key={item._id.toString()} className="relative w-full leading-[60px] text-[18px] flex text-center">
-                                <div className="w-[163px]">
+                            <div key={item._id.toString()} className="relative w-full h-[60px] text-center text-[18px] flex">
+                                <span className="w-[163px] flex items-center justify-center">
                                     {dateInfo} ({week})
-                                </div>
-                                <div className="w-[116px]">
+                                </span>
+                                <span className="w-[116px] flex items-center justify-center">
                                     {restaurant}
-                                </div>
-                                <div className="w-[172px]">
+                                </span>
+                                <span className="w-[172px] flex items-center justify-center">
                                     {menuName}
-                                </div>
-                                <div className="w-[116px]">
+                                </span>
+                                <span className="w-[116px] flex items-center justify-center">
                                     {item.price}원
-                                </div>
-                                <div className="w-[635px]">
+                                </span>
+                                <span className="w-[635px] flex items-center justify-center">
                                     {menuDetail}
-                                </div>
+                                </span>
                             </div>
                         );
                     })}
@@ -175,4 +200,4 @@ const LunchTablePage = () => {
     );
 };
 
-export default LunchTablePage;
+export default MenuPage;
