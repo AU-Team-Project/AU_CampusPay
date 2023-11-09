@@ -121,7 +121,7 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                             앉은 자리에서<br/>간편하게
                         </h1>
                         <div className='w-[704px] relative text-[27px]'>
-                            <p className={`absolute text-sub-font-color left-[-700px] leading-loose ${scroll > 700 ? 'sectionScroll left-[4px]' : 'setSectionScroll'}`}>
+                            <p className={`text-[22px] absolute text-sub-font-color left-[-700px] leading-loose ${scroll > 700 ? 'sectionScroll left-[4px]' : 'setSectionScroll'}`}>
                                 핸드폰과 노트북만으로 카카오페이를 이용해,<br/>
                                 그 자리에서 간편하게 식권을 구매할 수 있습니다.
                             </p>
@@ -132,7 +132,7 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                         className={`${scroll > 835 ? 'transition duration-[3s] opacity-100' : 'transition duration-[1s] opacity-0'}`}
                     >
                         <div
-                            className={`w-[320px] h-[80px] mt-40 text-[35px] flex justify-center items-center font-medium bg-gray-500 rounded-[10px]`}>
+                            className={`w-[152px] h-[42px] mt-40 text-[18px] flex justify-center items-center font-medium bg-section2-color border-solid border-2 border-primary-color text-primary-color rounded-[10px]`}>
                             <span>식권 구매하기</span>
                         </div>
                     </Link>
@@ -150,11 +150,11 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                     />
                 </div>
                 <div>
-                    <h1 className={`mb-5 font-bold text-[70px] absolute top-60 right-48 text-section3-text-color ${scroll > 1650 ? 'right-96 duration-1500' : 'right-0 duration-1200'}`}>
+                    <h1 className={`mb-5 font-bold text-[70px] absolute top-60 right-0 text-section3-text-color ${scroll > 1650 ? 'right-52 duration-1500 opacity-100' : 'right-0 duration-1200 opacity-0'}`}>
                         스캐너를 이용한<br/>
                         간편 인증.
                     </h1>
-                    <p className={`text-[27px] absolute right-[190px] text-sub-font-color leading-loose ${scroll > 1730 ? 'top-[30rem] duration-1200 opacity-100' : 'top-[600px] duration-1500 opacity-0'}`}>
+                    <p className={`text-[22px] absolute text-sub-font-color leading-loose ${scroll > 1730 ? 'top-[30rem] right-72 duration-1200 opacity-100' : 'top-[600px] duration-1500 opacity-0'}`}>
                         카페테리아에 비치된 스캐너에, QR 식권을<br/>
                         스캐너에 비추는 것 만으로, 끝나는 빠르고<br/>
                         간편한 인증을 할 수 있습니다.
