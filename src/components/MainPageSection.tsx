@@ -100,7 +100,7 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                 </div>
             </section>
             {/* 인덱스 페이지 섹션 2*/}
-            <section className='h-[100vh] flex justify-center items-center gap-20 bg-section2-color'>
+            {/*<section className='flex justify-center items-center gap-20 bg-section2-color'>
                 <div
                     className={`${scroll > 470 ? 'duration-1500' : 'duration-1000'}`}
                     style={{
@@ -137,9 +137,9 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                         </div>
                     </Link>
                 </div>
-            </section>
+            </section>*/}
             {/* 인덱스 페이지 섹션 3*/}
-            <section className='h-[100vh] flex justify-center gap-20 items-center bg-section3-color relative'>
+            {/*<section className='flex justify-center gap-20 items-center bg-section3-color relative'>
                 <div>
                     <Image
                         className={`absolute left-48 ${scroll > 1650 ? 'top-[100px] duration-1500 ease-in opacity-100' : 'top-[800px] duration-3000 opacity-0'}`}
@@ -160,9 +160,9 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                         간편한 인증을 할 수 있습니다.
                     </p>
                 </div>
-            </section>
+            </section>*/}
             {/* 인덱스 페이지 섹션 4*/}
-            <section className='h-[100vh] bg-section4-color flex justify-center items-center gap-20'>
+            {/*<section className='bg-section4-color flex justify-center items-center gap-20'>
                 <div>
                     <Image
                         src={'/img/index/Calendar.svg'}
@@ -181,19 +181,13 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                             빠르고 직관적으로 식단을 파악할 수 있습니다.
                         </p>
                     </div>
-                    {/*<div>
+                    <div className={`w-[152px] h-[50px] text-[18px] mt-10 font-medium bg-section4-color text-primary-color border-solid border-2 border-primary-color rounded-[10px] absolute left-[190px] ${scroll > 2660 ? 'opacity-100 duration-1500' : 'opacity-0 duration-1200'}`}>
                         <Link href={'/'}>식단표 보러가기</Link>
-                    </div>*/}
-                    <button
-                        className={`w-[152px] h-[50px] text-[18px] mt-10 font-medium bg-section4-color text-primary-color border-solid border-2 border-primary-color rounded-[10px] absolute left-[190px] ${scroll > 2660 ? 'opacity-100 duration-1500' : 'opacity-0 duration-1200'}`}
-                        onClick={() => alert('준비중 입니다.')}
-                    >
-                        식단표 보러가기
-                    </button>
+                    </div>
                 </div>
-            </section>
+            </section>*/}
             {/* 인덱스 페이지 섹션 5*/}
-            <section className='h-[100vh] flex justify-center items-center gap-5 bg-section5-color'>
+            {/*<section className='flex justify-center items-center gap-5 bg-section5-color'>
                 <div>
                     <Image
                         src={'/img/index/Chatbot.svg'}
@@ -212,14 +206,8 @@ const MainPageSection = ({session}: MainPageSectionProps) => {
                             각종 이용 안내 및 오류 해결 방안을 얻을 수 있습니다.
                         </p>
                     </div>
-                    {/*<button
-                        className={`w-[335px] h-[80px] mt-32 bg-footer-color font-medium text-[35px] rounded-[10px] ${scroll > 3944 ? 'opacity-100 duration-1200' : 'opacity-0 duration-1200'}`}
-                        onClick={() => alert('준비중 입니다.')}
-                    >
-                        챗봇 추가하기
-                    </button>*/}
                 </div>
-            </section>
+            </section>*/}
         </div>
     );
 };

@@ -61,7 +61,7 @@ const Navbar = () => {
                                 관리자 페이지
                             </Link>
                         </li>
-                        <li className='text-primary-color xl:pr-10'>
+                        <li className='text-primary-color'>
                             <ColorButton
                                 text={'로그아웃'}
                                 onClick={() => signOut()}
@@ -77,7 +77,7 @@ const Navbar = () => {
                                 마이 페이지
                             </Link>
                         </li>
-                        <li className='text-primary-color xl:pr-10'>
+                        <li className='text-primary-color'>
                             <ColorButton
                                 text={'로그아웃'}
                                 onClick={() => signOut()}
@@ -88,7 +88,7 @@ const Navbar = () => {
             default:
                 return !session ? (
                     <>
-                        <li className='text-black-color text-[16px] font-bold'>
+                        <li className='flex items-center text-black-color font-bold'>
                             <Link href='/register'>회원가입</Link>
                         </li>
                         <li className='py-1 px-4 text-primary-color text-xl border-solid border-primary-color border-4 rounded-3xl hover:bg-primary-color hover:text-white hover:duration-300'>
@@ -104,38 +104,42 @@ const Navbar = () => {
 
 
     return (
-        <header className='w-screen flex-col shadow-lg shadow-gray-50 bg-white z-10'>
-            <div className={'mx-28'}>
+        <header className='min-w-[320px] flex-col shadow-lg shadow-gray-50 bg-white'>
+            <div className={'text-[17px]'}>
                 {/* Global Navigation Menu (PC) */}
-                <nav className='h-24 flex justify-between items-center'>
-                    <div>
-                        <Link className='flex items-center gap-1' href='/'>
-                            <Image
-                                src='/Logo.svg'
-                                alt='웹페이지 로고'
-                                width={93}
-                                height={13}
-                            />
-                        </Link>
-                    </div>
-                    <ul className='text-[18px] text-black-color font-semibold flex justify-center gap-12'>
-                        {NavbarRoute.map((item => (
-                            <li key={item.id}>
-                                <Link href={item.href}>
-                                    {item.label}
+                <nav className='w-full h-[44px]'>
+                    <div className={'text-[17px]'}>
+                        <ul className='text-black-color font-semibold flex items-centers justify-center gap-12'>
+                            <li className={'flex items-center'}>
+                                <Link href='/'>
+                                    <Image
+                                        src='/Logo.svg'
+                                        alt='웹페이지 로고'
+                                        width={93}
+                                        height={13}
+                                    />
                                 </Link>
                             </li>
-                        )))}
-                    </ul>
-                    <ul className={'flex items-center gap-5'}>
-                        {getLinkItem(session)}
-                    </ul>
-                    <button onClick={handleNavClick} className='pr-10 md:hidden'>
-                        <GiHamburgerMenu/>
-                    </button>
+                            {NavbarRoute.map((item => (
+                                <li key={item.id} className={'flex items-center'}>
+                                    <Link href={item.href}>
+                                        {item.label}
+                                    </Link>
+                                </li>
+                            )))}
+                            <>
+                                {getLinkItem(session)}
+                            </>
+                            {/*<li>
+                                <button onClick={handleNavClick} className='pr-10 md:hidden'>
+                                    <GiHamburgerMenu/>
+                                </button>
+                            </li>*/}
+                        </ul>
+                    </div>
                 </nav>
                 {/* Global Navigation Menu (Mobile) */}
-                <div className={`fixed top-0 right-0 w-screen h-full bg-gray-50 transition-transform duration-300 z-50 ${isClicked ? 'translate-x-0' : 'translate-x-full'}`}>
+                {/*<div className={`fixed top-0 right-0 w-screen h-full bg-gray-50 transition-transform duration-300 z-50 ${isClicked ? 'translate-x-0' : 'translate-x-full'}`}>
                     <ul className='h-14 flex justify-between items-center bg-blue-custom text-white'>
                         <li className='pl-10'>
                             <Link className='flex items-center gap-1' href='/'>
@@ -156,7 +160,7 @@ const Navbar = () => {
                     <ul className='pt-5 pr-10 pl-10 text-lg space-y-4'>
                         {getLinkItem(session)}
                     </ul>
-                </div>
+                </div>*/}
             </div>
         </header>
     );

@@ -23,7 +23,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
             <title>AU App</title>
         </head>
         <Script src="https://cdn.iamport.kr/v1/iamport.js"/>
-        <body  className={`${gothic.className} mx-auto`}>
+        <body  className={`${gothic.className}`}>
         <AuthProvider>
             {children}
         </AuthProvider>
