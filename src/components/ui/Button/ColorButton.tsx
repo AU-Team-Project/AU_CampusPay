@@ -1,7 +1,7 @@
 import React from 'react';
 
 type Props = {
-    text: string;
+    text: string | React.ReactNode;
     buttonType?: 'submit' | 'button' | 'reset';
     className?: string;
     onClick?: () => void;

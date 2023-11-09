@@ -97,7 +97,7 @@ const LoginPage = () => {
                         noValidate
                     >
                         {/* Login Input */}
-                        <div className="rounded-md shadow-sm flex flex-col gap-4">
+                        <div className="rounded-md flex flex-col gap-4">
                             <FormInput
                                 id="email"
                                 type="email"
@@ -121,26 +121,24 @@ const LoginPage = () => {
                                 errorMessage={passwordError}
                             />
                         </div>
+                        {/* Login Check Box */}
+                        <div className={'w-[120px] flex items-center cursor-pointer'}>
+                            <input type="checkbox" id={'loginCheck'}/>
+                            <label htmlFor="loginCheck" className={'ml-2 text-sm'}>
+                                계정 정보 저장
+                            </label>
+                        </div>
                         {/* Submit OR Register, Inquiry */}
                         <div>
                             <ColorButton
                                 buttonType={'submit'}
                                 text={'로그인'}
-                                className={`${isSubmitting ? 'bg-gray-300' : 'bg-footer-color'} "group relative w-full flex justify-center py-3 px-4 border border-blue-custom-hover border-transparent text-[18px] font-medium rounded-[25px] text-white bg-footer-color hover:bg-blue-custom-hover active:outline-none active:ring active:ring-offset-3 active:ring-blue-custom-hover ease-out duration-200"`}
+                                className={`group relative w-full flex justify-center py-3 px-4 border-2 border-solid text-[18px] font-bold rounded text-white bg-primary-color border-primary-color duration-200 hover:text-white hover:bg-[#ff8a00] hover:border-primary-color`}
                             />
-                            <div className="mt-5 flex justify-around text-[12px] text-gray-600">
-                                <Link
-                                    href={'/register'}
-                                    className={'text-[16px]'}
-                                >
-                                    회원가입
-                                </Link>
-                                <Link
-                                    href={'/login'}
-                                    className={'text-[16px]'}
-                                >
-                                    비밀번호 변경
-                                </Link>
+                            <div className="mt-5 ml-5 flex justify-center gap-5 text-gray-600 text-[14px]">
+                                <Link href={'/register'}>회원가입</Link>
+                                <Link href={'/login'}>아이디 찾기</Link>
+                                <Link href={'/login'}>비밀번호 변경</Link>
                             </div>
                         </div>
                     </form>

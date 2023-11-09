@@ -219,32 +219,42 @@ const FormComponent = () => {
     }
 
     return (
-        <form
-            className="mt-8 space-y-6"
-            onSubmit={handleSubmit}
-            noValidate
-        >
-            <div className="rounded-md shadow-sm flex flex-col gap-4">
-                {inputData.map((input, index) => (
-                    <FormInput
-                        key={index}
-                        id={input.id}
-                        type={input.type}
-                        autoComplete={input.autoComplete}
-                        placeholder={input.placeholder}
-                        icon={input.icon}
-                        value={input.value}
-                        onChange={handleOnchange}
-                    />
-                ))}
+        <>
+            <div className={'text-center'}>
+                <h1 className={'text-2xl'}>
+                    <span className={'font-bold'}>CampusPay</span>에 오신 것을 환영합니다.
+                </h1>
+                <p className={'mt-3'}>회원가입을 통해 다양한 서비스를 만나보세요.</p>
             </div>
-            {generateErrorMessages()}
-            <ColorButton
-                buttonType={'submit'}
-                text={'회원가입'}
-                className="group relative w-full flex justify-center py-3 px-4 border border-blue-custom-hover border-transparent text-[18px] font-medium rounded-[25px] text-white bg-footer-color hover:bg-blue-custom-hover active:outline-none active:ring active:ring-offset-3 active:ring-blue-custom-hover ease-out duration-200"
-            />
-        </form>
+            <form
+                className="mt-8 space-y-6"
+                onSubmit={handleSubmit}
+                noValidate
+            >
+                <div className="rounded-md shadow-sm flex flex-col gap-4">
+                    {inputData.map((input, index) => (
+                        <FormInput
+                            key={index}
+                            id={input.id}
+                            type={input.type}
+                            autoComplete={input.autoComplete}
+                            placeholder={input.placeholder}
+                            icon={input.icon}
+                            value={input.value}
+                            onChange={handleOnchange}
+                        />
+                    ))}
+                </div>
+                {generateErrorMessages()}
+                <div className={'relative'}>
+                    <ColorButton
+                        buttonType={'submit'}
+                        text={'회원가입'}
+                        className="w-full py-3 px-4 group justify-center border-2 border-solid text-[18px] font-bold rounded text-white bg-primary-color border-primary-color duration-200 bottom-16 hover:text-white hover:bg-[#ff8a00] hover:border-primary-color"
+                    />
+                </div>
+            </form>
+        </>
     );
 };
 
