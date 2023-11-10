@@ -4,8 +4,6 @@ import Link from "next/link";
 import Image from 'next/image'
 
 import {signIn, signOut, useSession} from "next-auth/react";
-import {AiOutlineClose} from "react-icons/ai";
-import {GiHamburgerMenu} from "react-icons/gi";
 import ColorButton from "@/components/ui/Button/ColorButton";
 import {User} from "@/model/user";
 
@@ -56,12 +54,12 @@ const Navbar = () => {
             case 'admin':
                 return (
                     <>
-                        <li className='text-primary-color'>
+                        <li className='flex items-center text-primary-color'>
                             <Link href='/admin'>
                                 관리자 페이지
                             </Link>
                         </li>
-                        <li className='text-primary-color'>
+                        <li className='flex items-center text-primary-color'>
                             <ColorButton
                                 text={'로그아웃'}
                                 onClick={() => signOut()}
@@ -102,47 +100,14 @@ const Navbar = () => {
         }
     }
 
-
     return (
         <header className='min-w-[320px] flex-col shadow-lg shadow-gray-50 bg-white'>
-            <div className={'text-[17px]'}>
+            <div className={'text-[17px] h-[65px] flex items-center'}>
                 {/* Global Navigation Menu (PC) */}
-                <nav className='w-full h-[44px]'>
-                    <div className={'text-[17px]'}>
-                        <ul className='text-black-color font-semibold flex items-centers justify-center gap-12'>
-                            <li className={'flex items-center'}>
-                                <Link href='/'>
-                                    <Image
-                                        src='/Logo.svg'
-                                        alt='웹페이지 로고'
-                                        width={93}
-                                        height={13}
-                                    />
-                                </Link>
-                            </li>
-                            {NavbarRoute.map((item => (
-                                <li key={item.id} className={'flex items-center'}>
-                                    <Link href={item.href}>
-                                        {item.label}
-                                    </Link>
-                                </li>
-                            )))}
-                            <>
-                                {getLinkItem(session)}
-                            </>
-                            {/*<li>
-                                <button onClick={handleNavClick} className='pr-10 md:hidden'>
-                                    <GiHamburgerMenu/>
-                                </button>
-                            </li>*/}
-                        </ul>
-                    </div>
-                </nav>
-                {/* Global Navigation Menu (Mobile) */}
-                {/*<div className={`fixed top-0 right-0 w-screen h-full bg-gray-50 transition-transform duration-300 z-50 ${isClicked ? 'translate-x-0' : 'translate-x-full'}`}>
-                    <ul className='h-14 flex justify-between items-center bg-blue-custom text-white'>
-                        <li className='pl-10'>
-                            <Link className='flex items-center gap-1' href='/'>
+                <nav className='w-full'>
+                    <ul className='text-black-color font-semibold flex items-centers justify-center gap-12'>
+                        <li className={'flex items-center'}>
+                            <Link href='/'>
                                 <Image
                                     src='/Logo.svg'
                                     alt='웹페이지 로고'
@@ -151,16 +116,14 @@ const Navbar = () => {
                                 />
                             </Link>
                         </li>
-                        <li className='pr-10'>
-                            <button onClick={handleNavClick}>
-                                <AiOutlineClose/>
-                            </button>
-                        </li>
+                        {NavbarRoute.map((item => (
+                            <li key={item.id} className={'flex items-center'}>
+                                <Link href={item.href}>{item.label}</Link>
+                            </li>
+                        )))}
+                        <>{getLinkItem(session)}</>
                     </ul>
-                    <ul className='pt-5 pr-10 pl-10 text-lg space-y-4'>
-                        {getLinkItem(session)}
-                    </ul>
-                </div>*/}
+                </nav>
             </div>
         </header>
     );

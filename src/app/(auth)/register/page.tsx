@@ -11,11 +11,9 @@ const RegisterPage = () => {
             {/* Header */}
             <SmallNavbar/>
             {/* Main */}
-            <div>
-                <div className="flex items-center justify-center pb-12 px-4 sm:px-6 lg:px-8">
-                    <div className="w-[620px] h-[720px] mt-14 space-y-8 p-6 bg-white rounded-md shadow-md">
-                        <FormComponent/>
-                    </div>
+            <div className="flex items-center justify-center pb-12 px-4 sm:px-6 lg:px-8">
+                <div className="w-[620px] h-[720px] mt-14 space-y-8 p-6 bg-white rounded-md shadow-md">
+                    <FormComponent/>
                 </div>
             </div>
         </div>
