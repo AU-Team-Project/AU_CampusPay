@@ -1,10 +1,11 @@
 'use client'
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from "next/link";
 import { ObjectId } from "mongodb";
 import TopNavbar from "@/components/nav/Navbar";
-import {useSession} from "next-auth/react";
+import { useSession } from "next-auth/react";
 import PageNation from "@/components/ui/PageNation";
+import SearchBox from "@/components/ui/Input/SearchBox";
 
 type noticeData = {
     _id: ObjectId,
@@ -18,8 +19,7 @@ type noticeData = {
 }
 
 const NoticePage = () => {
-    const {data: session} = useSession();
-
+    const { data: session } = useSession();
     const [posts, setPosts] = useState<noticeData[]>([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
@@ -36,47 +36,67 @@ const NoticePage = () => {
         fetchData();
     }, [page])
 
-
     return (
         <>
-            <TopNavbar />
-            <h2 className='mt-5 text-2xl text-center font-bold'>
-                AU Campus 공지사항
+            <TopNavbar/>
+            <h2 className='mt-24 mb-16 mx-auto text-xl text-center font-bold'>
+                CampusPay 소식을 알려드립니다.
             </h2>
+            <SearchBox/>
+            <div className={'w-64 ml-auto'}>
                 <Link href="/write" passHref>
-                    <span className='flex justify-center'>
-                        <span className="px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">
-                            공지 작성
-                        </span>
+                    <span className='cursor-pointer px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600'>
+                        공지 작성
                     </span>
                 </Link>
-            <div className="p-8">
-                {posts.map((item: noticeData) => (
-                    <div key={item._id.toString()} className="border p-4 rounded-lg mb-4">
-                        <h2 className="flex justify-between font-bold text-lg mb-2">
-                            <Link href={`/edit/find?post=${item._id}`}>
-                                <span className="text-blue-600 hover:underline">
-                                    {item.title}
-                                </span>
-                            </Link>
-                            {session?.user.role === 'admin' && (
+            </div>
+            <div className="min-w-[320px] w-10/12 mx-auto p-8">
+                <table className="w-full text-sm text-left text-gray-500">
+                    <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+                    <tr>
+                        <th scope="col" className="px-6 py-3 text-center">
+                            제목
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-center">
+                            날짜
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-center">
+                            조회수
+                        </th>
+                        <th scope="col" className="px-6 py-3 text-center">
+                            편집
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {posts.map((item: noticeData) => (
+                        <tr key={item._id.toString()} className="bg-white border-b">
+                            <td className="px-6 py-4">
                                 <Link href={`/edit/find?post=${item._id}`}>
-                                    <span className="text-[15px] text-blue-500 hover:underline">
-                                        Edit
-                                    </span>
+                                        <span className="font-medium text-blue-600 hover:underline">
+                                            {item.title}
+                                        </span>
                                 </Link>
-                            )}
-                        </h2>
-                        <div className="flex justify-between">
-                            <span className="font-light text-sm">
-                                {item.username}
-                            </span>
-                            <span className="font-light text-sm">
+                            </td>
+                            <td className="px-6 py-4 text-center">
                                 {item.date}
-                            </span>
-                        </div>
-                    </div>
-                ))}
+                            </td>
+                            <td className="px-6 py-4 text-center">
+                                {item.count}
+                            </td>
+                            <td className="px-6 py-4 text-center">
+                                {session?.user.role === 'admin' && (
+                                    <Link href={`/edit/find?post=${item._id}`}>
+                                            <span className="text-blue-500 hover:underline">
+                                                Edit
+                                            </span>
+                                    </Link>
+                                )}
+                            </td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
             </div>
             <PageNation
                 currentPage={page}
