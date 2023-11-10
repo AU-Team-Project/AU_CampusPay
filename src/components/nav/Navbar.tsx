@@ -19,7 +19,7 @@ const Navbar = () => {
         {
             id: 1,
             label: '식단표',
-            href: `/payment/${session?.user?.username}`,
+            href: `/menu/student?page=1`,
         },
         {
             id: 2,
