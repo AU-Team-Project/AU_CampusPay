@@ -17,8 +17,8 @@ const PaymentsPage = async () => {
         <>
             <Navbar/>
             <div className="min-h-screen bg-[#f7f7f7]">
-                <div className="w-full h-[125px] bg-[#F58D8D]"></div> {/* 이미지 넣을거임. */}
-                <div className="relative bottom-[35px]">
+                <div className="flex flex-col p-10 gap-[25px]">
+                    <h1 className="text-center font-bold text-[40px]">어떤 식당에서 식사하십니까?</h1>
                     <PaymentContainer/>
                 </div>
             </div>
