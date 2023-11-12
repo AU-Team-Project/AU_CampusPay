@@ -1,13 +1,19 @@
 import React from 'react';
 
-type Props = {
+interface ButtonProps {
     text: string | React.ReactNode;
-    buttonType?: 'submit' | 'button' | 'reset';
+    icon?: any;
+    buttonType?: 'submit' | 'button' | 'reset' | undefined;
     className?: string;
     onClick?: () => void;
 }
 
-const ColorButton = ({buttonType, text, onClick, className}: Props) => {
+const Button = ({
+    buttonType,
+    text,
+    onClick,
+    className
+}: ButtonProps) => {
     return (
         <button
             type={buttonType}
@@ -19,4 +25,4 @@ const ColorButton = ({buttonType, text, onClick, className}: Props) => {
     );
 };
 
-export default ColorButton;
+export default Button;

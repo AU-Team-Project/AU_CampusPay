@@ -9,7 +9,7 @@ import UserIcon from "@/components/ui/Icons/UserIcon";
 import StudentIcon from "@/components/ui/Icons/StudentIcon";
 import MobileIcon from "@/components/ui/Icons/MobileIcon";
 import FormInput from "@/components/ui/Input/FormInput";
-import ColorButton from "@/components/ui/Button/ColorButton";
+import Button from "@/components/ui/Button/Button";
 
 interface FormState {
     data: {
@@ -247,7 +247,7 @@ const FormComponent = () => {
                 </div>
                 {generateErrorMessages()}
                 <div className={'relative'}>
-                    <ColorButton
+                    <Button
                         buttonType={'submit'}
                         text={'회원가입'}
                         className="w-full py-3 px-4 group justify-center border-2 border-solid text-[18px] font-bold rounded text-white bg-primary-color border-primary-color duration-200 bottom-16 hover:text-white hover:bg-[#ff8a00] hover:border-primary-color"

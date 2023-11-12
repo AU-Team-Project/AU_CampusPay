@@ -10,7 +10,7 @@ import EmailIcon from "@/components/ui/Icons/EmailIcon";
 import PasswordIcon from "@/components/ui/Icons/PasswordIcon";
 import FormInput from "@/components/ui/Input/FormInput";
 import SmallNavbar from "@/components/nav/SmallNavbar";
-import ColorButton from "@/components/ui/Button/ColorButton";
+import Button from "@/components/ui/Button/Button";
 
 const LoginPage = () => {
     const router = useRouter();
@@ -76,15 +76,56 @@ const LoginPage = () => {
     }, [email, password, router]);
 
     return (
-        <div className={'flex flex-col h-screen overflow-x-hidden'}>
+        <div
+            className='
+                flex
+                flex-col
+                h-screen
+                overflow-x-hidden
+            '
+        >
             {/* Header */}
             <SmallNavbar/>
             {/* Main */}
-            <div className="flex-grow flex items-center justify-center pb-12 px-4 sm:px-6 lg:px-8">
-                <div className="max-w-max w-full my-24 py-20 space-y-8 p-6 bg-white rounded-md shadow-md">
-                    <div className="mb-16 px-10 flex flex-col justify-center">
-                        <h1 className={'text-2xl'}>
-                            <span className={'font-semibold'}>CampusPay</span>에 오신 것을 환영합니다.
+            <div
+                className='
+                    flex
+                    flex-grow
+                    items-center
+                    justify-center
+                    pb-12
+                    px-4
+                    sm:px-6
+                    lg:px-8
+                '
+            >
+                <div
+                    className='
+                        max-w-max
+                        w-full
+                        my-24
+                        py-20
+                        space-y-8
+                        p-6
+                        bg-white
+                        rounded-md
+                        shadow-md
+                    '
+                >
+                    <div
+                        className='
+                            mb-16
+                            px-10
+                            flex
+                            flex-col
+                            justify-center
+                        '
+                    >
+                        <h1 className='text-2xl'>
+                            <span className='font-semibold'>
+                                CampusPay
+                            </span>
+                            에 오신 것을 환영합니다.
                         </h1>
                         <p className={'mt-2 text-center'}>
                             시작하려면 로그인하세요.
@@ -97,7 +138,14 @@ const LoginPage = () => {
                         noValidate
                     >
                         {/* Login Input */}
-                        <div className="rounded-md flex flex-col gap-4">
+                        <div
+                            className='
+                                rounded-md
+                                flex
+                                flex-col
+                                gap-4
+                            '
+                        >
                             <FormInput
                                 id="email"
                                 type="email"
@@ -122,20 +170,63 @@ const LoginPage = () => {
                             />
                         </div>
                         {/* Login Check Box */}
-                        <div className={'w-[120px] flex items-center cursor-pointer'}>
-                            <input type="checkbox" id={'loginCheck'}/>
-                            <label htmlFor="loginCheck" className={'ml-2 text-sm'}>
+                        <div
+                            className='
+                                w-[120px]
+                                flex
+                                items-center
+                                cursor-pointer
+                            '
+                        >
+                            <input
+                                type="checkbox"
+                                id='loginCheck'
+                            />
+                            <label
+                                htmlFor='loginCheck'
+                                className='ml-2 text-sm'
+                            >
                                 계정 정보 저장
                             </label>
                         </div>
                         {/* Submit OR Register, Inquiry */}
                         <div>
-                            <ColorButton
-                                buttonType={'submit'}
-                                text={'로그인'}
-                                className={`group relative w-full flex justify-center py-3 px-4 border-2 border-solid text-[18px] font-bold rounded text-white bg-primary-color border-primary-color duration-200 hover:text-white hover:bg-[#ff8a00] hover:border-primary-color`}
+                            <Button
+                                buttonType='submit'
+                                text='로그인'
+                                className='
+                                    group
+                                    relative
+                                    w-full
+                                    flex
+                                    justify-center
+                                    py-3
+                                    px-4
+                                    border-2
+                                    border-solid
+                                    text-[18px]
+                                    font-bold
+                                    rounded
+                                    text-white
+                                    bg-primary-color
+                                    border-primary-color
+                                    duration-200
+                                    hover:text-white
+                                    hover:bg-[#ff8a00]
+                                    hover:border-primary-color
+                                '
                             />
-                            <div className="mt-5 ml-5 flex justify-center gap-5 text-gray-600 text-[14px]">
+                            <div
+                                className='
+                                    mt-5
+                                    ml-5
+                                    flex
+                                    justify-center
+                                    gap-5
+                                    text-gray-600
+                                    text-[14px]
+                                '
+                            >
                                 <Link href={'/register'}>회원가입</Link>
                                 <Link href={'/login'}>아이디 찾기</Link>
                                 <Link href={'/login'}>비밀번호 변경</Link>

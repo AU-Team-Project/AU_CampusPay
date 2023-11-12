@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from 'next/image'
 
 import {signIn, signOut, useSession} from "next-auth/react";
-import ColorButton from "@/components/ui/Button/ColorButton";
+import Button from "@/components/ui/Button/Button";
 import {User} from "@/model/user";
 
 type CustomSession = {
@@ -60,7 +60,7 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li className='flex items-center text-primary-color'>
-                            <ColorButton
+                            <Button
                                 text={'로그아웃'}
                                 onClick={() => signOut()}
                             />
@@ -76,7 +76,7 @@ const Navbar = () => {
                             </Link>
                         </li>
                         <li className='text-primary-color'>
-                            <ColorButton
+                            <Button
                                 text={'로그아웃'}
                                 onClick={() => signOut()}
                             />
@@ -90,7 +90,7 @@ const Navbar = () => {
                             <Link href='/register'>회원가입</Link>
                         </li>
                         <li className='py-1 px-4 text-primary-color text-xl border-solid border-primary-color border-4 rounded-3xl hover:bg-primary-color hover:text-white hover:duration-300'>
-                            <ColorButton
+                            <Button
                                 text={'로그인'}
                                 onClick={() => signIn()}
                             />
