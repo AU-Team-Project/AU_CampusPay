@@ -6,7 +6,15 @@ const SmallNavbar = () => {
     return (
         <div className="w-[100vw] p-5 shadow">
             <div className={'mx-20'}>
-                <Link className="w-[225px] flex items-center gap-1" href="/">
+                <Link
+                    href="/"
+                    className="
+                        w-[225px]
+                        flex
+                        items-center
+                        gap-1
+                    "
+                >
                     <Image
                         src='/Logo.svg'
                         alt='웹페이지 로고'

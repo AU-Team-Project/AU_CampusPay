@@ -2,13 +2,14 @@ import React from 'react';
 import {Menu} from "@/model/menu";
 import Link from "next/link";
 
-import TopNavbar from "@/components/nav/Navbar";
-import {getServerSession} from "next-auth";
-import Button from "@/components/ui/Button/Button";
-
 import {options} from "@/app/api/auth/[...nextauth]/options";
-import {redirect} from "next/navigation";
 import {ObjectId} from "mongodb";
+import {getServerSession} from "next-auth";
+import {redirect} from "next/navigation";
+
+import Navbar from "@/components/nav/Navbar";
+import Button from "@/components/ui/Button/Button";
+import DesktopNavbar from "@/components/nav/DesktopNavbar";
 
 type Props = {
     params: {
@@ -40,8 +41,8 @@ const TicketPage = async ({params}: Props) => {
     const unusedItems = featDate.filter((item: Menu) => !item.state);
 
     return (
-        <>
-            <TopNavbar/>
+        <Navbar>
+            <DesktopNavbar/>
             <main className='mx-5 my-10'>
                 <h2 className="text-2xl font-bold mb-5">
                     내 식권 목록
@@ -132,7 +133,7 @@ const TicketPage = async ({params}: Props) => {
                     </div>
                 )}
             </main>
-        </>
+        </Navbar>
     );
 };
 

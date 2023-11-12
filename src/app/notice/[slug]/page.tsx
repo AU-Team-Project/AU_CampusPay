@@ -2,10 +2,11 @@
 import React, { useEffect, useState } from 'react';
 import Link from "next/link";
 import { ObjectId } from "mongodb";
-import TopNavbar from "@/components/nav/Navbar";
+import Navbar from "@/components/nav/Navbar";
 import { useSession } from "next-auth/react";
 import PageNation from "@/components/ui/PageNation";
 import SearchBox from "@/components/ui/Input/SearchBox";
+import DesktopNavbar from "@/components/nav/DesktopNavbar";
 
 type noticeData = {
     _id: ObjectId,
@@ -37,20 +38,46 @@ const NoticePage = () => {
     }, [page])
 
     return (
-        <>
-            <TopNavbar/>
-            <h2 className='mt-24 mb-16 mx-auto text-xl text-center font-bold'>
+        <Navbar>
+            <DesktopNavbar/>
+            <h2
+                className='
+                    mt-24
+                    mb-16
+                    mx-auto
+                    text-xl
+                    text-center
+                    font-bold
+                '
+            >
                 CampusPay 소식을 알려드립니다.
             </h2>
             <SearchBox/>
             <div className={'w-64 ml-auto'}>
                 <Link href="/write" passHref>
-                    <span className='cursor-pointer px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600'>
+                    <span
+                        className='
+                        cursor-pointer
+                        px-4
+                        py-2
+                        text-white
+                        bg-blue-500
+                        rounded-md
+                        hover:bg-blue-600
+                        '
+                    >
                         공지 작성
                     </span>
                 </Link>
             </div>
-            <div className="min-w-[320px] w-10/12 mx-auto p-8">
+            <div
+                className='
+                    min-w-[320px]
+                    w-10/12
+                    mx-auto
+                    p-8
+                '
+            >
                 <table className="w-full text-sm text-left text-gray-500">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50">
                     <tr>
@@ -73,7 +100,13 @@ const NoticePage = () => {
                         <tr key={item._id.toString()} className="bg-white border-b">
                             <td className="px-6 py-4">
                                 <Link href={`/edit/find?post=${item._id}`}>
-                                        <span className="font-medium text-blue-600 hover:underline">
+                                        <span
+                                            className='
+                                                font-medium
+                                                text-blue-600
+                                                hover:underline
+                                            '
+                                        >
                                             {item.title}
                                         </span>
                                 </Link>
@@ -103,7 +136,7 @@ const NoticePage = () => {
                 totalPages={totalPages}
                 onPageChange={setPage}
             />
-        </>
+        </Navbar>
     );
 };
 

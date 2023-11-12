@@ -36,7 +36,18 @@ const GuideSection = ({ title, content }: Props) => {
     return (
         <section
             ref={sectionRef}
-            className="snap-start min-h-screen flex flex-col items-center justify-center p-10 space-y-8 bg-gray-50 border-b"
+            className='
+                min-h-screen
+                p-10
+                snap-start
+                flex
+                flex-col
+                items-center
+                justify-center
+                space-y-8
+                bg-gray-50
+                border-b
+            '
         >
             <div className="text-center space-y-2">
                 <h2 className="text-4xl font-bold text-gray-800">
@@ -46,8 +57,20 @@ const GuideSection = ({ title, content }: Props) => {
                     {content}
                 </div>
             </div>
-            <Link href="/"
-               className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-full shadow-lg hover:bg-blue-700 transition-colors">
+            <Link
+                href="/"
+                className='
+                    mt-4
+                    px-6
+                    py-2
+                    bg-blue-600
+                    text-white
+                    rounded-full
+                    shadow-lg
+                    hover:bg-blue-700
+                    transition-colors
+                '
+            >
                 자세히 알아보기
             </Link>
         </section>

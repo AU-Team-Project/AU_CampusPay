@@ -25,15 +25,8 @@ const NoticeEditPage = async ({ params, searchParams }: Props) => {
     const findData = data.data;
 
     return (
-        <div className="w-full">
-            <div className="pt-3 flex justify-center text-center">
-                <span className="text-[30px] text-gray-700 font-semibold">
-                    공지 수정
-                </span>
-            </div>
-            <div className="md:px-52 flex justify-center">
-                <EditForm findData={findData}/>
-            </div>
+        <div className="md:px-52 flex justify-center">
+            <EditForm findData={findData}/>
         </div>
     );
 };
