@@ -1,8 +1,7 @@
 import React from 'react';
 import HistoryItem from "@/components/HistoryItem";
-import PreviousButton from "@/components/ui/PreviousButton";
+import PreviousButton from "@/components/ui/Button/PreviousButton";
 import {Menu} from "@/model/menu";
-import PageNavigator from "@/components/ui/PageNavigator";
 import {getServerSession} from "next-auth";
 import {options} from "@/app/api/auth/[...nextauth]/options";
 import {redirect} from "next/navigation";
@@ -42,7 +41,6 @@ const ProfilePage = async ({params}: Props) => {
                         />
                     ))}
                 </div>
-                <PageNavigator/>
             </div>
         </div>
     );

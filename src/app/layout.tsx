@@ -3,7 +3,7 @@ import '@/app/globals.css';
 import AuthProvider from "@/context/AuthProvider";
 import type {Metadata} from 'next'
 import Script from "next/script";
-import TopNavbar from "@/components/Navbar";
+import TopNavbar from "@/components/nav/Navbar";
 import { Gothic_A1 } from "next/font/google";
 
 const gothic = Gothic_A1({
@@ -23,7 +23,7 @@ export default function RootLayout({children}: { children: React.ReactNode }) {
             <title>AU App</title>
         </head>
         <Script src="https://cdn.iamport.kr/v1/iamport.js"/>
-        <body  className={`${gothic.className} mx-auto`}>
+        <body  className={`${gothic.className}`}>
         <AuthProvider>
             {children}
         </AuthProvider>
