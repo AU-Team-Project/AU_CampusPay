@@ -53,7 +53,14 @@ const GuideSection = ({ title, content }: Props) => {
                 <h2 className="text-4xl font-bold text-gray-800">
                     {title}
                 </h2>
-                <div className="text-lg text-gray-600 mx-auto leading-relaxed">
+                <div
+                    className='
+                        text-lg
+                        text-gray-600
+                        mx-auto
+                        leading-relaxed
+                    '
+                >
                     {content}
                 </div>
             </div>

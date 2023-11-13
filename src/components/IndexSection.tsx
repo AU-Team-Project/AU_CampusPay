@@ -3,12 +3,14 @@ import React, {useEffect, useState} from 'react';
 import Image from "next/image";
 import Link from "next/link";
 
-interface IndexSectionProps {
-    session?: {
-        user?: {
-            username?: string;
-        }
+interface SessionType {
+    user?: {
+        username?: string;
     }
+}
+
+interface IndexSectionProps {
+    session?: SessionType;
 }
 
 const IndexSection = ({session}: IndexSectionProps) => {
@@ -18,7 +20,7 @@ const IndexSection = ({session}: IndexSectionProps) => {
             imageSrc: '/img/index/Project.svg',
             title: '점심을 위한 더 나은 방법',
             description: 'AU CampusPay는 안산대학교 학생을 위한, 빠르고 간편한 식권 구입 시스템입니다.',
-            extraContent: (session) => (
+            extraContent: () => (
                 <div className='flex gap-7 mt-10'>
                     <Image
                         src={'/img/index/QR_Example.svg'}
@@ -44,9 +46,23 @@ const IndexSection = ({session}: IndexSectionProps) => {
             imageSrc: '/img/index/Iphone.svg',
             title: '앉은 자리에서 간편하게',
             description: '핸드폰과 노트북만으로 카카오페이를 이용해, 그 자리에서 간편하게 식권을 구매할 수 있습니다.',
-            extraContent: (session) => (
+            extraContent: (session?: SessionType) => (
                 <Link
-                    className='w-40 h-10 text-lg flex justify-center items-center font-medium bg-section2-color border-2 border-primary-color text-primary-color rounded-lg mt-10'
+                    className='
+                    w-40
+                    h-10
+                    mt-10
+                    text-lg
+                    flex
+                    justify-center
+                    items-center
+                    font-medium
+                    bg-section2-color
+                    border-2
+                    border-primary-color
+                    text-primary-color
+                    rounded-lg
+                    '
                     href={`/payment/${session?.user?.username}`}>
                     식권 구매하기
                 </Link>
@@ -127,7 +143,7 @@ const IndexSection = ({session}: IndexSectionProps) => {
                             <p className='text-[20px]'>
                                 {section.description}
                             </p>
-                            {section.extraContent(session)}
+                            {section.extraContent()}
                         </div>
                     </div>
                 </section>

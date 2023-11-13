@@ -4,16 +4,16 @@ import Image from "next/image";
 
 const SmallNavbar = () => {
     return (
-        <div className="w-[100vw] p-5 shadow">
+        <div className='w-[100vw] p-5 shadow'>
             <div className={'mx-20'}>
                 <Link
-                    href="/"
-                    className="
+                    href='/'
+                    className='
                         w-[225px]
                         flex
                         items-center
                         gap-1
-                    "
+                    '
                 >
                     <Image
                         src='/Logo.svg'

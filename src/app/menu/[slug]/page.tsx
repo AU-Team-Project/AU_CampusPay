@@ -1,9 +1,9 @@
 "use client"
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Navbar from "@/components/nav/Navbar";
 import Link from "next/link";
 import PageNation from "@/components/ui/PageNation";
-import { ObjectId } from "mongodb";
+import {ObjectId} from "mongodb";
 
 type Props = {
     params: {
@@ -42,7 +42,7 @@ const MenuPage = (params: Props) => {
         const dateInfo = `${itemDate.getFullYear()}.${itemDate.getMonth() + 1}.${itemDate.getDate()}`;
         const days = ['일', '월', '화', '수', '목', '금', '토'];
         const week = days[itemDate.getDay()];
-        return { dateInfo, week };
+        return {dateInfo, week};
     };
 
     const getRestaurant = (cook_id: number) => {
@@ -126,14 +126,39 @@ const MenuPage = (params: Props) => {
     }, [page])
 
     return (
-        <>
-            <Navbar />
-            <div className="min-h-screen bg-[#f7f7f7]">
-                <div className="relative mx-auto translate-y-[50px] w-[1200px] h-[840px] bg-white rounded-[5px]">
-                    <h2 className="w-full text-[22px] font-semibold text-center leading-[70px]">
+        <Navbar>
+            <div className='min-h-screen bg-[#f7f7f7]'>
+                <div
+                    className='
+                        w-[1200px]
+                        h-[840px]
+                        mx-auto
+                        relative
+                        translate-y-[50px]
+                        bg-white
+                        rounded-[5px]
+                    '
+                >
+                    <h2
+                        className='
+                            w-full
+                            text-[22px]
+                            font-semibold
+                            text-center
+                            leading-[70px]
+                        '
+                    >
                         식단표에서 메뉴를 확인해 보세요!
                     </h2>
-                    <div className="flex h-[60px] text-[22px] text-white bg-[#555555]">
+                    <div
+                        className='
+                            h-[60px]
+                            flex
+                            text-[22px]
+                            text-white
+                            bg-[#555555]
+                        '
+                    >
                         {tabList.map((item) => (
                             <Link
                                 href={`${item.path}?page=${page}&restaurant=${findItem(currentpath)}`}
@@ -144,7 +169,8 @@ const MenuPage = (params: Props) => {
                             </Link>
                         ))}
                     </div>
-                    <div className="relative w-full leading-[50px] text-[20px] text-[#555555] flex text-center border-b-[1px] border-[#555555]">
+                    <div
+                        className="relative w-full leading-[50px] text-[20px] text-[#555555] flex text-center border-b-[1px] border-[#555555]">
                         <div className="w-[163px]">
                             날짜
                         </div>
@@ -163,13 +189,14 @@ const MenuPage = (params: Props) => {
                     </div>
 
                     {menus.map((item: cookData) => {
-                        const { dateInfo, week } = getDateInfo(item.date);
+                        const {dateInfo, week} = getDateInfo(item.date);
                         const restaurant = getRestaurant(item.cook_id);
                         const menuName = getMenuName(item.cook_id);
                         const menuDetail = splitMenu(item.menu);
 
                         return (
-                            <div key={item._id.toString()} className="relative w-full h-[60px] text-center text-[18px] flex">
+                            <div key={item._id.toString()}
+                                 className="relative w-full h-[60px] text-center text-[18px] flex">
                                 <span className="w-[163px] flex items-center justify-center">
                                     {dateInfo} ({week})
                                 </span>
@@ -196,7 +223,7 @@ const MenuPage = (params: Props) => {
                     />
                 </div>
             </div>
-        </>
+        </Navbar>
     );
 };
 

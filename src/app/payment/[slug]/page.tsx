@@ -14,15 +14,15 @@ const PaymentsPage = async () => {
     }
 
     return (
-        <>
-            <Navbar/>
+        <Navbar>
             <div className="min-h-screen bg-[#f7f7f7]">
-                <div className="w-full h-[125px] bg-[#F58D8D]"></div> {/* 이미지 넣을거임. */}
+                <div className="w-full h-[125px] bg-[#F58D8D]"></div>
+                {/* 이미지 넣을거임. */}
                 <div className="relative bottom-[35px]">
                     <PaymentContainer/>
                 </div>
             </div>
-        </>
+        </Navbar>
     );
 };
 

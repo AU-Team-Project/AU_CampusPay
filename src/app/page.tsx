@@ -15,9 +15,9 @@ export default async function Home() {
             <DesktopNavbar/>
             <main
                 className='
-                min-h-screen
-                max-h-full
-                text-white
+                    min-h-screen
+                    max-h-full
+                    text-white
                 '
             >
                 <IndexSection session={session}/>

@@ -4,8 +4,7 @@ import GuideSection from "@/components/GuideSection";
 
 const Guide = () => {
     return (
-        <>
-            <Navbar />
+        <Navbar>
             {/* 스크롤 스냅 기능을 위한 div 설정 */}
             <div style={{ scrollBehavior: 'smooth' }} className="snap-y snap-mandatory h-screen">
                 <div className="snap-start">
@@ -39,7 +38,7 @@ const Guide = () => {
                     />
                 </div>
             </div>
-        </>
+        </Navbar>
     );
 };
 
