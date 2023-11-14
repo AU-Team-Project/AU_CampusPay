@@ -90,7 +90,9 @@ const NoticePage = () => {
                         <th scope="col" className="px-6 py-3 text-center">
                             조회수
                         </th>
-                        <th scope="col" className="px-6 py-3 text-center">
+                        <th
+                            scope="col"
+                            className="px-6 py-3 text-center">
                             편집
                         </th>
                     </tr>
