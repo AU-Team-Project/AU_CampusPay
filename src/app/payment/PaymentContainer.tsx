@@ -116,6 +116,7 @@ const PaymentContainer = () => {
                                     width={240}
                                     height={240}
                                 />
+
                             </div>
                             <div className="p-2 min-w-full leading-[35px]">
                                 <h4 className="text-[20px] text-center font-medium">{item.label}</h4>
