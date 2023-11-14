@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/AU_CampusPay.iml" filepath="$PROJECT_DIR$/.idea/AU_CampusPay.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../messenger/.idea/Messenger.iml" filepath="$PROJECT_DIR$/../messenger/.idea/Messenger.iml" />
     </modules>
   </component>
 </project>

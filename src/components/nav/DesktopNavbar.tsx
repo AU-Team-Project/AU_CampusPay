@@ -44,9 +44,15 @@ const DesktopNavbar = () => {
     ];
 
     const [isClicked, setIsClicked] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const handleNavClick = () => {
         setIsClicked(!isClicked)
+    }
+
+    // 햄버거 메뉴 클릭 핸들러
+    const toggleMenu = () => {
+        setIsMenuOpen(!isMenuOpen);
     }
 
     const getLinkItem = (session: CustomSession | null) => {
@@ -104,8 +110,17 @@ const DesktopNavbar = () => {
         <header className='min-w-[320px] flex-col shadow-lg shadow-gray-50 bg-white'>
             <div className={'text-[17px] h-[65px] flex items-center'}>
                 {/* Global Navigation Menu (PC) */}
-                <nav className='w-full'>
-                    <ul className='text-black-color font-semibold flex items-centers justify-center gap-12'>
+                <nav className='w-full md:block hidden'>
+                    <ul
+                        className='
+                            text-black-color
+                            font-semibold
+                            flex
+                            items-centers
+                            justify-center
+                            gap-12
+                        '
+                    >
                         <li className={'flex items-center'}>
                             <Link href='/'>
                                 <Image
@@ -118,10 +133,17 @@ const DesktopNavbar = () => {
                         </li>
                         {NavbarRoute.map((item => (
                             <li key={item.id} className={'flex items-center'}>
-                                <Link href={item.href}>{item.label}</Link>
+                                <Link href={item.href}>
+                                    {item.label}
+                                '</Link>
                             </li>
                         )))}
                         <>{getLinkItem(session)}</>
+                    </ul>
+                </nav>
+                <nav className={`md:hidden ${isMenuOpen ? 'block' : 'hidden'}`}>
+                    <ul>
+                        {/* 메뉴 항목들... */}
                     </ul>
                 </nav>
             </div>
