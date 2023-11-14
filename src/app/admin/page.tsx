@@ -3,8 +3,8 @@ import {getServerSession} from "next-auth";
 import {options} from "@/app/api/auth/[...nextauth]/options";
 import {redirect} from "next/navigation";
 
-import AdminTopCard from "@/components/ui/card/AdminTopCard";
-import BarChart from "@/components/ui/chart/BarChart";
+import AdminTopCard from "@/components/ui/Card/AdminTopCard";
+import BarChart from "@/components/ui/Chart/BarChart";
 import RecentOrders from "@/components/admin/RecentOrders";
 
 const AdminPage = async () => {

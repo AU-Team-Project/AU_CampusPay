@@ -26,13 +26,13 @@ const QrCode = ({props}: Props) => {
                 `${data}`,
                 function (error) {
                 if (error) console.error(error);
-                console.log(`success! : ${data}`);
+                // console.log(`success! : ${data}`);
             });
         }
     }, []);
 
     return (
-        <canvas ref={canvasRef}></canvas>
+        <canvas ref={canvasRef}/>
     );
 };
 

@@ -1,6 +1,10 @@
 import React from 'react';
 import {BsThreeDotsVertical} from "react-icons/bs";
-import RecentOrdersIcon from "@/components/ui/icons/RecentOrdersIcon";
+import RecentOrdersIcon from "@/components/ui/Icons/RecentOrdersIcon";
+
+import {getServerSession} from "next-auth";
+import {options} from "@/app/api/auth/[...nextauth]/options";
+import {redirect} from "next/navigation";
 
 const test = [
     {
@@ -38,7 +42,12 @@ const test = [
     }
 ]
 
-const OrdersPage = () => {
+const OrdersPage = async () => {
+    const session = await getServerSession(options);
+    if (session?.user?.role != 'admin' || !session) {
+        redirect('/')
+    }
+
     return (
         <div className='bg-gray-100 min-h-screen'>
             <div className='p-4'>

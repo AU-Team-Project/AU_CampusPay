@@ -4,7 +4,10 @@ import {NextResponse} from "next/server";
 export async function GET() {
     try {
         const db = (await connectDB).db(process.env.MONGODB_NAME);
-        const sales = await db.collection(process.env.MONGODB_PAYMENT as string).find().toArray()
+        const sales = await db.collection(process.env.MONGODB_PAYMENT as string)
+            .find()
+            .toArray()
+
         const salesCopy = [...sales];
 
         // 판매 티켓 수 계산
