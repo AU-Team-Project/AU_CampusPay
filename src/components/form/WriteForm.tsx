@@ -91,12 +91,58 @@ const WriteForm = () => {
                 />
             </div>
             <div className="flex justify-between">
-                <PreviousButton props={"취소"} className={"group relative w-[200px] flex justify-center py-3 px-4 border border-blue-custom-hover border-transparent text-[18px] font-medium rounded-[25px] text-white bg-blue-custom-deep hover:bg-blue-custom-hover active:outline-none active:ring active:ring-offset-3 active:ring-blue-custom-hover ease-out duration-200"}/>
+                <PreviousButton
+                    props='취소'
+                    className='
+                        w-[200px]
+                        py-3
+                        px-4
+                        group
+                        relative
+                        flex
+                        justify-center
+                        border
+                        border-blue-custom-hover
+                        border-transparent
+                        text-[18px]
+                        font-medium
+                        rounded-[25px]
+                        bg-blue-custom-deep
+                        hover:bg-blue-custom-hover
+                        active:outline-none
+                        active:ring
+                        active:ring-offset-3
+                        active:ring-blue-custom-hover
+                        ease-out duration-200
+                    '
+                />
                 <button
-                    className="group relative w-[200px] flex justify-center py-3 px-4 border border-blue-custom-hover border-transparent text-[18px] font-medium rounded-[25px] text-white bg-blue-custom-deep hover:bg-blue-custom-hover active:outline-none active:ring active:ring-offset-3 active:ring-blue-custom-hover ease-out duration-200"
                     type='submit'
+                    className='
+                        w-[200px]
+                        py-3
+                        px-4
+                        group
+                        relative
+                        justify-center
+                        flex
+                        border
+                        border-blue-custom-hover
+                        border-transparent
+                        text-[18px]
+                        text-white
+                        font-medium
+                        rounded-[25px]
+                        bg-primary-color
+                        hover:bg-blue-custom-hover
+                        active:outline-none
+                        active:ring
+                        active:ring-offset-3
+                        active:ring-blue-custom-hover
+                        ease-out duration-200
+                    '
                 >
-                    제출
+                    게시하기
                 </button>
             </div>
         </form>

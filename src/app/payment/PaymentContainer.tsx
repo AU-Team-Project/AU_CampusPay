@@ -126,13 +126,31 @@ const PaymentContainer = () => {
 
                 <div className="flex justify-center gap-[300px] mt-[30px]">
                     <Link href={'/'}>
-                        <div className={'bg-[#393939] font-semibold text-center leading-[65px] text-white w-[300px] h-[65px] rounded-[5px]'}>
+                        <div
+                            className='
+                                w-[300px]
+                                h-[65px]
+                                bg-[#393939]
+                                font-semibold
+                                text-center
+                                leading-[65px]
+                                text-white
+                                rounded-[5px]
+                            '
+                        >
                             돌아가기
                         </div>
                     </Link>
                     <PaymentBtn
                         props={selectedItem}
-                        className={'bg-[#009223] font-semibold text-white w-[300px] h-[65px] rounded-[5px]'}
+                        className='
+                            w-[300px]
+                            h-[65px]
+                            bg-[#009223]
+                            font-semibold
+                            text-white
+                            rounded-[5px]
+                        '
                     />
                 </div>
             </div>
