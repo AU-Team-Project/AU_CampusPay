@@ -3,6 +3,11 @@ module.exports = {
   content: ['./src/**/*.{/js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      /* 사용자 지정 반응형 */
+      screens: {
+        xsm: { min: '320px'}
+      },
+      /* 사용자 지정 색상 */
       colors: {
         'primary-color': '#FF9500',
         'sub-font-color': '#7c7c7c',
@@ -21,18 +26,22 @@ module.exports = {
         'black-color': '#333',
         'main-color': '#F8EFEA'
       },
+      /* 사용자 지정 이미지 */
       backgroundImage: {
         'mid-bg-image': "url('/img/Cafeteria.jpg')"
       },
+
       spacing: {
         '155': '155px',
         '175': '175px',
       },
+
       transitionDuration: {
         '1200': '1200ms',
         '1500': '1500ms',
         '3000': '3000ms'
       },
+
       boxShadow: {
         'custom': '0 2px 4px rgba(0, 0, 0, 0.1)',
       },
