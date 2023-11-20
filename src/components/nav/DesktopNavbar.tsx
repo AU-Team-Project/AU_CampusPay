@@ -17,6 +17,8 @@ const DesktopNavbar = () => {
     const {data: session} = useSession();
     const userRole = session?.user?.role;
 
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     const NavbarRoute = [
         {
             id: 1,
@@ -44,7 +46,6 @@ const DesktopNavbar = () => {
             href: `/payment/${session?.user?.username}`,
         }
     ];
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     // 햄버거 메뉴 클릭 핸들러
     const toggleMenu = () => {
